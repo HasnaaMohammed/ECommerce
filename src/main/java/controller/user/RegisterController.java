@@ -6,7 +6,12 @@ import model.interfaces.UserOperationInterface;
 
 public class RegisterController {
     
-    UserOperationInterface userOperation; 
+    UserOperationInterface userOperation;
+
+    public UserOperationInterface getUserOperation() {
+        return userOperation;
+    }
+
     public boolean registerUser(String fullName, String email, String job, String address, LocalDate birthDate)
     {
         boolean registered = false;

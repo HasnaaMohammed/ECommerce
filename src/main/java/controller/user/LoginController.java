@@ -6,6 +6,10 @@ import model.interfaces.UserOperationInterface;
 public class LoginController {
     
     public UserOperationInterface userOperation;
+
+    public UserOperationInterface getUserOperation() {
+        return userOperation;
+    }
     public boolean getUserValidation(String email, String password)
     {
         boolean verified = false;

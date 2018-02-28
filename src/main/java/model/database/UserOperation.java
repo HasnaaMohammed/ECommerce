@@ -35,6 +35,7 @@ public class UserOperation implements UserOperationInterface {
     }
 
     public boolean isUserExist(String email) {
-        return false;
+
+        return getUserbyEmail(email.toLowerCase().trim()) != null;
     }
 }
