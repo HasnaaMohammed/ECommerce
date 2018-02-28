@@ -465,7 +465,7 @@ _________________________________________________________ -->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="fullname">Full Name</label>
-                                    <input type="text" class="form-control" id="fullname" value="${sessionScope.loggedUserData}">
+                                    <input type="text" class="form-control" id="fullname" value="${sessionScope.loggedUserData.fullName}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
