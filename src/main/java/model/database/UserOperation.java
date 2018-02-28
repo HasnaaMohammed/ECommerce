@@ -2,7 +2,6 @@ package model.database;
 
 import model.beans.User;
 import model.interfaces.UserOperationInterface;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -13,10 +12,10 @@ import java.util.logging.Logger;
 public class UserOperation implements UserOperationInterface {
 
     private DatabaseHandler databaseHandler;
-    String query;
-    ResultSet resultSet;
-    User user = null;
-    Vector<User> vector = new Vector<>();
+    private String query;
+    private ResultSet resultSet;
+    private User user = null;
+    private Vector<User> vector = new Vector<>();
 
     public UserOperation() {
         databaseHandler = DatabaseHandler.getInstance();
@@ -50,7 +49,7 @@ public class UserOperation implements UserOperationInterface {
                 databaseHandler.closeConnection();
                 return 1;  //user already exist
             } else {
-                query = "insert into User(fullName,password,email,birthDate,address,job,credit,role) values('" + newUse.getFullName()
+                query = "insert into User(Full_Name,password,email,birthDate,address,job,Credit_Limit,role) values('" + newUse.getFullName()
                         + "','" +newUse.getPassword() +"','" + newUse.getEmail() + "','" + newUse.getBirthDate() + "','" + newUse.getAddress() + "','" + newUse.getJob() + "','"
                         + newUse.getCredit() + "','" + newUse.getRole() + "')";
 
@@ -91,15 +90,15 @@ public class UserOperation implements UserOperationInterface {
 
         if (resultSet.next()) {
 
-            String fullName = resultSet.getString("fullName");
-            String ueremail = resultSet.getString("email");
+            String fullName = resultSet.getString("Full_Name");
+            String useremail = resultSet.getString("email");
             String password = resultSet.getString("password");
             LocalDate birthDate =  resultSet.getDate("birthDate").toLocalDate();
             String address = resultSet.getString("address");
             String job = resultSet.getString("job");
             int credit = resultSet.getInt("credit_limit");
-            int userrole = resultSet.getInt("role");
-            user = new User(fullName, ueremail,birthDate, address, job, credit, userrole  ,password);
+            int userRole = resultSet.getInt("role");
+            user = new User(fullName,useremail,birthDate, address, job, credit, userRole  ,password);
 
             vector.add(user);
 

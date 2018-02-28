@@ -38,8 +38,8 @@ public class DatabaseHandler {
     private void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://35.202.50.71:3306/ECommerce";
-            connection = DriverManager.getConnection(dbUrl, "mfawzy", "\\c3d{kBj\\8UqUAny");
+            String dbUrl = "jdbc:mysql://104.154.93.46:3306/ECommerce";
+            connection = DriverManager.getConnection(dbUrl, "root", "HelloWorldmfawzy0000");
             System.out.println("connection succeeded");
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);

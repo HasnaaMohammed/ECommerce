@@ -2,31 +2,33 @@ package controller.user;
 
 import java.time.LocalDate;
 import model.beans.User;
+import model.database.UserOperation;
 import model.interfaces.UserOperationInterface;
 
 public class RegisterController {
     
     UserOperationInterface userOperation;
 
-    public UserOperationInterface getUserOperation() {
-        return userOperation;
+    public static final int USER_EXIST = 1;
+    public static final int USER_REGISTERED = 2;
+
+    public RegisterController() {
+        userOperation = new UserOperation();
     }
 
-    public boolean registerUser(String fullName, String email, String job, String address, LocalDate birthDate)
+    public int registerUser(User user)
     {
-        boolean registered = false;
-        boolean exist = userOperation.isUserExist(email);
+        int registered;
+        boolean exist = userOperation.isUserExist(user.getEmail());
         if(!exist){
-            User user = new User();
-            user.setFullName(fullName);
-            user.setEmail(email);
-            user.setJob(job);
-            user.setAddress(address);
-            user.setBirthDate(birthDate);
+
             userOperation.addUser(user);
-            registered=true;
+            registered=USER_REGISTERED;
         }
-        
+        else
+        {
+            registered = USER_EXIST;
+        }
        return registered;
     }
     

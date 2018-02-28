@@ -58,7 +58,6 @@ public class ValidationCheck {
         if(!isEmptyString(dateOfBirth.toString()) && dateOfBirth.getYear() <= 2000){
             legalAge = true;
         }
-
         return legalAge;
     }
 
@@ -70,7 +69,7 @@ public class ValidationCheck {
      **/
     public boolean isValidPassword(String pass) {
         boolean validPass = false;
-        if (pass.length() >= 8 && pass.length() <= 30) {
+        if (pass.length() >= 4 && pass.length() <= 30) {
             validPass = true;
         }
         return validPass;
