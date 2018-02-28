@@ -28,23 +28,16 @@ public class UserOperation implements UserOperationInterface {
         try {
             query = "select * from User where email = '" + email + "'";
             resultSet = databaseHandler.select(query);
-            if (resultSet.next()) {
-
-                String fullName = resultSet.getString("fullName");
-                String password = resultSet.getString("password");
-                String ueremail = resultSet.getString("email");
-                LocalDate birthDate = resultSet.getDate("birthDate").toLocalDate();
-                String address = resultSet.getString("address");
-                String job = resultSet.getString("job");
-                int credit = resultSet.getInt("credit_limit");
-                int role = resultSet.getInt("role");
-                user = new User(fullName, password,ueremail, birthDate, address, job, credit, role);
-
-            }
+            fillObject();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return user;
+    }
+
+    @Override
+    public boolean isUserExist(String email) {
+        return getUserbyEmail(email.toLowerCase().trim()) != null ;
     }
 
     @Override
@@ -75,21 +68,7 @@ public class UserOperation implements UserOperationInterface {
         try {
             query = "select * from User where role = '" + role + "'";
             resultSet = databaseHandler.select(query);
-            if (resultSet.next()) {
-
-                String fullName = resultSet.getString("fullName");
-                String ueremail = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                LocalDate birthDate =  resultSet.getDate("birthDate").toLocalDate();
-                String address = resultSet.getString("address");
-                String job = resultSet.getString("job");
-                int credit = resultSet.getInt("credit_limit");
-                int userrole = resultSet.getInt("role");
-                user = new User(fullName, password, ueremail,birthDate, address, job, credit, userrole);
-
-                vector.add(user);
-
-            }
+            fillObject();
         } catch (SQLException ex) {
             Logger.getLogger(UserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,24 +80,29 @@ public class UserOperation implements UserOperationInterface {
        try {
             query = "select * from User";
             resultSet = databaseHandler.select(query);
-            if (resultSet.next()) {
-
-                String fullName = resultSet.getString("fullName");
-                String ueremail = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                LocalDate birthDate =  resultSet.getDate("birthDate").toLocalDate();
-                String address = resultSet.getString("address");
-                String job = resultSet.getString("job");
-                int credit = resultSet.getInt("credit_limit");
-                int userrole = resultSet.getInt("role");
-                user = new User(fullName, password, ueremail,birthDate, address, job, credit, userrole);
-
-                vector.add(user);
-
-            }
-        } catch (SQLException ex) {
+            fillObject();
+       } catch (SQLException ex) {
             Logger.getLogger(UserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return vector;
+    }
+
+    private void fillObject() throws SQLException {
+
+        if (resultSet.next()) {
+
+            String fullName = resultSet.getString("fullName");
+            String ueremail = resultSet.getString("email");
+            String password = resultSet.getString("password");
+            LocalDate birthDate =  resultSet.getDate("birthDate").toLocalDate();
+            String address = resultSet.getString("address");
+            String job = resultSet.getString("job");
+            int credit = resultSet.getInt("credit_limit");
+            int userrole = resultSet.getInt("role");
+            user = new User(fullName, ueremail,birthDate, address, job, credit, userrole  ,password);
+
+            vector.add(user);
+
+        }
     }
 }
