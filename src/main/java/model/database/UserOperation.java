@@ -33,4 +33,8 @@ public class UserOperation implements UserOperationInterface {
     public Vector<User> getUsers() {
         return null;
     }
+
+    public boolean isUserExist(String email) {
+        return false;
+    }
 }

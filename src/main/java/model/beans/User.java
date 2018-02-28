@@ -11,6 +11,7 @@ public class User {
     private String job ;
     private int credit ;
     private int role;
+    private String password;
 
 
     public User() { }
@@ -70,4 +71,14 @@ public class User {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    
 }
