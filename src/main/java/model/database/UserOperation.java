@@ -87,8 +87,7 @@ public class UserOperation implements UserOperationInterface {
         return vector;
     }
 
-    public boolean updateUser(User user)
-    {
+    public boolean updateUser(User user) {
         query = "UPDATE User SET Password = '"+user.getPassword()+"', Full_Name= '"+user.getFullName()+
                 "', Birthdate = '"+user.getBirthDate() +"', address = '"+user.getAddress()+"', Job = '"+user.getJob() +
                 "', Credit_Limit = '"+user.getCredit()+"' WHERE email = '"+user.getEmail() +"';";
@@ -96,6 +95,21 @@ public class UserOperation implements UserOperationInterface {
         return databaseHandler.update(query);
 
     }
+
+    public String getUserID(String email){
+        String userID = null;
+        try {
+            query = "select id from User where email = '" + email+ "'";
+            resultSet = databaseHandler.select(query);
+            if (resultSet.next()) {
+                userID =  resultSet.getString("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userID;
+    }
+
     private void fillObject() throws SQLException {
 
         if (resultSet.next()) {

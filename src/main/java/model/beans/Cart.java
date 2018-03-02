@@ -34,4 +34,4 @@ public class Cart {
     public void setCheckOut(boolean checkOut) {
         this.checkOut = checkOut;
     }
-}   
+}
