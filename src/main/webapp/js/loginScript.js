@@ -9,7 +9,7 @@ function loginHandler() {
     console.log(password.value);
     var postObject = {"email":email.value , "pass":password.value};
     loginButton.disabled = true;
-    $.post("/Login" , postObject , function (data) {
+    $.post("./Login" , postObject , function (data) {
 
         if(data === "success")
             window.location.replace("customer-account.jsp");
