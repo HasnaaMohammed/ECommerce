@@ -18,7 +18,8 @@ public class LoginController {
     {
         boolean verified = false;
         User user = userOperation.getUserbyEmail(email.toLowerCase().trim());
-        if(user.getPassword().equals(password))
+
+        if(user != null && user.getPassword().equals(password))
         {
             verified=true;
             userObject = user;

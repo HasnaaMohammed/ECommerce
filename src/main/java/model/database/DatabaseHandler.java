@@ -23,8 +23,9 @@ public class DatabaseHandler {
     private PreparedStatement pres;
 
     private DatabaseHandler() {
-        connect();
 
+        Database database = Database.getInstance();
+        connection = database.getConnection();
     }
 
     public static DatabaseHandler getInstance() {
@@ -35,46 +36,28 @@ public class DatabaseHandler {
         return databaseHandler;
     }
 
-    private void connect() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://104.154.93.46:3306/ECommerce";
-            connection = DriverManager.getConnection(dbUrl, "root", "HelloWorldmfawzy0000");
-            System.out.println("connection succeeded");
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
+
+    public boolean insert(String query) {
+        return executeNonQuery(query);
     }
 
-    public void insert(String query) {
+    public boolean update(String query) {
+        return executeNonQuery(query);
+    }
+
+    public boolean delete(String query) {
+        return executeNonQuery(query);
+    }
+
+    private boolean executeNonQuery(String query) {
         try {
             pres = connection.prepareStatement(query);
             pres.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void update(String query) {
-        try {
-            pres = connection.prepareStatement(query);
-            pres.executeUpdate();
-            //statement.executeUpdate(query);
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void delete(String query) {
-        try {
-            pres = connection.prepareStatement(query);
-            pres.executeUpdate();
-            //statement.executeUpdate(query);
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 

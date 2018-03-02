@@ -8,5 +8,5 @@ public interface ProductOperationInterface {
     public Cart getUserCart(String email);
     public Cart getUserCart(User user);
 
-    
+
 }

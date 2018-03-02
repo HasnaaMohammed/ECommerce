@@ -1,6 +1,8 @@
+<%@ page import="model.beans.User" %>
 <!DOCTYPE html>
 <html lang="en">
-<%@page session="false" %>
+<%--<%@page session="false" %>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 
     <meta charset="utf-8">
@@ -34,6 +36,8 @@
 
     <script src="js/respond.min.js"></script>
 
+    <!--User Updating Script-->
+    <script src="js/updateUserScript.js"></script>
     <link rel="shortcut icon" href="favicon.png">
 
 
@@ -460,7 +464,7 @@ _________________________________________________________ -->
                     <p class="lead">Change your personal details or your password here.</p>
                     <hr>
                     <h3>Personal details</h3>
-                    <form>
+                    <form onsubmit="return updateUserProfile()">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -471,7 +475,7 @@ _________________________________________________________ -->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" disabled>
+                                    <input type="email" class="form-control" id="email" value="${sessionScope.loggedUserData.email}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -485,7 +489,7 @@ _________________________________________________________ -->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="birthdate">Birth Date</label>
-                                    <input type="date" class="form-control" id="birthdate">
+                                    <input type="date" class="form-control" id="birthdate" value="${sessionScope.loggedUserData.birthDate}">
                                 </div>
                             </div>
                         </div>
@@ -494,21 +498,21 @@ _________________________________________________________ -->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address">
+                                    <input type="text" class="form-control" id="address" value="${sessionScope.loggedUserData.address}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="job">Job</label>
-                                    <input type="text" class="form-control" id="job">
+                                    <input type="text" class="form-control" id="job" value="${sessionScope.loggedUserData.job}">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-center">
                                 <div class="form-group">
-                                    <label for="limit">Job</label>
-                                    <input type="number" class="form-control" id="limit">
+                                    <label for="limit">Credit</label>
+                                    <input type="number" class="form-control" id="limit" value="${sessionScope.loggedUserData.credit}">
                                 </div>
                             </div>
                         </div>
