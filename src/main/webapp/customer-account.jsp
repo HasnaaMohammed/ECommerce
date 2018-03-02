@@ -464,7 +464,7 @@ _________________________________________________________ -->
                     <p class="lead">Change your personal details or your password here.</p>
                     <hr>
                     <h3>Personal details</h3>
-                    <form onsubmit="return updateUserProfile()">
+                    <form onsubmit="return updateUserProfile()" method="post">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -518,6 +518,7 @@ _________________________________________________________ -->
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-center">
+                                <p id="updateMsg" style="color: red"></p>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes
                                 </button>
 
