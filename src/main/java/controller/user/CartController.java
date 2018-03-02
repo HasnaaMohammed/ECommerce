@@ -86,10 +86,6 @@ public class CartController{
       }
 
     }
-
-
-
-
     private void fillObject() throws SQLException {
         if (resultSet.next()) {
             String name=resultSet.getString("Name");
