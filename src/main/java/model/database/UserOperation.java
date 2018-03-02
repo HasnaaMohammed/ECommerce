@@ -1,5 +1,6 @@
 package model.database;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.beans.User;
 import model.interfaces.UserOperationInterface;
 import java.sql.ResultSet;
@@ -88,11 +89,11 @@ public class UserOperation implements UserOperationInterface {
 
     public boolean updateUser(User user)
     {
-        query = "UPDATE User SET Password = "+user.getPassword()+", Full_Name= "+user.getFullName()+
-                ", Birthdate = "+user.getBirthDate() +", address = "+user.getAddress()+", Job = "+user.getJob() +
-                ", Credit_Limit = "+user.getCredit()+" WHERE email = "+user.getEmail() +";";
+        query = "UPDATE User SET Password = '"+user.getPassword()+"', Full_Name= '"+user.getFullName()+
+                "', Birthdate = '"+user.getBirthDate() +"', address = '"+user.getAddress()+"', Job = '"+user.getJob() +
+                "', Credit_Limit = '"+user.getCredit()+"' WHERE email = '"+user.getEmail() +"';";
 
-        return   databaseHandler.update(query);
+        return databaseHandler.update(query);
 
     }
     private void fillObject() throws SQLException {

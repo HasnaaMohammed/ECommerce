@@ -37,8 +37,6 @@ public class DatabaseHandler {
         return databaseHandler;
     }
 
-
-
     public boolean insert(String query) {
         return executeNonQuery(query);
     }
@@ -57,6 +55,7 @@ public class DatabaseHandler {
             pres.executeUpdate();
             return true;
         } catch (SQLException ex) {
+            System.out.println(ex.toString());
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -68,6 +67,7 @@ public class DatabaseHandler {
             pres = connection.prepareStatement(query);
             resultSet = pres.executeQuery();
         } catch (SQLException ex) {
+            System.out.println(ex.toString());
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultSet;

@@ -90,4 +90,9 @@ public class ValidationCheck {
         return matchPass;
     }
 
+    public boolean isValidLimit(int limit)
+    {
+        return limit > 1;
+    }
+
 }
