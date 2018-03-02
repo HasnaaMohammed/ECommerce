@@ -3,6 +3,7 @@ package model.beans;
 public class Product {
 
     private String name;
+    private int sku;
     private int quantiity;
     private double price;
     private String product_img;
@@ -11,12 +12,21 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, int quantiity, double price, String product_img, String product_category) {
+    public Product(String name, int sku, int quantiity, double price, String product_img, String product_category) {
         this.name = name;
+        this.sku = sku;
         this.quantiity = quantiity;
         this.price = price;
         this.product_img = product_img;
         this.product_category = product_category;
+    }
+
+    public int getSku() {
+        return sku;
+    }
+
+    public void setSku(int sku) {
+        this.sku = sku;
     }
 
     public String getName() {

@@ -24,7 +24,6 @@ public class UserOperation implements UserOperationInterface {
 
     @Override
     public User getUserbyEmail(String email) {
-
         try {
             query = "select * from User where email = '" + email + "'";
             resultSet = databaseHandler.select(query);
@@ -33,6 +32,7 @@ public class UserOperation implements UserOperationInterface {
             ex.printStackTrace();
         }
         return user;
+
     }
 
     @Override
