@@ -10,7 +10,7 @@ public interface ProductOperationInterface {
 
     public boolean addNewProduct(Product product);
     public boolean addNewCategory(String category);
-    public String getProductInfo(String id);
+    public Product getProductInfo(String id);
 
 
 
