@@ -36,6 +36,8 @@
 
     <script src="js/respond.min.js"></script>
 
+    <!--User Updating Script-->
+    <script src="js/updateUserScript.js"></script>
     <link rel="shortcut icon" href="favicon.png">
 
 
@@ -462,7 +464,7 @@ _________________________________________________________ -->
                     <p class="lead">Change your personal details or your password here.</p>
                     <hr>
                     <h3>Personal details</h3>
-                    <form>
+                    <form onsubmit="return updateUserProfile()">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -509,7 +511,7 @@ _________________________________________________________ -->
                         <div class="row">
                             <div class="col-sm-12 text-center">
                                 <div class="form-group">
-                                    <label for="limit">Job</label>
+                                    <label for="limit">Credit</label>
                                     <input type="number" class="form-control" id="limit" value="${sessionScope.loggedUserData.credit}">
                                 </div>
                             </div>

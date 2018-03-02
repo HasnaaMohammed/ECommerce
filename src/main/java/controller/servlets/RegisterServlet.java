@@ -56,6 +56,10 @@ public class RegisterServlet extends HttpServlet {
         {
                 out.write("success");
         }
+        else if(regResult == RegisterController.INVALID_EMAIL)
+        {
+            out.write("Invalid Email");
+        }
 
 
     }
