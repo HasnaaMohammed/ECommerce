@@ -14,7 +14,7 @@ public class ProductController {
 
     public boolean addNewProduct(Product product)
     {
-
+        return false;
     }
 
 

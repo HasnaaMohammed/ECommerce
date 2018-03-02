@@ -1,8 +1,12 @@
 package model.interfaces;
 
 import model.beans.Cart;
+import model.beans.Category;
 import model.beans.Product;
 import model.beans.User;
+
+import java.sql.SQLException;
+import java.util.Vector;
 
 public interface ProductOperationInterface {
 
@@ -11,7 +15,8 @@ public interface ProductOperationInterface {
     public boolean addNewProduct(Product product);
     public boolean addNewCategory(String category);
     public Product getProductInfo(String id);
-
+    public Vector<Category> getAllCategoriesWithProducts();
+    public Vector<String> getAllCategories() throws SQLException;
 
 
 }

@@ -1,11 +1,13 @@
 package model.database;
 
+import model.beans.Category;
 import model.beans.Product;
 import model.interfaces.ProductOperationInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,8 +15,13 @@ public class ProductOperation implements ProductOperationInterface {
     private DatabaseHandler databaseHandler;
     private String query;
     private ResultSet resultSet;
-     private Product product  = null;
+    private Product product = null;
 
+
+    public ProductOperation(){
+        databaseHandler = DatabaseHandler.getInstance();
+
+            }
     @Override
     public boolean addNewProduct(Product product) {
         try {
@@ -79,4 +86,65 @@ public class ProductOperation implements ProductOperationInterface {
         }
         return product;
     }
+
+    @Override
+    public Vector<Category> getAllCategoriesWithProducts()  {
+        Vector<Category> categories = new Vector<Category>();
+
+        try {
+            Vector<String> categoriesQuery = getAllCategories();
+            for (String categorys : categoriesQuery) {
+                Category category = new Category();
+                category.setName(categorys);
+                category.setProducts(getCategoryProduct(categorys));
+                categories.add(category);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+
+    @Override
+    public Vector<String> getAllCategories() throws SQLException {
+        String query = "select * from Category;";
+        resultSet = databaseHandler.select(query);
+        Vector<String> result = new Vector<>();
+        while (resultSet.next()) {
+            result.add(resultSet.getString(2));
+        }
+        return result;
+    }
+
+
+    public Vector<Product> getCategoryProduct(String category) throws SQLException {
+        Vector<Product> products = new Vector<>();
+        Product product = new Product();
+        String query = "select "+
+                "    `Product`.`Name`,\n" +
+                "    `Product`.`Quantity`,\n" +
+                "    `Product`.`Sku`,\n" +
+                "    `Product`.`Price`,\n" +
+                "    `Product`.`Product_img`,\n" +
+                "    `Product`.`Category_id`\n" +
+                " from Product , Category\n" +
+                " where Category.Category_name = '"+category+
+                "'  and Product.Category_id = Category.id;";
+        resultSet = databaseHandler.select(query);
+        while(resultSet.next())
+        {
+            product.setName(resultSet.getString(1));
+            product.setQuantiity(resultSet.getInt(2));
+            product.setSku(resultSet.getInt(3));
+            product.setPrice(resultSet.getDouble(4));
+            product.setProduct_img(resultSet.getString(5));
+            product.setProduct_category(category);
+            products.add(product);
+        }
+        return products;
+    }
+
+
+
 }

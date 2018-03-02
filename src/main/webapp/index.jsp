@@ -3,62 +3,78 @@
 
 <head>
     <%@page session="false" %>
-    <meta charset="utf-8">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Obaju e-commerce template">
-    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
-    <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="robots" content="all,follow">
+        <meta name="googlebot" content="index,follow,snippet,archive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Obaju e-commerce template">
+        <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+        <meta name="keywords" content="">
 
-    <title>
-        Obaju : e-commerce template
-    </title>
+        <title>
+            Obaju : e-commerce template
+        </title>
 
-    <meta name="keywords" content="">
+        <meta name="keywords" content="">
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
 
-    <!-- styles -->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/owl.carousel.css" rel="stylesheet">
-    <link href="css/owl.theme.css" rel="stylesheet">
+        <!-- styles -->
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/animate.min.css" rel="stylesheet">
+        <link href="css/owl.carousel.css" rel="stylesheet">
+        <link href="css/owl.theme.css" rel="stylesheet">
 
-    <!-- theme stylesheet -->
-    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+        <!-- theme stylesheet -->
+        <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
 
-    <!-- your stylesheet with modifications -->
-    <link href="css/custom.css" rel="stylesheet">
+        <!-- your stylesheet with modifications -->
+        <link href="css/custom.css" rel="stylesheet">
 
-    <script src="js/respond.min.js"></script>
+        <script src="js/respond.min.js"></script>
 
-    <!--Ajax Script-->
-    <script src="js/loginScript.js"></script>
-    <link rel="shortcut icon" href="favicon.png">
+        <!--Ajax Script-->
+        <script src="js/loginScript.js"></script>
+
+        <link rel="shortcut icon" href="favicon.png">
+
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/loadProductScript.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/bootstrap-hover-dropdown.js"></script>
+    <script src="js/front.js"></script>
+
 
 
 
 </head>
 
-<body>
+<body >
 
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
     <div id="top">
         <div class="container">
-           
-            <div class="col-md-6" data-animate="fadeInDown" style="margin-left: 5%" >
+
+            <div class="col-md-6" data-animate="fadeInDown" style="margin-left: 5%">
                 <ul class="menu" style="float: right;z-index: 10">
-                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                     </li>
-                    <li><a href="register.jsp">Register</a>
+                    <li>
+                        <a href="register.jsp">Register</a>
                     </li>
-                               
+
                 </ul>
             </div>
-               
+
         </div>
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -79,12 +95,16 @@
                             </div>
                             <p style="color: red" id="errorMsg"></p>
                             <p class="text-center">
-                                <button type="submit" class="btn btn-primary" id="loginBtn" ><i class="fa fa-sign-in" ></i> Log in</button>
+                                <button type="submit" class="btn btn-primary" id="loginBtn">
+                                    <i class="fa fa-sign-in"></i> Log in</button>
                             </p>
 
-                       </form>
+                        </form>
                         <p class="text-center text-muted">Not registered yet?</p>
-                        <p class="text-center text-muted"><a href="register.jsp"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+                        <p class="text-center text-muted">
+                            <a href="register.jsp">
+                                <strong>Register now</strong>
+                            </a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
 
                     </div>
                 </div>
@@ -104,7 +124,8 @@
 
                 <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
                     <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs">
+                    <span class="sr-only">Obaju - go to homepage</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -116,7 +137,8 @@
                         <i class="fa fa-search"></i>
                     </button>
                     <a class="btn btn-default navbar-toggle" href="basket.html">
-                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="hidden-xs">3 items in cart</span>
                     </a>
                 </div>
             </div>
@@ -125,11 +147,14 @@
             <div class="navbar-collapse collapse" id="navigation">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="index.jsp">Home</a>
+                    <li class="active">
+                        <a href="index.jsp">Home</a>
                     </li>
-                   
+
                     <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories
+                            <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="yamm-content">
@@ -137,48 +162,62 @@
                                         <div class="col-sm-3">
                                             <h5>Clothing</h5>
                                             <ul>
-                                                <li><a href="category.html">T-shirts</a>
+                                                <li>
+                                                    <a href="category.html">T-shirts</a>
                                                 </li>
-                                                <li><a href="category.html">Shirts</a>
+                                                <li>
+                                                    <a href="category.html">Shirts</a>
                                                 </li>
-                                                <li><a href="category.html">Pants</a>
+                                                <li>
+                                                    <a href="category.html">Pants</a>
                                                 </li>
-                                                <li><a href="category.html">Accessories</a>
+                                                <li>
+                                                    <a href="category.html">Accessories</a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3">
                                             <h5>Shoes</h5>
                                             <ul>
-                                                <li><a href="category.html">Trainers</a>
+                                                <li>
+                                                    <a href="category.html">Trainers</a>
                                                 </li>
-                                                <li><a href="category.html">Sandals</a>
+                                                <li>
+                                                    <a href="category.html">Sandals</a>
                                                 </li>
-                                                <li><a href="category.html">Hiking shoes</a>
+                                                <li>
+                                                    <a href="category.html">Hiking shoes</a>
                                                 </li>
-                                                <li><a href="category.html">Casual</a>
+                                                <li>
+                                                    <a href="category.html">Casual</a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-3">
                                             <h5>Accessories</h5>
                                             <ul>
-                                                <li><a href="category.html">Trainers</a>
+                                                <li>
+                                                    <a href="category.html">Trainers</a>
                                                 </li>
-                                                <li><a href="category.html">Sandals</a>
+                                                <li>
+                                                    <a href="category.html">Sandals</a>
                                                 </li>
-                                                <li><a href="category.html">Hiking shoes</a>
+                                                <li>
+                                                    <a href="category.html">Hiking shoes</a>
                                                 </li>
-                                                <li><a href="category.html">Casual</a>
+                                                <li>
+                                                    <a href="category.html">Casual</a>
                                                 </li>
-                                                <li><a href="category.html">Hiking shoes</a>
+                                                <li>
+                                                    <a href="category.html">Hiking shoes</a>
                                                 </li>
-                                                <li><a href="category.html">Casual</a>
+                                                <li>
+                                                    <a href="category.html">Casual</a>
                                                 </li>
                                             </ul>
-                                            
+
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                                 <!-- /.yamm-content -->
@@ -186,7 +225,7 @@
                         </ul>
                     </li>
 
-               
+
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -194,7 +233,10 @@
             <div class="navbar-buttons">
 
                 <div class="navbar-collapse collapse right" id="basket-overview">
-                    <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">items in cart</span></a>
+                    <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary navbar-btn">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="hidden-sm">items in cart</span>
+                    </a>
                 </div>
                 <!--/.nav-collapse -->
 
@@ -214,9 +256,11 @@
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
 
-			<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
 
-		    </span>
+                        </span>
                     </div>
                 </form>
 
@@ -259,94 +303,60 @@
             <!--Start Product -->
             <div id="hot">
 
-                <div class="box">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <h2>Hot this week</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="product-slider">
-                        <div class="item">
-                                <div class="product">
-                                        <div class="">
-                                            <div class="">
-                                                <div class="">
-                                                   
-                                                        <img src="img/product1.jpg" alt="" class="img-responsive">
-                                                    
-                                                </div>
-                                              
-                                            </div>
-                                        </div>
-                                       
-                                        
-                                        <div class="text">
-                                            <h3>Fur coat with very but very very long name</h3>
-                                            <p class="price">$143.00</p>
-                                            <p class="buttons">
-                                             <!--   <a href="detail.html" class="btn btn-default">View detail</a>-->
-                                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </p>
-                                        </div>
-                                        <!-- /.text -->
-                                    </div>
-                                    <!-- /.product -->
-                                </div>
-                    </div>
-                    <!-- /.product-slider -->
-                </div>
-                <!-- /.container -->
 
             </div>
             <!--End Product-->
-        <div id="footer" data-animate="fadeInUp">
-           
-            <div class="container">
-              
-                <div class="row" style="margin-left: 40%;">
-                    
-                    <div class="col-md-3 col-sm-6">
-                        
-                         <h4>User section</h4>
+            <div id="footer" data-animate="fadeInUp">
 
-                        <ul>
-                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                            </li>
-                            <li><a href="register.jsp">Regiter</a>
-                            </li>
-                        </ul>
+                <div class="container">
 
-                        <hr class="hidden-md hidden-lg hidden-sm">
+                    <div class="row" style="margin-left: 40%;">
 
-                    </div>
-                    <!-- /.col-md-3 -->
+                        <div class="col-md-3 col-sm-6">
 
-                    <div class="col-md-3 col-sm-6">
+                            <h4>User section</h4>
 
-                        <h4>Ctegories</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.jsp">Regiter</a>
+                                </li>
+                            </ul>
 
-                        
+                            <hr class="hidden-md hidden-lg hidden-sm">
 
-                        <ul>
-                            <li><a href="category.html">T-shirts</a>
-                            </li>
-                            <li><a href="category.html">Skirts</a>
-                            </li>
-                            <li><a href="category.html">Pants</a>
-                            </li>
-                            <li><a href="category.html">Accessories</a>
-                            </li>
-                        </ul>
+                        </div>
+                        <!-- /.col-md-3 -->
 
-                        <hr class="hidden-md hidden-lg">
+                        <div class="col-md-3 col-sm-6">
 
-                    </div>
-                    <!-- /.col-md-3 -->
-                 
-			
+                            <h4>Ctegories</h4>
+
+
+
+                            <ul>
+                                <li>
+                                    <a href="category.html">T-shirts</a>
+                                </li>
+                                <li>
+                                    <a href="category.html">Skirts</a>
+                                </li>
+                                <li>
+                                    <a href="category.html">Pants</a>
+                                </li>
+                                <li>
+                                    <a href="category.html">Accessories</a>
+                                </li>
+                            </ul>
+
+                            <hr class="hidden-md hidden-lg">
+
+                        </div>
+                        <!-- /.col-md-3 -->
+
+
 
                     </div>
                     <!-- /.col-md-3 -->
@@ -356,9 +366,9 @@
 
             </div>
             <!-- /.container -->
-           
+
         </div>
-            
+
         <!-- /#footer -->
 
         <!-- *** FOOTER END *** -->
@@ -375,8 +385,10 @@
 
                 </div>
                 <div class="col-md-6">
-                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious</a> & <a href="https://fity.cz">Fity</a>
-                         <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+                    <p class="pull-right">Template by
+                        <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious</a> &
+                        <a href="https://fity.cz">Fity</a>
+                        <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
                     </p>
                 </div>
             </div>
@@ -389,18 +401,7 @@
     <!-- /#all -->
 
 
-    
 
-    <!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
 
 
 </body>

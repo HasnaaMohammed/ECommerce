@@ -74,11 +74,7 @@ public class CartController{
       }
 
     }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> b0860df2e4f4c160289b4f333ec6ee99644c1458
     private void fillObject() throws SQLException {
         if (resultSet.next()) {
             String name=resultSet.getString("Name");
@@ -86,7 +82,7 @@ public class CartController{
             double price=resultSet.getDouble("price");
             String prodect_img=resultSet.getString("prodect_img");
             String category_id=resultSet.getString("category_id");
-            product = new Product(name,quantity,price,prodect_img,category_id);
+//            product = new Product(name,quantity,price,prodect_img,category_id);
 
         }
     }
