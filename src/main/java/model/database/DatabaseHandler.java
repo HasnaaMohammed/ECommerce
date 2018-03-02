@@ -25,6 +25,7 @@ public class DatabaseHandler {
     private DatabaseHandler() {
 
         Database database = Database.getInstance();
+        database.connect();
         connection = database.getConnection();
     }
 

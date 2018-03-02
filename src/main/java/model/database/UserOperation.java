@@ -92,7 +92,7 @@ public class UserOperation implements UserOperationInterface {
                 ", Birthdate = "+user.getBirthDate() +", address = "+user.getAddress()+", Job = "+user.getJob() +
                 ", Credit_Limit = "+user.getCredit()+" WHERE email = "+user.getEmail() +";";
 
-        databaseHandler.update(query);
+        return   databaseHandler.update(query);
 
     }
     private void fillObject() throws SQLException {

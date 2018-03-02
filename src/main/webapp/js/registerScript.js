@@ -22,7 +22,7 @@ function registerHandler() {
     var registerErrorLabel = document.getElementById("registerErrorLabel");
     var registerBtn = document.getElementById("registerBtn");
     registerBtn.disabled = true;
-    $.post("/Register" , postObject , function (data) {
+    $.post("./Register" , postObject , function (data) {
     console.log(data);
         if(data === "success")
             data = "Register Successfully";
