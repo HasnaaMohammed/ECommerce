@@ -255,11 +255,53 @@
                     <!-- /#main-slider -->
                 </div>
             </div>
+            <hr>
+            <!--Start Product -->
+            <div id="hot">
 
-            <!-- *** ADVANTAGES HOMEPAGE ***
- 
-        <!-- *** FOOTER ***
- _________________________________________________________ -->
+                <div class="box">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <h2>Hot this week</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="product-slider">
+                        <div class="item">
+                                <div class="product">
+                                        <div class="">
+                                            <div class="">
+                                                <div class="">
+                                                   
+                                                        <img src="img/product1.jpg" alt="" class="img-responsive">
+                                                    
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                        <div class="text">
+                                            <h3>Fur coat with very but very very long name</h3>
+                                            <p class="price">$143.00</p>
+                                            <p class="buttons">
+                                             <!--   <a href="detail.html" class="btn btn-default">View detail</a>-->
+                                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </p>
+                                        </div>
+                                        <!-- /.text -->
+                                    </div>
+                                    <!-- /.product -->
+                                </div>
+                    </div>
+                    <!-- /.product-slider -->
+                </div>
+                <!-- /.container -->
+
+            </div>
+            <!--End Product-->
         <div id="footer" data-animate="fadeInUp">
            
             <div class="container">
