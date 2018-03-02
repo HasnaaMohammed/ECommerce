@@ -34,25 +34,13 @@ public class CartController{
         e.printStackTrace();
       }
 }
-    public  void getuser_id(){
-        try {
-            User user=cart.getUser();
-            query = "select  id from User where email = '" +  user.getEmail()+ "'";
-            resultSet = databaseHandler.select(query);
-            if (resultSet.next()) {
-                user_id =  resultSet.getInt("id");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
 
-    public  void getCart_id(){
+
+    public  void getCartID(){
         try {
          User user=cart.getUser();
-         query = "select  id from User where email = '" +  user.getEmail()+ "'";
+         query = "select id from User where email = '" +  user.getEmail()+ "'";
          resultSet = databaseHandler.select(query);
             if (resultSet.next()) {
                cart_id =  resultSet.getInt("id");
@@ -67,7 +55,7 @@ public class CartController{
 
     public  void getCart_Checkout(){
       try {
-          query = "select  checkout from cart where user_id = '" + user_id + "'";
+          query = "select checkout from cart where user_id = '" + user_id + "'";
           resultSet = databaseHandler.select(query);
 
           if (resultSet.next()) {
@@ -86,8 +74,6 @@ public class CartController{
       }
 
     }
-
-
 
 
     private void fillObject() throws SQLException {

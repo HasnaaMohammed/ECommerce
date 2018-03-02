@@ -1,12 +1,17 @@
 package model.interfaces;
 
 import model.beans.Cart;
+import model.beans.Product;
 import model.beans.User;
 
 public interface ProductOperationInterface {
 
-    public Cart getUserCart(String email);
-    public Cart getUserCart(User user);
+
+
+    public boolean addNewProduct(Product product);
+    public boolean addNewCategory(String category);
+    public String getProductInfo(String id);
+
 
 
 }
