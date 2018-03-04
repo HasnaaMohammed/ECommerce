@@ -65,21 +65,27 @@ public class ProductOperation implements ProductOperationInterface {
     }
 
     @Override
-    public Product getProductInfo(String id) {
+    public Product getProductInfo(int sku) {
         try {
-            query = "select * from Product where id = '" + id + "'";
+            query = "SELECT Product.id,\n" +
+                    "    Product.Name,\n" +
+                    "    Product.Quantity,\n" +
+                    "    Product.Sku,\n" +
+                    "    Product.Price,\n" +
+                    "    Product.Product_img,\n" +
+                    "    Category.Category_name\n" +
+                    "from ECommerce.Product , ECommerce.Category\n" +
+                    "where Sku = "+sku+" and Category.id = Product.Category_id;";
             resultSet = databaseHandler.select(query);
-
             if (resultSet.next()) {
-
+                int productID = resultSet.getInt(1);
                 String name = resultSet.getString("Name");
-                int sku = resultSet.getInt("sku");
+                sku = resultSet.getInt("sku");
                 int quantity = resultSet.getInt("Quantity");
                 double price = resultSet.getDouble("price");
                 String product_img = resultSet.getString("product_img");
-                String category = resultSet.getString("category_id");
-
-                product = new Product(name, sku, quantity, price, product_img, category);
+                String category = resultSet.getString("Category_name");
+                product = new Product(productID,name,sku,quantity,price,product_img,category);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -96,7 +102,7 @@ public class ProductOperation implements ProductOperationInterface {
             for (String categorys : categoriesQuery) {
                 Category category = new Category();
                 category.setName(categorys);
-                category.setProducts(getCategoryProduct(categorys));
+                category.setProducts(getCategoryProducts(categorys));
                 categories.add(category);
 
             }
@@ -117,10 +123,9 @@ public class ProductOperation implements ProductOperationInterface {
         return result;
     }
 
-
-    public Vector<Product> getCategoryProduct(String category) throws SQLException {
+    public Vector<Product> getCategoryProducts(String category) throws SQLException {
         Vector<Product> products = new Vector<>();
-        Product product = new Product();
+
         String query = "select "+
                 "    `Product`.`Name`,\n" +
                 "    `Product`.`Quantity`,\n" +
@@ -130,10 +135,12 @@ public class ProductOperation implements ProductOperationInterface {
                 "    `Product`.`Category_id`\n" +
                 " from Product , Category\n" +
                 " where Category.Category_name = '"+category+
-                "'  and Product.Category_id = Category.id;";
+                "'  and Product.Category_id = Category.id" +
+                " and Quantity > 0; ";
         resultSet = databaseHandler.select(query);
         while(resultSet.next())
         {
+            Product product = new Product();
             product.setName(resultSet.getString(1));
             product.setQuantiity(resultSet.getInt(2));
             product.setSku(resultSet.getInt(3));

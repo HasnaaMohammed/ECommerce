@@ -3,7 +3,6 @@
 function loadProducts()
 {
     $.post("./Products" , function (data) {
-        alert(data);
         var hot = document.getElementById("hot");
         data = JSON.parse(data);
         data.forEach(param =>{
@@ -86,11 +85,15 @@ function addProduct(product) {
 
 
     var form = document.createElement("form");
-    form.onsubmit = "return addToCart()" ;
+    form.onsubmit = function () {
+        addToCart(this);
+        return false;
+    };
 
     var productSku = document.createElement("input");
     productSku.type = "hidden";
     productSku.value = product.sku;
+    productSku.name = "productRequestSku";
 
     var productButton = document.createElement("Button");
     productButton.className = "btn btn-primary";

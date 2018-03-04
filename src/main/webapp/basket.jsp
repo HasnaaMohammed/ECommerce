@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="utf-8">
     <meta name="robots" content="all,follow">
     <meta name="googlebot" content="index,follow,snippet,archive">
@@ -63,7 +63,7 @@
                         <form method="post" action="checkout1.html">
 
                             <h1>Shopping cart</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <%--<p class="text-muted">You currently have 3 item(s) in your cart.</p>--%>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -76,40 +76,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                    <c:forEach items="${sessionScope.cartProductList}" var="product">
                                         <tr>
-                                            <td>
-                                               
-                                                    <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                
-                                            </td>
-                                            <td>White Blouse Armani
-                                            </td>
-                                            <td>
-                                                <input type="number" value="2" class="form-control">
-                                            </td>
-                                            <td>$123.00</td>
-                                            
-                                            <td>$246.00</td>
-                                            <td><i class="fa fa-trash-o"></i>
-                                            </td>
+                                            <td><img src="${product.product_img}"></td>
+                                            <td>${product.name}</td>
+                                            <td><p>${product.quantiity}</p></td>
+                                            <td>$${product.price}</td>
+                                            <td>$${product.price * product.quantiity}</td>
+                                            <td><i class="fa fa-trash-o"></i></td>
+
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                
-                                                    <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                
-                                            </td>
-                                            <td>Black Blouse Armani
-                                            </td>
-                                            <td>
-                                                <input type="number" value="1" class="form-control">
-                                            </td>
-                                            <td>$200.00</td>
-                                            
-                                            <td>$200.00</td>
-                                            <td><i class="fa fa-trash-o"></i>
-                                            </td>
-                                        </tr>
+                                    </c:forEach>
+
+                                        <%--<tr>--%>
+                                            <%--<td>--%>
+
+                                                    <%--<img src="img/detailsquare.jpg" alt="White Blouse Armani">--%>
+
+                                            <%--</td>--%>
+                                            <%--<td>White Blouse Armani--%>
+                                            <%--</td>--%>
+                                            <%--<td>--%>
+                                                <%--<input type="number" value="2" class="form-control">--%>
+                                            <%--</td>--%>
+                                            <%--<td>$123.00</td>--%>
+                                            <%----%>
+                                            <%--<td>$246.00</td>--%>
+                                            <%--<td><i class="fa fa-trash-o"></i>--%>
+                                            <%--</td>--%>
+                                        <%--</tr>--%>
+                                        <%--<tr>--%>
+                                            <%--<td>--%>
+                                                <%----%>
+                                                    <%--<img src="img/basketsquare.jpg" alt="Black Blouse Armani">--%>
+                                                <%----%>
+                                            <%--</td>--%>
+                                            <%--<td>Black Blouse Armani--%>
+                                            <%--</td>--%>
+                                            <%--<td>--%>
+                                                <%--<input type="number" value="1" class="form-control">--%>
+                                            <%--</td>--%>
+                                            <%--<td>$200.00</td>--%>
+                                            <%----%>
+                                            <%--<td>$200.00</td>--%>
+                                            <%--<td><i class="fa fa-trash-o"></i>--%>
+                                            <%--</td>--%>
+                                        <%--</tr>--%>
                                     </tbody>
                                     <tfoot>
                                         <tr>

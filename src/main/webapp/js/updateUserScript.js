@@ -18,7 +18,7 @@ function updateUserProfile() {
     };
 
 
-    $.post("/updateUser" , userObject , function (date) {
+    $.post("./updateUser" , userObject , function (date) {
 
         if(date === "success")
             location.reload();

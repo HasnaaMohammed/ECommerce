@@ -2,6 +2,7 @@ package model.beans;
 
 public class Product {
 
+    private int productID;
     private String name;
     private int sku;
     private int quantiity;
@@ -12,7 +13,18 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, int sku, int quantiity, double price, String product_img, String product_category) {
+//    public Product(String name, int sku, int quantiity, double price, String product_img, String product_category) {
+//        this.name = name;
+//        this.sku = sku;
+//        this.quantiity = quantiity;
+//        this.price = price;
+//        this.product_img = product_img;
+//        this.product_category = product_category;
+//    }
+
+
+    public Product(int productID, String name, int sku, int quantiity, double price, String product_img, String product_category) {
+        this.productID = productID;
         this.name = name;
         this.sku = sku;
         this.quantiity = quantiity;
@@ -68,4 +80,13 @@ public class Product {
     public void setProduct_category(String product_category) {
         this.product_category = product_category;
     }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
 }

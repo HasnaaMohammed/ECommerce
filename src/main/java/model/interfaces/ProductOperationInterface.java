@@ -14,9 +14,9 @@ public interface ProductOperationInterface {
 
     public boolean addNewProduct(Product product);
     public boolean addNewCategory(String category);
-    public Product getProductInfo(String id);
+    public Product getProductInfo(int id);
     public Vector<Category> getAllCategoriesWithProducts();
     public Vector<String> getAllCategories() throws SQLException;
-
+    public Vector<Product> getCategoryProducts(String category) throws SQLException;
 
 }

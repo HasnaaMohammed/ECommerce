@@ -1,4 +1,4 @@
-package controller.user;
+package controller.product;
 
 import model.beans.Product;
 import model.database.ProductOperation;
@@ -17,7 +17,13 @@ public class ProductController {
         return false;
     }
 
+    public boolean isProductAvailable(int productSKU){
+        return productOperation.getProductInfo(productSKU).getQuantiity() > 0 ;
+    }
 
+    public Product getProduct(int productSKU) {
+       return productOperation.getProductInfo(productSKU);
+    }
 
 
 }
