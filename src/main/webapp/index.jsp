@@ -31,19 +31,20 @@
 
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
 
         <script src="js/respond.min.js"></script>
 
         <!--Ajax Script-->
-        <script src="js/loginScript.js"></script>
+        <script src="js/myJs/loginScript.js"></script>
 
         <link rel="shortcut icon" href="favicon.png">
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <%--<script src="js/jquery-1.11.0.min.js"></script>--%>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/cartHandleScript.js"></script>
+    <script src="js/myJs/cartHandleScript.js"></script>
     <script src="js/loadProductScript.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cookie.js"></script>

@@ -1,4 +1,5 @@
-<%@ page import="model.beans.User" %>
+<%@ page import="model.beans.User" session="true" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <%--<%@page session="false" %>--%>
@@ -37,7 +38,8 @@
     <script src="js/respond.min.js"></script>
 
     <!--User Updating Script-->
-    <script src="js/updateUserScript.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/myJs/updateUserScript.js"></script>
     <link rel="shortcut icon" href="favicon.png">
 
 
@@ -332,7 +334,7 @@ _________________________________________________________ -->
 
 <!-- *** SCRIPTS TO INCLUDE ***
 _________________________________________________________ -->
-<script src="js/jquery-1.11.0.min.js"></script>
+<%--<script src="js/jquery-1.11.0.min.js"></script>--%>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/waypoints.min.js"></script>

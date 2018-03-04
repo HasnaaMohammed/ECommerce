@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet{
                 newUserSession.setAttribute(LoginController.USER_DATA , loginController.getUserObject());
                 out.write("success");
                 System.out.println(loginController.getUserObject().getPassword());
-
             }
             else
             {

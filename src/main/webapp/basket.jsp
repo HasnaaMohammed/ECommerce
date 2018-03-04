@@ -28,6 +28,7 @@
 
     <!-- theme stylesheet -->
     <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
 
     <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">
@@ -50,7 +51,7 @@
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="./index.jsp">Home</a>
                         </li>
                         <li>Shopping cart</li>
                     </ul>
@@ -68,10 +69,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Product</th>
+                                            <th colspan="1">Product</th>
+                                            <th colspan="1">Name</th>
                                             <th>Quantity</th>
                                             <th>Unit price</th>
-                                           <!-- <th>Discount</th>-->
                                             <th colspan="2">Total</th>
                                         </tr>
                                     </thead>
@@ -88,46 +89,17 @@
 
                                         </tr>
                                     </c:forEach>
-
-                                        <%--<tr>--%>
-                                            <%--<td>--%>
-
-                                                    <%--<img src="img/detailsquare.jpg" alt="White Blouse Armani">--%>
-
-                                            <%--</td>--%>
-                                            <%--<td>White Blouse Armani--%>
-                                            <%--</td>--%>
-                                            <%--<td>--%>
-                                                <%--<input type="number" value="2" class="form-control">--%>
-                                            <%--</td>--%>
-                                            <%--<td>$123.00</td>--%>
-                                            <%----%>
-                                            <%--<td>$246.00</td>--%>
-                                            <%--<td><i class="fa fa-trash-o"></i>--%>
-                                            <%--</td>--%>
-                                        <%--</tr>--%>
-                                        <%--<tr>--%>
-                                            <%--<td>--%>
-                                                <%----%>
-                                                    <%--<img src="img/basketsquare.jpg" alt="Black Blouse Armani">--%>
-                                                <%----%>
-                                            <%--</td>--%>
-                                            <%--<td>Black Blouse Armani--%>
-                                            <%--</td>--%>
-                                            <%--<td>--%>
-                                                <%--<input type="number" value="1" class="form-control">--%>
-                                            <%--</td>--%>
-                                            <%--<td>$200.00</td>--%>
-                                            <%----%>
-                                            <%--<td>$200.00</td>--%>
-                                            <%--<td><i class="fa fa-trash-o"></i>--%>
-                                            <%--</td>--%>
-                                        <%--</tr>--%>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th colspan="4">Total</th>
-                                            <th colspan="2">$446.00</th>
+                                            <c:set var="cartTotal" value="${0}" />
+                                            <c:forEach var="product" items="${sessionScope.cartProductList}">
+                                                <c:set var="cartTotal" value="${cartTotal + product.price*product.quantiity}" />
+
+                                            </c:forEach>
+
+                                            <th colspan="2">$${cartTotal}</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -256,26 +228,18 @@
                         <div class="box-header">
                             <h3>Order summary</h3>
                         </div>
-                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                        <p class="text-muted">Total Price</p>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td>Order subtotal</td>
-                                        <th>$446.00</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping and handling</td>
-                                        <th>$10.00</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax</td>
-                                        <th>$0.00</th>
+                                        <th>$${cartTotal}</th>
                                     </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th>$456.00</th>
+                                        <th>$${cartTotal}</th>
                                     </tr>
                                 </tbody>
                             </table>

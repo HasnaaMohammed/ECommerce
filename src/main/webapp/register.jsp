@@ -34,8 +34,9 @@
 
     <script src="js/respond.min.js"></script>
     <!--Ajax Script-->
-    <script src="js/loginScript.js"></script>
-    <script src="js/registerScript.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/myJs/loginScript.js"></script>
+    <script src="js/myJs/registerScript.js"></script>
 
 
     <link rel="shortcut icon" href="favicon.png">
@@ -309,7 +310,7 @@
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <%--<script src="js/jquery-1.11.0.min.js"></script>--%>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/waypoints.min.js"></script>

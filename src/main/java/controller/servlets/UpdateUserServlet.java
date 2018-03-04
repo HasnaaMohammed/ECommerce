@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 @WebServlet(urlPatterns = "/updateUser")
-public class updateUserServlet extends HttpServlet {
+public class UpdateUserServlet extends HttpServlet {
 
     UpdateUserController updateUserController;
     HttpSession httpSession;
