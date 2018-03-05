@@ -31,10 +31,10 @@
 
     <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">
+    <script src="js/jquery-1.11.0.min.js"></script>
 
     <script src="js/respond.min.js"></script>
     <!--Ajax Script-->
-    <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/myJs/loginScript.js"></script>
     <script src="js/myJs/registerScript.js"></script>
 

@@ -3,6 +3,7 @@
 <%@page session="true" %>
 <head>
     <%--<script src="js/jquery-1.11.0.min.js"></script>--%>
+        <script src="js/myJs/loginScript.js"></script>
         <script src="js/myJs/header.js"></script>
 </head>
 <body>

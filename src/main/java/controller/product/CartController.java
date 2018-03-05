@@ -45,7 +45,7 @@ public class CartController {
             userSession.setAttribute(CART_PRODUCT_LIST , new Vector<Product>());
         }
         productVector = (Vector<Product>) userSession.getAttribute(CART_PRODUCT_LIST);
-        if(productController.isProductAvailable(productsku)) {
+        if(productController.isProductAvailable(productsku , 1)) {
             for (Product products : productVector)
             {
                 System.out.println(products.getSku());

@@ -17,8 +17,8 @@ public class ProductController {
         return false;
     }
 
-    public boolean isProductAvailable(int productSKU){
-        return productOperation.getProductInfo(productSKU).getQuantiity() > 0 ;
+    public boolean isProductAvailable(int productSKU , int quantity){
+        return productOperation.getProductInfo(productSKU).getQuantiity() >= quantity ;
     }
 
     public Product getProduct(int productSKU) {

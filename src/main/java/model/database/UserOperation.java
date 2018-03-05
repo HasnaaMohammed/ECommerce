@@ -43,7 +43,7 @@ public class UserOperation implements UserOperationInterface {
     @Override
     public int addUser(User newUse) {
         try {
-            query = "select * from USER where user_name = '" + newUse.getEmail() + "'";
+            query = "select * from USER where email = '" + newUse.getEmail() + "'";
             resultSet = databaseHandler.select(query);
 
             if (resultSet.next()) {

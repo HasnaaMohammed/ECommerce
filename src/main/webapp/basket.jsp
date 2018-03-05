@@ -34,14 +34,15 @@
     <link href="css/custom.css" rel="stylesheet">
 
     <script src="js/respond.min.js"></script>
-
+    <script src="js/myJs/cartHandleScript.js"></script>
     <link rel="shortcut icon" href="favicon.png">
 
 
 
 </head>
 
-<body>
+<body onload="checkCartValidaity()
+">
 
 <jsp:include page="/head.jsp"/>
     <div id="all">
@@ -63,8 +64,9 @@
 
                         <form method="post" action="checkout1.html">
 
-                            <h1>Shopping cart</h1>
-                            <%--<p class="text-muted">You currently have 3 item(s) in your cart.</p>--%>
+                            <h1 id="carthead">Shopping cart</h1>
+                            <p id="errorlabel">Hello World</p>
+                        <%--<p class="text-muted">You currently have 3 item(s) in your cart.</p>--%>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -113,7 +115,7 @@
                                 </div>
                                 <div class="pull-right">
                                   <!--  <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button> -->
-                                    <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                    <button type="submit" class="btn btn-primary" id="checkoutbtn">Proceed to checkout <i class="fa fa-chevron-right"></i>
                                     </button>
                                 </div>
                             </div>
