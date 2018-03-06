@@ -1,8 +1,9 @@
 package model.beans;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Category {
+public class Category  implements Serializable {
 
     private String name;
     private Vector<Product> products;

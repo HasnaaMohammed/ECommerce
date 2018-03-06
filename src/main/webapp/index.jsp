@@ -45,7 +45,7 @@
     <%--<script src="js/jquery-1.11.0.min.js"></script>--%>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/myJs/cartHandleScript.js"></script>
-    <script src="js/loadProductScript.js"></script>
+    <script src="js/myJs/loadProductScript.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/waypoints.min.js"></script>
@@ -58,7 +58,7 @@
 
 </head>
 
-<body >
+<body>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">

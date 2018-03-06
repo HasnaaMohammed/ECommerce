@@ -45,39 +45,52 @@ public class CartController {
             userSession.setAttribute(CART_PRODUCT_LIST , new Vector<Product>());
         }
         productVector = (Vector<Product>) userSession.getAttribute(CART_PRODUCT_LIST);
-        if(productController.isProductAvailable(productsku , 1)) {
-            for (Product products : productVector)
-            {
-                System.out.println(products.getSku());
-                System.out.println(productsku);
-                System.out.println("==----------========");
 
-                if(products.getSku() == productsku)
+
+        for (Product products : productVector)
+        {
+            System.out.println(products.getSku());
+            System.out.println(productsku);
+            System.out.println("==----------========");
+
+            if (products.getSku() == productsku) {
+                if(productController.isProductAvailable(productsku, products.getQuantiity() + 1))
                 {
-                    products.setQuantiity(products.getQuantiity()+1);
-                    return DONE;
+                    products.setQuantiity(products.getQuantiity() + 1);
+                    result =  DONE;
+                    break;
+                }
+                else
+                {
+                    result =  OUT_OF_STOCK;
+                    break;
                 }
             }
+        }
+
+        if (productController.isProductAvailable(productsku, 1) && result == OPERATION_FAILED)
+        {
             product = productController.getProduct(productsku);
             product.setQuantiity(1);
             productVector.add(product);
-
-            if(userSession.getAttribute(LoginController.USER_DATA) != null)
-            {
-                User user = (User)userSession.getAttribute(LoginController.USER_DATA);
-                int cartID = hasCart(user.getEmail());
-                if( cartID == -1)
-                    return OPERATION_FAILED;
-                else
-                {
-                    refreshCartDB( cartID, productVector);
-                }
-            }
-            return DONE;
+            result = DONE;
         }
-        return OUT_OF_STOCK;
 
+
+        if (userSession.getAttribute(LoginController.USER_DATA) != null) {
+            User user = (User) userSession.getAttribute(LoginController.USER_DATA);
+            int cartID = hasCart(user.getEmail());
+            if (cartID == -1)
+                return OPERATION_FAILED;
+            else {
+                refreshCartDB(cartID, productVector);
+            }
+        }
+        return result;
     }
+
+
+
 
     private int hasCart(String email)
     {

@@ -1,8 +1,9 @@
 package model.beans;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Cart {
+public class Cart implements Serializable {
 
     private User user;
     private Vector<Product> cartProducts;

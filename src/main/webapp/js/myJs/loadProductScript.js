@@ -7,11 +7,11 @@ function loadProducts()
         data = JSON.parse(data);
         data.forEach(param =>{
 
+            if(param.products.length > 0)
+        {
             hot.appendChild(addHeader(param.name));
-            // param.products.forEach(param2 =>{
-            //     hot.appendChild(addSlider(param2));
-            // });
-        hot.appendChild(addSlider(param.products));
+            hot.appendChild(addSlider(param.products));
+        }
         });
     })
 }

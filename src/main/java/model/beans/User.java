@@ -1,8 +1,9 @@
 package model.beans;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class User {
+public class User  implements Serializable {
 
     private String fullName;
     private String email ;
