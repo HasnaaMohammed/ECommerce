@@ -23,10 +23,10 @@ public class Database {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://104.154.93.46:3306/ECommerce";
-//            String dbUrl = "jdbc:mysql://127.0.0.1:3306/ECommerce";
-            connection = DriverManager.getConnection(dbUrl, "root", "HelloWorldmfawzy0000");
-//            connection = DriverManager.getConnection(dbUrl, "root", "root");
+//            String dbUrl = "jdbc:mysql://104.154.93.46:3306/ECommerce";
+            String dbUrl = "jdbc:mysql://127.0.0.1:3306/ECommerce";
+//            connection = DriverManager.getConnection(dbUrl, "root", "HelloWorldmfawzy0000");
+            connection = DriverManager.getConnection(dbUrl, "root", "root");
 
             System.out.println("connection succeeded");
         } catch (SQLException ex) {

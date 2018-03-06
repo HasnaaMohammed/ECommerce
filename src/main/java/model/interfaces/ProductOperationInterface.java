@@ -18,5 +18,7 @@ public interface ProductOperationInterface {
     public Vector<Category> getAllCategoriesWithProducts();
     public Vector<String> getAllCategories() throws SQLException;
     public Vector<Product> getCategoryProducts(String category) throws SQLException;
+    public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException;
+
 
 }
