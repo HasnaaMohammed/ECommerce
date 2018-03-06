@@ -134,6 +134,11 @@ public class CartOperation implements CartOperationInterface {
         databaseHandler.update(sql);
     }
 
+    @Override
+    public void getCartTotalPrice(int cartID) {
+
+    }
+
 
     private void fillObject() throws SQLException {
         if (resultSet.next()) {

@@ -2,18 +2,27 @@
 
 function loadProducts()
 {
-    $.post("./Products" , function (data) {
-        var hot = document.getElementById("hot");
-        data = JSON.parse(data);
-        data.forEach(param =>{
+    // $.post("./Products" , )
 
-            if(param.products.length > 0)
-        {
-            hot.appendChild(addHeader(param.name));
-            hot.appendChild(addSlider(param.products));
-        }
+
+
+    $.ajax({
+        type: 'POST',
+        url:"./Products",
+        success:function (data) {
+            var hot = document.getElementById("hot");
+            data = JSON.parse(data);
+            data.forEach(param =>{
+
+                if(param.products.length > 0)
+            {
+                hot.appendChild(addHeader(param.name));
+                hot.appendChild(addSlider(param.products));
+            }
         });
-    })
+        },
+        async:   true
+    });
 }
 
 

@@ -24,7 +24,6 @@ function loginHandler() {
     return false;
 }
 
-
 function loginHandlerRegisterPage() {
 
     console.log("Here");
@@ -49,4 +48,11 @@ function loginHandlerRegisterPage() {
     });
 
     return false;
+}
+
+function logoutHandler() {
+
+    $.post("./logout" ,function () {
+        window.location.replace("./index.jsp");
+    });
 }
