@@ -18,10 +18,11 @@ public class ProductOperation implements ProductOperationInterface {
     private Product product = null;
 
 
-    public ProductOperation(){
+    public ProductOperation() {
         databaseHandler = DatabaseHandler.getInstance();
 
-            }
+    }
+
     @Override
     public boolean addNewProduct(Product product) {
         try {
@@ -75,7 +76,7 @@ public class ProductOperation implements ProductOperationInterface {
                     "    Product.Product_img,\n" +
                     "    Category.Category_name\n" +
                     "from ECommerce.Product , ECommerce.Category\n" +
-                    "where Sku = "+sku+" and Category.id = Product.Category_id;";
+                    "where Sku = " + sku + " and Category.id = Product.Category_id;";
             resultSet = databaseHandler.select(query);
             if (resultSet.next()) {
                 int productID = resultSet.getInt(1);
@@ -85,7 +86,7 @@ public class ProductOperation implements ProductOperationInterface {
                 double price = resultSet.getDouble("price");
                 String product_img = resultSet.getString("product_img");
                 String category = resultSet.getString("Category_name");
-                product = new Product(productID,name,sku,quantity,price,product_img,category);
+                product = new Product(productID, name, sku, quantity, price, product_img, category);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -94,8 +95,8 @@ public class ProductOperation implements ProductOperationInterface {
     }
 
     @Override
-    public Vector<Category> getAllCategoriesWithProducts()  {
-        Vector<Category> categories = new Vector<Category>();
+    public Vector<Category> getAllCategoriesWithProducts() {
+        Vector<Category> categories = new Vector<>();
 
         try {
             Vector<String> categoriesQuery = getAllCategories();
@@ -122,11 +123,11 @@ public class ProductOperation implements ProductOperationInterface {
         }
         return result;
     }
-
+    @Override
     public Vector<Product> getCategoryProducts(String category) throws SQLException {
         Vector<Product> products = new Vector<>();
 
-        String query = "select "+
+        String query = "select " +
                 "    `Product`.`Name`,\n" +
                 "    `Product`.`Quantity`,\n" +
                 "    `Product`.`Sku`,\n" +
@@ -134,12 +135,35 @@ public class ProductOperation implements ProductOperationInterface {
                 "    `Product`.`Product_img`,\n" +
                 "    `Product`.`Category_id`\n" +
                 " from Product , Category\n" +
-                " where Category.Category_name = '"+category+
+                " where Category.Category_name = '" + category +
                 "'  and Product.Category_id = Category.id" +
                 " and Quantity > 0; ";
         resultSet = databaseHandler.select(query);
-        while(resultSet.next())
-        {
+        getproduct(category, products);
+        return products;
+    }
+    @Override
+    public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException {
+        Vector<Product> products = new Vector<>();
+
+        String query = "select " +
+                "    `Product`.`Name`,\n" +
+                "    `Product`.`Quantity`,\n" +
+                "    `Product`.`Sku`,\n" +
+                "    `Product`.`Price`,\n" +
+                "    `Product`.`Product_img`,\n" +
+                "    `Product`.`Category_id`\n" +
+                " from Product , Category\n" +
+                " where Category.Category_name = '" + category +
+                "'  and Product.Category_id = Category.id" +
+                " and Quantity > 0 and price between (" + minPrice + "," + maxPrice + ");";
+        resultSet = databaseHandler.select(query);
+        getproduct(category, products);
+        return products;
+    }
+
+    private void getproduct(String category, Vector<Product> products) throws SQLException {
+        while (resultSet.next()) {
             Product product = new Product();
             product.setName(resultSet.getString(1));
             product.setQuantiity(resultSet.getInt(2));
@@ -149,9 +173,5 @@ public class ProductOperation implements ProductOperationInterface {
             product.setProduct_category(category);
             products.add(product);
         }
-        return products;
     }
-
-
-
 }
