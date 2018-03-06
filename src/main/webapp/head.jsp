@@ -114,7 +114,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary navbar-btn">
+                <a href="basket.jsp"  class="btn btn-primary navbar-btn">
                     <i class="fa fa-shopping-cart"></i>
                     <span class="hidden-sm">${fn:length(sessionScope.cartProductList)}&nbspitems in cart</span>
                 </a>

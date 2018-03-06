@@ -11,6 +11,7 @@ public class Product implements Serializable {
     private double price;
     private String product_img;
     private String product_category;
+    private boolean availableForCart ;
 
     public Product() {
     }
@@ -33,6 +34,7 @@ public class Product implements Serializable {
         this.price = price;
         this.product_img = product_img;
         this.product_category = product_category;
+        this.availableForCart = true;
     }
 
     public int getSku() {
@@ -91,4 +93,11 @@ public class Product implements Serializable {
         this.productID = productID;
     }
 
+    public boolean isAvailableForCart() {
+        return availableForCart;
+    }
+
+    public void setAvailableForCart(boolean availableForCart) {
+        this.availableForCart = availableForCart;
+    }
 }

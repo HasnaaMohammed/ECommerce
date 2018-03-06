@@ -1,6 +1,10 @@
 package controller.servlets;
 
+import controller.product.CartController;
 import controller.user.LoginController;
+import model.beans.Cart;
+import model.beans.Product;
+import model.beans.User;
 import util.ValidationCheck;
 
 import javax.servlet.ServletException;
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 @WebServlet(urlPatterns = "/Login")
 public class LoginServlet extends HttpServlet{
@@ -43,12 +48,13 @@ public class LoginServlet extends HttpServlet{
         {
             LoginController loginController = new LoginController();
             Boolean result = loginController.getUserValidation(email , password);
+            User user = loginController.getUserObject();
             if(result)
             {
                 HttpSession newUserSession = request.getSession(true);
                 newUserSession.setAttribute(LoginController.USER_DATA , loginController.getUserObject());
+                updateUserSessionCart(newUserSession , user.getEmail());
                 out.write("success");
-                System.out.println(loginController.getUserObject().getPassword());
             }
             else
             {
@@ -56,13 +62,15 @@ public class LoginServlet extends HttpServlet{
                 out.write("fail");
             }
         }
+    }
 
 
-
-
-
-
-
+    private void updateUserSessionCart(HttpSession httpSession , String email)
+    {
+        System.out.println("in Update");
+        Vector<Product> productVector  = new CartController().refreshLoggedUserCart(email).getCartProducts();
+        System.out.println(productVector.size());
+        httpSession.setAttribute(CartController.CART_PRODUCT_LIST , productVector);
 
 
     }
