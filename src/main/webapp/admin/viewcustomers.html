@@ -18,7 +18,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="render()">
+<body onload="setInterval('render()', 1000)">
         <div class="modal fade" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -145,13 +145,14 @@
                                         </thead>
                                         <tbody id="customerTable">
                                         <tr>
-                                            <td>Book</td>
-                                            <td>100</td>
-                                            <td>Books</td>
-                                            <td>100</td>
-                                            <td class="td-actions text-right">
+                                            <td>Loading...</td>
+                                            <td>Loading...</td>
+                                            <td>Loading...</td>
+                                            <td>Loading...</td>
+                                            <!--<td class="td-actions text-right">
                                                 <a data-toggle="modal" href="#myModal" class="fa fa-eye"></i>
-                                            </td>
+                                            </td>-->
+                                            <td>Loading...</td>
                                         </tr>
                                         </tbody>
                                     </table>
