@@ -9,6 +9,15 @@ public class Order implements Serializable {
     private int id ;
     private double price;
     private LocalDate timeStamp;
+    private String userName;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 
     public Order(int id, double price, LocalDate timeStamp) {
         this.id = id;

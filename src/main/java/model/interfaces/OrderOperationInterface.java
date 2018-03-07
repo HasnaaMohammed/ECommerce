@@ -9,5 +9,6 @@ public interface OrderOperationInterface {
 
     public void addCartToOrder(int cartID);
     public Vector<Order> getAllOrders(String email) ;
+     public Vector<Order> getAllOrders() ;
 
 }
