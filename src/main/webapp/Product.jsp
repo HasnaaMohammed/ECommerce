@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <meta charset="utf-8">
     <meta name="robots" content="all,follow">
@@ -33,6 +34,7 @@
     <link href="css/custom.css" rel="stylesheet">
 
     <script src="js/respond.min.js"></script>
+    <script src="js/myJs/CategoryHandler.js"></script>
 
     <link rel="shortcut icon" href="favicon.png">
 
@@ -40,7 +42,7 @@
 
 </head>
 
-<body>
+<body onload="getAllCategory()">
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
     <div id="top">
@@ -424,20 +426,13 @@
                         </div>
 
                         <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked category-menu">
+                            <ul class="nav nav-pills nav-stacked category-menu" >
                                 <li>
                                     <a href="category.html">Men <span class="badge pull-right">42</span></a>
-                                    <ul>
-                                        <li><a href="category.html">T-shirts</a>
-                                        </li>
-                                        <li><a href="category.html">Shirts</a>
-                                        </li>
-                                        <li><a href="category.html">Pants</a>
-                                        </li>
-                                        <li><a href="category.html">Accessories</a>
-                                        </li>
+                                    <ul id="categoryList">
+
                                     </ul>
-                                </li>
+
                                 <li class="active">
                                     <a href="category.html">Ladies  <span class="badge pull-right">123</span></a>
                                     <ul>
@@ -597,21 +592,26 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
 -->
                     <div class="row products">
 
+                        <c:forEach items="${requestScope.product}" var="pro">
                         <div class="col-md-4 col-sm-6">
+
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                           
-                                                <img src="img/product1.jpg" alt="" class="img-responsive">
+                                                <img src="${pro.product_img}" alt="" class="img-responsive">
                                             
                                         </div>
                                         <div class="back">
                                         
-                                                <img src="img/product1_2.jpg" alt="" class="img-responsive">
+                                                <img src="${pro.product_img}" alt="" class="img-responsive">
                                             
                                         </div>
                                     </div>
@@ -620,8 +620,8 @@
                                     <img src="img/product1.jpg" alt="" class="img-responsive">
                                 
                                 <div class="text">
-                                    <h3>Fur coat with very but very very long name</h3>
-                                    <p class="price">$143.00</p>
+                                    <h3>${pro.name}</h3>
+                                    <p class="price">${pro.price}</p>
                                     <p class="buttons">
                                      <!--   <a href="detail.html" class="btn btn-default">View detail</a>-->
                                         <a href="basket.jsp" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -630,77 +630,30 @@
                                 <!-- /.text -->
                             </div>
                             <!-- /.product -->
+
                         </div>
+                        </c:forEach>
+
 
                         <div class="col-md-4 col-sm-6">
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                         
-                                                <img src="img/product2.jpg" alt="" class="img-responsive">
-                                            
-                                        </div>
-                                        <div class="back">
-                                        
-                                                <img src="img/product2_2.jpg" alt="" class="img-responsive">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                                    <img src="img/product2.jpg" alt="" class="img-responsive">
-                                
-                                <div class="text">
-                                    <h3>White Blouse Armani</h3>
-                                    <p class="price"><del>$280</del> $143.00</p>
-                                    <p class="buttons">
-                                    
-                                        <a href="basket.jsp" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </p>
-                                </div>
-                                <!-- /.text -->
 
-                                <div class="ribbon sale">
-                                    <div class="theribbon">SALE</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-
-                                <div class="ribbon gift">
-                                    <div class="theribbon">GIFT</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon -->
-                            </div>
-                            <!-- /.product -->
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front">
-                                        
                                                 <img src="img/product3.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                         <div class="back">
-                                         
+
                                                 <img src="img/product3_2.jpg" alt="" class="img-responsive">
-                                           
+
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                     <img src="img/product3.jpg" alt="" class="img-responsive">
-                                
+
                                 <div class="text">
                                     <h3>Black Blouse Versace</h3>
                                     <p class="price">$143.00</p>
@@ -720,20 +673,20 @@
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                       
+
                                                 <img src="img/product3.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                         <div class="back">
-                                     
+
                                                 <img src="img/product3_2.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-                             
+
                                     <img src="img/product3.jpg" alt="" class="img-responsive">
-                                
+
                                 <div class="text">
                                     <h3>Black Blouse Versace</h3>
                                     <p class="price">$143.00</p>
@@ -753,20 +706,20 @@
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                          
+
                                                 <img src="img/product2.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                         <div class="back">
-                                         
+
                                                 <img src="img/product2_2.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-                             
+
                                     <img src="img/product2.jpg" alt="" class="img-responsive">
-                                
+
                                 <div class="text">
                                     <h3>White Blouse Versace</h3>
                                     <p class="price">$143.00</p>
@@ -792,20 +745,20 @@
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                        
+
                                                 <img src="img/product1.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                         <div class="back">
-                                         
+
                                                 <img src="img/product1_2.jpg" alt="" class="img-responsive">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-                           
+
                                     <img src="img/product1.jpg" alt="" class="img-responsive">
-                                
+
                                 <div class="text">
                                     <h3>Fur coat</h3>
                                     <p class="price">$143.00</p>

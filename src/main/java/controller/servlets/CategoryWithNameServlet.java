@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-@WebServlet(name = "CategoryWithNameServlet")
+@WebServlet(name = "CategoryWithNameServlet"  , urlPatterns = "/catName")
 public class CategoryWithNameServlet extends HttpServlet {
 
   private  ProductController productController = new ProductController();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("./404.html");
+        processRequest(req, resp);
     }
 
     @Override
@@ -33,9 +33,13 @@ public class CategoryWithNameServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String categoryName=request.getParameter("category");
         try {
-            Gson gson = new GsonBuilder().create();
-            out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
+          //  Gson gson = new GsonBuilder().create();
+           // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
+            request.setAttribute("product", productController.getCategoryProducts(categoryName));
+            request.getRequestDispatcher("/Product.jsp").forward(request, response);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
             e.printStackTrace();
         }
     }

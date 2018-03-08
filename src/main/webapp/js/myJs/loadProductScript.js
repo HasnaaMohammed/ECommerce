@@ -112,4 +112,4 @@ function addProduct(product) {
 
 }
 
-loadProducts();
+// loadProducts();

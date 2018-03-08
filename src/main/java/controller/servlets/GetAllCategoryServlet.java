@@ -14,13 +14,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-@WebServlet(name = "GetAllCategoryServlet")
+@WebServlet(name = "GetAllCategoryServlet" , urlPatterns = "/allcat")
 public class GetAllCategoryServlet extends HttpServlet {
 
    private ProductController productController = new ProductController();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("./404.html");
+//        resp.sendRedirect("./404.html");
+        processRequest(req, resp);
     }
 
     @Override
@@ -32,8 +33,9 @@ public class GetAllCategoryServlet extends HttpServlet {
         response.setContentType("Application/Json");
         PrintWriter out = response.getWriter();
         try {
-        Gson gson = new GsonBuilder().create();
-            out.write(gson.toJson(productController.getAllCategories()));
+
+       Gson gson = new GsonBuilder().create();
+          out.write(gson.toJson(productController.getAllCategories()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
