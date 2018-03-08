@@ -74,13 +74,11 @@ _________________________________________________________ -->
                     <div class="panel-body">
 
                         <ul class="nav nav-pills nav-stacked">
+                            <li >
+                                <a href="customer-orders.jsp"><i class="fa fa-list"></i> My orders</a>
+                            </li>
+
                             <li class="active">
-                                <a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
-                            </li>
-                            <li>
-                                <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                            </li>
-                            <li>
                                 <a href="customer-account.jsp"><i class="fa fa-user"></i> My account</a>
                             </li>
                             <li>

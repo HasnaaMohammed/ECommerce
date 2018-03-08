@@ -33,6 +33,7 @@ public class ValidateCartServlet extends HttpServlet {
         ProductController productController = new ProductController();
         HttpSession httpSession = request.getSession(true);
         boolean flag = true;
+        Vector<String> strings = new Vector<>();
         if(httpSession.getAttribute(CartController.CART_PRODUCT_LIST) != null)
         {
             Vector<Product> productVector =
@@ -41,11 +42,16 @@ public class ValidateCartServlet extends HttpServlet {
             {
                 if (!productController.isProductAvailable(product.getSku() , product.getQuantiity()))
                 {
-                    out.write("out");
-                    return;
+                    flag = false;
+                    product.setAvailableForCart(false);
+                }
+                else
+                {
+                    product.setAvailableForCart(true);
                 }
             }
+            out.write(flag ? "ok" : "out");
         }
-        out.write("ok");
+
     }
 }

@@ -5,19 +5,19 @@ import java.util.Vector;
 
 public class Cart implements Serializable {
 
-    private User user;
+    private int cartID;
     private Vector<Product> cartProducts;
     private boolean checkOut;
 
     public Cart() {
     }
 
-    public User getUser() {
-        return user;
+    public int getCartID() {
+        return cartID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
     }
 
     public Vector<Product> getCartProducts() {

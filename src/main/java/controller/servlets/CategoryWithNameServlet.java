@@ -31,7 +31,7 @@ public class CategoryWithNameServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
         response.setContentType("Application/Json");
         PrintWriter out = response.getWriter();
-        String categoryName=request.getParameter("category");
+        String categoryName = request.getParameter("category");
         try {
           //  Gson gson = new GsonBuilder().create();
            // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));

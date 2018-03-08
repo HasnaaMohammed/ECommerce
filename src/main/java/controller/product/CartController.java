@@ -1,6 +1,7 @@
 package controller.product;
 
 import controller.user.LoginController;
+import model.beans.Cart;
 import model.beans.Product;
 import model.beans.User;
 import model.database.CartOperation;
@@ -89,11 +90,7 @@ public class CartController {
         return result;
     }
 
-
-
-
-    private int hasCart(String email)
-    {
+    private int hasCart(String email) {
         int result = cartOperation.getUserCartID(email);
         if(result == -1)
         {
@@ -119,7 +116,11 @@ public class CartController {
         }
     }
 
+    public Cart refreshLoggedUserCart(String email) {
 
+         return cartOperation.getUserUnpaidCart(email);
+
+    }
 
 
 }

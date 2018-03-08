@@ -13,12 +13,24 @@
 
         <div class="col-md-6" data-animate="fadeInDown" style="margin-left: 5%">
             <ul class="menu" style="float: right;z-index: 10">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                </li>
-                <li>
-                    <a href="register.jsp">Register</a>
-                </li>
+                <c:choose>
+                    <c:when test="${sessionScope.loggedUserData != null}">
+                        <li>
+                            <a href="./customer-account.jsp">Welcome ${sessionScope.loggedUserData.fullName}</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="logoutHandler()">Logout</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                        </li>
+                        <li>
+                            <a href="register.jsp">Register</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
 
             </ul>
         </div>
@@ -114,7 +126,7 @@ _________________________________________________________ -->
         <div class="navbar-buttons">
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-primary navbar-btn">
+                <a href="basket.jsp"  class="btn btn-primary navbar-btn">
                     <i class="fa fa-shopping-cart"></i>
                     <span class="hidden-sm">${fn:length(sessionScope.cartProductList)}&nbspitems in cart</span>
                 </a>

@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        String password = ("pass");
+        String password = request.getParameter("pass");
         LocalDate dateOfBirth = LocalDate.parse(request.getParameter("birthdate"));
         String address = request.getParameter("address");
         String job = request.getParameter("job");

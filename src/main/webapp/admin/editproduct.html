@@ -18,7 +18,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body>
+<body onload="setInterval('render()', 1000)">
     <div class="wrapper">
         <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
             <!--
@@ -124,20 +124,15 @@
                                                 <th>Price</th>
                                                 <th>Edit</th>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="productTable">
                                             <tr>
-                                                <td>Book</td>
-                                                <td>100</td>
-                                                <td>Books</td>
-                                                <td>100</td>
-                                                <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit" class="btn btn-info btn-simple btn-link">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Delete" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td>
+                                                     Loading... 
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -248,5 +243,30 @@
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<script>
+    function render(){
+        $.ajax({url: '../ViewProductServlet',
+                type:'GET',
+                contentType:'application/json',
+                dataType:'json', 
+                success: function (data) {
+                    //alert(data);
+                    product=data;
+                    $("#productTable tr").remove();
+                    for(i=0;i<product.length;i++){
+                       // alert(product[i].products[i].name);
+                        $("#productTable").append('<tr><td>'+product[i].products[i].name+'</td><td>'+product[i].products[i].quantiity+'</td><td>'+product[i].name+'</td><td>'
+                        +product[i].products[i].price+'</td><td class="td-actions text-right">'+
+                        '<i class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit()"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
 
+                        );  
+                    }
+                }
+        
+              });
+     }
+     function edit(){
+         window.location.href = "editproductmain.html";
+     }
+</script>
 </html>

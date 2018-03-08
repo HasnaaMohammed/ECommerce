@@ -12,8 +12,6 @@ import java.util.Vector;
 public class CartOperation implements CartOperationInterface {
 
 
-    private Cart cart;
-    private Product product;
     private DatabaseHandler databaseHandler;
     private Vector<Product> productVector;
     private String query;
@@ -24,8 +22,50 @@ public class CartOperation implements CartOperationInterface {
         databaseHandler = DatabaseHandler.getInstance();
     }
     @Override
-    public Cart getUserUnpaidCart(String email) {
-       return null;
+    public Cart getUserUnpaidCart(String email)  {
+
+
+        int userCartID = getUserCartID(email);
+        Cart cart = new Cart();
+        query = "SELECT `Product`.`id`,\n" +
+                "    `Product`.`Name`,\n" +
+                "    Cart_product.Quantity,\n" +
+                "    `Product`.`Sku`,\n" +
+                "    `Product`.`Price`,\n" +
+                "    `Product`.`Product_img`,\n" +
+                "    Category.Category_name\n" +
+                "FROM Product , Cart , Cart_product , Category\n" +
+                "where Cart.id = "+userCartID +
+                " and Cart_product.Cart_id = Cart.id\n" +
+                "and Product.id = Cart_product.Product_id\n" +
+                "and Category.id = Product.Category_id;\n" +
+                ";";
+        resultSet = databaseHandler.select(query);
+        cart.setCartID(userCartID);
+        cart.setCheckOut(false);
+        Vector<Product> products = new Vector<>();
+        try {
+        while(resultSet.next())
+        {
+            Product product = new Product();
+            product.setProductID(resultSet.getInt(1));
+            product.setName(resultSet.getString(2));
+            product.setQuantiity(resultSet.getInt(3));
+
+                product.setSku(resultSet.getInt(4));
+
+            product.setPrice(resultSet.getDouble(5));
+            product.setProduct_img(resultSet.getString(6));
+            product.setProduct_category(resultSet.getString(7));
+            products.add(product);
+        }
+            cart.setCartProducts(products);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cart;
+
     }
 
     @Override
@@ -92,6 +132,11 @@ public class CartOperation implements CartOperationInterface {
     public void addProductToCart(int cartID, int productID, int quantity) {
         String sql ="INSERT INTO `ECommerce`.`Cart_product` (`Product_id`, `Cart_id`, `Quantity`) VALUES ("+productID+","+cartID+","+quantity+");";
         databaseHandler.update(sql);
+    }
+
+    @Override
+    public void getCartTotalPrice(int cartID) {
+
     }
 
 
