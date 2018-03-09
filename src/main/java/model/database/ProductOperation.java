@@ -196,4 +196,17 @@ public class ProductOperation implements ProductOperationInterface {
         String sql = "UPDATE Product SET Quantity = Quantity - "+quantity+" WHERE id= "+productID+";";
         return databaseHandler.update(sql);
     }
+    
+     @Override
+    public boolean deleteProduct(int sku) {
+        System.out.println("product operation - deleteProduct");
+        boolean success;
+        
+        
+        query="DELETE FROM Product WHERE Sku="+ sku;
+
+        success = databaseHandler.update(query);
+
+        return success;
+    }
 }
