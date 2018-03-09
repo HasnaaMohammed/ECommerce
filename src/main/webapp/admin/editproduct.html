@@ -245,25 +245,26 @@
 <script src="../assets/js/demo.js"></script>
 <script>
     function render(){
-        $.ajax({url: '../ViewProductServlet',
-                type:'GET',
-                contentType:'application/json',
-                dataType:'json', 
-                success: function (data) {
-                    //alert(data);
-                    product=data;
-                    $("#productTable tr").remove();
-                    for(i=0;i<product.length;i++){
-                       // alert(product[i].products[i].name);
-                        $("#productTable").append('<tr><td>'+product[i].products[i].name+'</td><td>'+product[i].products[i].quantiity+'</td><td>'+product[i].name+'</td><td>'
-                        +product[i].products[i].price+'</td><td class="td-actions text-right">'+
-                        '<i class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit()"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
+        $.ajax({
+            url: '../ViewProductServlet',
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                product = data;
+                $("#productTable tr").remove();
+                for (i = 0; i < product.length; i++) {
+                    for (x = 0; x < product[i].products.length; x++)
 
-                        );  
-                    }
+                        $("#productTable").append('<tr><td>' + product[i].products[x].name + '</td><td>' + product[i].products[x].quantiity + '</td><td>' + product[i].name + '</td><td>'
+                            + product[i].products[x].price + '</td><td class="td-actions text-right">' +
+                            '<i class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit()"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
+                        );
+
                 }
-        
-              });
+
+            }
+        });
      }
      function edit(){
          window.location.href = "editproductmain.html";

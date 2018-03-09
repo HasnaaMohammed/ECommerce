@@ -33,9 +33,12 @@ public class LoggerUserFilter implements Filter {
     private FilterConfig filterConfig = null;
     
     public LoggerUserFilter() {
-    }    
-    
-    
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
 
     /**
      *
@@ -53,15 +56,16 @@ public class LoggerUserFilter implements Filter {
         HttpSession session = httpRequest.getSession(false);
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
-        if(session.getAttribute(LoginController.USER_DATA)!=null) 
+        if(session != null && session.getAttribute(LoginController.USER_DATA)!=null)
         {
              httpResponse.sendRedirect("index.jsp");
         }else{
             chain.doFilter(request, response);
         }
-          
-        
-        
+    }
+
+    @Override
+    public void destroy() {
 
     }
 
@@ -81,80 +85,7 @@ public class LoggerUserFilter implements Filter {
         this.filterConfig = filterConfig;
     }
 
-    /**
-     * Destroy method for this filter
-     */
-    public void destroy() {        
-    }
 
-    /**
-     * Init method for this filter
-     */
-    public void init(FilterConfig filterConfig) {        
-        this.filterConfig = filterConfig;
-       
-    }
 
-    /**
-     * Return a String representation of this object.
-     */
-    @Override
-    public String toString() {
-        if (filterConfig == null) {
-            return ("LoggerUserFilter()");
-        }
-        StringBuffer sb = new StringBuffer("LoggerUserFilter(");
-        sb.append(filterConfig);
-        sb.append(")");
-        return (sb.toString());
-    }
-    
-    private void sendProcessingError(Throwable t, ServletResponse response) {
-        String stackTrace = getStackTrace(t);        
-        
-        if (stackTrace != null && !stackTrace.equals("")) {
-            try {
-                response.setContentType("text/html");
-                PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);                
-                pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
-                // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
-                pw.print(stackTrace);                
-                pw.print("</pre></body>\n</html>"); //NOI18N
-                pw.close();
-                ps.close();
-                response.getOutputStream().close();
-            } catch (Exception ex) {
-            }
-        } else {
-            try {
-                PrintStream ps = new PrintStream(response.getOutputStream());
-                t.printStackTrace(ps);
-                ps.close();
-                response.getOutputStream().close();
-            } catch (Exception ex) {
-            }
-        }
-    }
-    
-    public static String getStackTrace(Throwable t) {
-        String stackTrace = null;
-        try {
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            t.printStackTrace(pw);
-            pw.close();
-            sw.close();
-            stackTrace = sw.getBuffer().toString();
-        } catch (Exception ex) {
-        }
-        return stackTrace;
-    }
-    
-    public void log(String msg) {
-        filterConfig.getServletContext().log(msg);        
-    }
-    
 }

@@ -18,7 +18,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="setInterval('render()', 1000)">
+<body onload="render()">
         <div class="modal fade" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -270,6 +270,7 @@
                 contentType:'application/json',
                 dataType:'json', 
                 success: function (data) {
+                    alert(JSON.stringify(data));
                     customers=data;
                     $("#customerTable tr").remove();
                     for(i=0;i<customers.length;i++){

@@ -110,9 +110,10 @@ public class UserOperation implements UserOperationInterface {
         return userID;
     }
 
-    private void fillObject() throws SQLException {
 
-        if (resultSet.next()) {
+    private void fillObject() throws SQLException {
+        vector.clear();
+        while (resultSet.next()) {
 
             String fullName = resultSet.getString("Full_Name");
             String useremail = resultSet.getString("email");
@@ -123,9 +124,7 @@ public class UserOperation implements UserOperationInterface {
             int credit = resultSet.getInt("credit_limit");
             int userRole = resultSet.getInt("role");
             user = new User(fullName,useremail,birthDate, address, job, credit, userRole  ,password);
-
             vector.add(user);
-
         }
     }
 

@@ -65,7 +65,7 @@
                         <form method="post" action="checkout1.html">
 
                             <h1 id="carthead">Shopping cart</h1>
-                            <p id="errorlabel">Hello World</p>
+                            <p id="errorlabel"></p>
                         <%--<p class="text-muted">You currently have 3 item(s) in your cart.</p>--%>
                             <div class="table-responsive">
                                 <table class="table">
