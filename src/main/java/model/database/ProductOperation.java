@@ -114,7 +114,7 @@ public class ProductOperation implements ProductOperationInterface {
     }
 
     @Override
-    public Vector<String> getAllCategories() throws SQLException {
+    public synchronized Vector<String> getAllCategories() throws SQLException {
         String query = "select * from Category;";
         resultSet = databaseHandler.select(query);
         Vector<String> result = new Vector<>();
@@ -189,5 +189,11 @@ public class ProductOperation implements ProductOperationInterface {
         success = databaseHandler.update(query);
 
         return success;
+    }
+
+    public boolean decreaseQuantity(int productID , int quantity)
+    {
+        String sql = "UPDATE Product SET Quantity = Quantity - "+quantity+" WHERE id= "+productID+";";
+        return databaseHandler.update(sql);
     }
 }

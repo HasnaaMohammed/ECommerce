@@ -10,7 +10,7 @@ public class User  implements Serializable {
     private LocalDate birthDate;
     private String address;
     private String job ;
-    private int credit ;
+    private double credit ;
     private int role;
     private String password;
 
@@ -21,7 +21,7 @@ public class User  implements Serializable {
         return fullName;
     }
 
-    public User(String fullName, String email, LocalDate birthDate, String address, String job, int credit, int role, String password) {
+    public User(String fullName, String email, LocalDate birthDate, String address, String job, double credit, int role, String password) {
         this.fullName = fullName;
         this.email = email;
         this.birthDate = birthDate;
@@ -68,11 +68,11 @@ public class User  implements Serializable {
         this.job = job;
     }
 
-    public int getCredit() {
+    public double getCredit() {
         return credit;
     }
 
-    public void setCredit(int credit) {
+    public void setCredit(double credit) {
         this.credit = credit;
     }
 

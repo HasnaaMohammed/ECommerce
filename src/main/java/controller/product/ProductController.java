@@ -41,4 +41,8 @@ public class ProductController {
 
     }
 
+    public boolean decreaseQuantity(int productID , int quantity){
+        return productOperation.decreaseQuantity(productID , quantity);
+    }
+
 }

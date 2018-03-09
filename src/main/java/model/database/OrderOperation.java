@@ -3,8 +3,12 @@ package model.database;
 import model.beans.Order;
 import model.interfaces.OrderOperationInterface;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Vector;
 
 public class OrderOperation implements OrderOperationInterface {
@@ -83,5 +87,15 @@ public class OrderOperation implements OrderOperationInterface {
         return orders;
     }
 
+    @Override
+    public boolean createNewOrder(int cartID , double totalPrice) {
+        String sql = "INSERT INTO `ECommerce`.`Order` (`Total_Price`, `Cart_id`, `Timestamp`) VALUES ("+totalPrice+","
+                +cartID+", Now());";
+        return databaseHandler.insert(sql);
+    }
 
+    public static java.sql.Date localTimeToDate(LocalDateTime lt) {
+        return new java.sql.Date(lt.atZone(ZoneId.systemDefault()).toInstant()
+                .toEpochMilli());
+    }
 }

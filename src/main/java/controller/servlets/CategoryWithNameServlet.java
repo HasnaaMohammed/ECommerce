@@ -28,20 +28,22 @@ public class CategoryWithNameServlet extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
+    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
 
         PrintWriter out = response.getWriter();
         String categoryName = request.getParameter("category");
-        request.setAttribute("categoryName",categoryName);
-        try {
-          //  Gson gson = new GsonBuilder().create();
-           // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
-            request.setAttribute("product", productController.getCategoryProducts(categoryName));
-            request.getRequestDispatcher("/Product.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
+        if(categoryName == null || categoryName.isEmpty())
+            request.getRequestDispatcher("/index.jsp").forward(request , response);
+        else {
+            request.setAttribute("categoryName", categoryName);
+            try {
+                //  Gson gson = new GsonBuilder().create();
+                // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
+                request.setAttribute("product", productController.getCategoryProducts(categoryName));
+                request.getRequestDispatcher("/Product.jsp").forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
