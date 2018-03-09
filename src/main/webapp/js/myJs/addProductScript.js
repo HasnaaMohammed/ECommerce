@@ -21,7 +21,7 @@ function addProductHandler() {
    // var registerErrorLabel = document.getElementById("registerErrorLabel");
     var addProductBtn = document.getElementById("addProductBtn");
     addProductBtn.disabled = true;
-    $.post("./AddProduct" , postObject , function (data) {
+    $.post("../AddProduct" , postObject , function (data) {
     console.log(data);
         if(data === "success")
             data = "Product Added Successfully";

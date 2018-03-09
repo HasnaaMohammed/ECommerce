@@ -32,8 +32,9 @@ public class ProductOperation implements ProductOperationInterface {
                 databaseHandler.closeConnection();
                 return false;
             } else {
-                query = "insert into Product(Name,Quantity,price,product_img,category_id) values('" + product.getName()
-                        + "','" + product.getQuantiity() + "','" + product.getPrice() + "','" + product.getProduct_img() + "','" +
+                query = "insert into Product(Name,Quantity,Sku,price,product_img,category_id) values('" + product.getName()
+                        + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
+                        + "','" + product.getProduct_img() + "','" +
                         product.getProduct_category() + "')";
 
                 databaseHandler.insert(query);
