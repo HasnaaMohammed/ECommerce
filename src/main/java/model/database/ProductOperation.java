@@ -156,7 +156,7 @@ public class ProductOperation implements ProductOperationInterface {
                 " from Product , Category\n" +
                 " where Category.Category_name = '" + category +
                 "'  and Product.Category_id = Category.id" +
-                " and Quantity > 0 and price between (" + minPrice + "," + maxPrice + ");";
+                " and Quantity > 0 and price in (" + minPrice + "," + maxPrice + ");";
         resultSet = databaseHandler.select(query);
         getproduct(category, products);
         return products;

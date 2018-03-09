@@ -29,9 +29,10 @@ public class CategoryWithNameServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        response.setContentType("Application/Json");
+
         PrintWriter out = response.getWriter();
         String categoryName = request.getParameter("category");
+        request.setAttribute("categoryName",categoryName);
         try {
           //  Gson gson = new GsonBuilder().create();
            // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));

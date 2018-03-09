@@ -1,10 +1,8 @@
 package controller.servlets;
 
+import controller.product.ProductController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import controller.product.ProductController;
-import model.database.ProductOperation;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +12,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-@WebServlet(name = "CategoryWithPriceServlet")
-public class CategoryWithPriceServlet extends HttpServlet {
+@WebServlet(name = "GetAllProductServlet" ,urlPatterns = "/allProduct")
+public class GetAllProductServlet extends HttpServlet {
+
     private ProductController productController = new ProductController();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("./404.html");
+        processRequest(req, resp);
     }
 
     @Override
@@ -28,15 +27,18 @@ public class CategoryWithPriceServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        response.setContentType("Application/Json");
+
         PrintWriter out = response.getWriter();
-        String categoryName=request.getParameter("category");
-        double minPrice =(Double.parseDouble(request.getParameter("minPrice")));
-        double maxPice =(Double.parseDouble(request.getParameter("maxPrice")));
+
         try {
-            Gson gson = new GsonBuilder().create();
-            out.write(gson.toJson(productController.getCategoryProductswithPrice(categoryName,minPrice,maxPice)));
+           //  Gson gson = new GsonBuilder().create();
+            // out.write(gson.toJson(productController.getAllProduct()));
+           request.setAttribute("allproduct", productController.getAllProduct());
+            request.getRequestDispatcher("/category.jsp").forward(request, response);
+
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
             e.printStackTrace();
         }
     }

@@ -34,8 +34,9 @@ public class GetAllCategoryServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
 
-       Gson gson = new GsonBuilder().create();
+          Gson gson = new GsonBuilder().create();
           out.write(gson.toJson(productController.getAllCategories()));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
