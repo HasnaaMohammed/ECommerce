@@ -98,7 +98,7 @@
                                             <td>$${product.price}</td>
                                             <td>$${product.price * product.quantiity}</td>
                                             <td><form>
-                                                <button class="fa fa-trash-o">  <i class="fa fa-trash-o"></i></button>
+                                                <button class="fa fa-trash-o" id="${product.sku}" style="background-color: transparent"><i class="fa fa-trash-o"></i></button>
                                             </form>
                                                 <i class="fa fa-trash-o"></i>
                                             </td>
