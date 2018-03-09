@@ -5,6 +5,7 @@ function getAllCategories() {
         data.forEach(param => {
            var anchor = document.createElement("a");
            anchor.innerHTML = param;
+           anchor.href = "./catName?category="+param;
            var list = document.createElement("li");
            list.appendChild(anchor);
            categoryList.appendChild(list);

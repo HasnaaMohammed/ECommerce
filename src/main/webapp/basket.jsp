@@ -97,7 +97,11 @@
                                             <td><p>${product.quantiity}</p></td>
                                             <td>$${product.price}</td>
                                             <td>$${product.price * product.quantiity}</td>
-                                            <td><i class="fa fa-trash-o"></i></td>
+                                            <td><form>
+                                                <button class="fa fa-trash-o">  <i class="fa fa-trash-o"></i></button>
+                                            </form>
+                                                <i class="fa fa-trash-o"></i>
+                                            </td>
 
                                         </tr>
                                     </c:forEach>

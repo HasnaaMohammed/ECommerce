@@ -349,7 +349,7 @@
 
                         <div class="col-md-3 col-sm-6">
 
-                            <h4>Ctegories</h4>
+                            <h4>Categories</h4>
 
 
 
