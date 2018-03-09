@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -16,6 +16,7 @@
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
+    <script src="../js/myJs/addProductScript.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./addproduct.html">
+                        <a class="nav-link" href="./addproduct.jsp">
                             <i class="nc-icon nc-simple-add"></i>
                             <p>Add Product</p>
                         </a>
@@ -100,21 +101,31 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Product</h4>
+                                        <h4 class="card-title">Add New Product</h4>
+                                        <b style="color: darkorange">${param.result}</b>
                                     <hr>
-                                    
-                                <div class="card-body">
+                                    <!--onsubmit="return addProductHandler()"-->
+                                    <Form ACTION="../AddProduct" ENCTYPE="MULTIPART/FORM-DATA" METHOD="post">
+                                    <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label>Product Name</label>
+                                                <input type="text" class="form-control" placeholder="Product Name" id="product_name" name="pName" required>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Product Name</label>
-                                                <input type="text" class="form-control" placeholder="Product Name">
+                                                <label>Product Sku</label>
+                                                <input type="text" class="form-control" placeholder="Product Sku" id="product_sku" name="pSku" required>
                                             </div>
                                         </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Product Quantity</label>
-                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1">
+                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1" id="product_quantity" name="pQu" required>
                                                 </div>
                                             </div>
                                     </div>
@@ -122,13 +133,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Price</label>
-                                                <input type="number" class="form-control" placeholder="Product Price" min="1">
+                                                <input type="number" class="form-control" placeholder="Product Price" min="1" id="product_price" name="pPrice" required>
                                             </div>
                                         </div>
                                             <div class="col-md-6 ">
                                                 <div class="form-group">
                                                     <label>Product Image</label>
-                                                    <input class="form-control-file"  type="file" class="form-control" >
+                                                    <input class="form-control-file" type="file" class="form-control" id="product-image" name="picFile" required>
                                                 </div>
                                             </div>
                                     </div>
@@ -136,7 +147,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Choose Category</label>
-                                                <select class="form-control" id="sel1">
+                                                <select class="form-control" id="sel1" name="pCat">
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -148,12 +159,13 @@
                                                 <div class="form-group">
                                                     <br>
                                                     <button type="reset" class="btn btn-default btn-fill btn-md">Reset</button>
-                                                    <button type="Button" class="btn btn-info btn-fill ">Save</button>
+                                                    <button type="submit" class="btn btn-info btn-fill" id="addProductBtn">Save</button>
                                                 </div>
                                             </div>
                                     </div>
                                   
                                 </div>
+                                 </form>
                             </div>
                         </div>
                     </div>
@@ -163,7 +175,7 @@
         </div>
     </div>
      
-
+    </div>
 
  </body>
 <!--   Core JS Files   -->
@@ -182,5 +194,5 @@
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-
+<script src="../js/myJs/addProductScript.js" type="text/javascript"></script>
 </html>

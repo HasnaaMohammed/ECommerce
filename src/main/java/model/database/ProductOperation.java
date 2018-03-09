@@ -29,11 +29,11 @@ public class ProductOperation implements ProductOperationInterface {
             query = "select * from Product where sku = '" + product.getSku() + "'";
             resultSet = databaseHandler.select(query);
             if (resultSet.next()) {
-                databaseHandler.closeConnection();
                 return false;
             } else {
-                query = "insert into Product(Name,Quantity,price,product_img,category_id) values('" + product.getName()
-                        + "','" + product.getQuantiity() + "','" + product.getPrice() + "','" + product.getProduct_img() + "','" +
+                query = "insert into Product(Name,Quantity,Sku,price,product_img,category_id) values('" + product.getName()
+                        + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
+                        + "','" + product.getProduct_img() + "','" +
                         product.getProduct_category() + "')";
 
                 databaseHandler.insert(query);
@@ -52,7 +52,6 @@ public class ProductOperation implements ProductOperationInterface {
             query = "select * from Category where Category_name = '" + category + "'";
             resultSet = databaseHandler.select(query);
             if (resultSet.next()) {
-                databaseHandler.closeConnection();
                 return false;
             } else {
                 query = "insert into Category(Category_name) values('" + category + "')";
@@ -68,6 +67,7 @@ public class ProductOperation implements ProductOperationInterface {
     @Override
     public Product getProductInfo(int sku) {
         try {
+            product = null;
             query = "SELECT Product.id,\n" +
                     "    Product.Name,\n" +
                     "    Product.Quantity,\n" +
@@ -173,5 +173,21 @@ public class ProductOperation implements ProductOperationInterface {
             product.setProduct_category(category);
             products.add(product);
         }
+    }
+
+    @Override
+    public boolean editProduct(Product product) {
+        System.out.println("product operation - editProduct");
+        boolean success = false;
+        query = "UPDATE Product SET Name = '"+ product.getName()
+                +"', Quantity ='"+product.getQuantiity()
+                + "', price='"+product.getPrice()
+                + "', product_img='"+ product.getProduct_img() 
+                + "', category_id = '"+ product.getProduct_category()
+                + "' WHERE Sku ="+product.getSku();
+        
+        success = databaseHandler.update(query);
+
+        return success;
     }
 }

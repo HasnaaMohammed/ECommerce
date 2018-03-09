@@ -65,7 +65,7 @@
                         <form method="post" action="checkout1.html">
 
                             <h1 id="carthead">Shopping cart</h1>
-                            <p id="errorlabel">Hello World</p>
+                            <p id="errorlabel"></p>
                         <%--<p class="text-muted">You currently have 3 item(s) in your cart.</p>--%>
                             <div class="table-responsive">
                                 <table class="table">
@@ -97,7 +97,11 @@
                                             <td><p>${product.quantiity}</p></td>
                                             <td>$${product.price}</td>
                                             <td>$${product.price * product.quantiity}</td>
-                                            <td><i class="fa fa-trash-o"></i></td>
+                                            <td><form>
+                                                <button class="fa fa-trash-o" id="${product.sku}" style="background-color: transparent"><i class="fa fa-trash-o"></i></button>
+                                            </form>
+                                                <i class="fa fa-trash-o"></i>
+                                            </td>
 
                                         </tr>
                                     </c:forEach>

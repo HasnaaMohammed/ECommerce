@@ -30,7 +30,7 @@ public class ViewCustomersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         AdminViewCustomersController adminViewCustomersController=new AdminViewCustomersController();
-        Vector<User> users=adminViewCustomersController.getCustomerList();
+        Vector<User> users= adminViewCustomersController.getCustomerList();
         resp.setContentType("application/json");
         Gson msgGson = new Gson();
         //System.out.println("asmaa yarab "+users.size());

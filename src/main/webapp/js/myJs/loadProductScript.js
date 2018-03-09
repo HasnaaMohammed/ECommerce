@@ -15,10 +15,10 @@ function loadProducts()
             data.forEach(param =>{
 
                 if(param.products.length > 0)
-            {
-                hot.appendChild(addHeader(param.name));
-                hot.appendChild(addSlider(param.products));
-            }
+                {
+                    hot.appendChild(addHeader(param.name));
+                    hot.appendChild(addSlider(param.products));
+                }
         });
         },
         async:   true
@@ -51,12 +51,17 @@ function addSlider(products) {
     var productSlider = document.createElement("div");
     productSlider.className = "row";
     containerDiv.appendChild(productSlider);
-
-    products.forEach(param =>{
-        productSlider.append(addProduct(param));
-
-    });
-
+    var count = 0;
+    for(var counter = 0 ; counter < products.length ; counter++)
+    {
+        if (count > 5)
+        {
+            break;
+        }
+        else
+            count++;
+        productSlider.append(addProduct(products[counter]));
+    }
     return containerDiv;
 
 }

@@ -33,7 +33,6 @@ public class ViewProductServlet extends HttpServlet {
         Gson msgGson = new Gson();
         //System.out.println("asmaa yarab "+categorys.size());
         PrintWriter out = resp.getWriter();
-        //System.out.println(msgGson.toJson(categorys));
         out.write(msgGson.toJson(categorys));
     }
    
