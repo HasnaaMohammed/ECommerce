@@ -258,7 +258,7 @@
 
                         $("#productTable").append('<tr><td>' + product[i].products[x].name + '</td><td>' + product[i].products[x].quantiity + '</td><td>' + product[i].name + '</td><td>'
                             + product[i].products[x].price + '</td><td class="td-actions text-right">' +
-                            '<i class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit()"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
+                            '<i class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit('+product[i].products[x].sku+')"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
                         );
 
                 }
@@ -266,7 +266,8 @@
             }
         });
      }
-     function edit(){
+     function edit(sku){
+         
          window.location.href = "editproductmain.html";
      }
 </script>
