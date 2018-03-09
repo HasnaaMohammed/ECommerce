@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -35,7 +35,7 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./addproduct.html">
+                        <a class="nav-link" href="./addproduct.jsp">
                             <i class="nc-icon nc-simple-add"></i>
                             <p>Add Product</p>
                         </a>
@@ -101,15 +101,17 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Product</h4>
+                                        <h4 class="card-title">Add New Product</h4>
+                                        <b style="color: darkorange">${param.result}</b>
                                     <hr>
-                                 <form id="addproductForm" onsubmit="return addProductHandler()">   
-                                <div class="card-body">
+                                    <!--onsubmit="return addProductHandler()"-->
+                                    <Form ACTION="../AddProduct" ENCTYPE="MULTIPART/FORM-DATA" METHOD="post">
+                                    <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <label>Product Name</label>
-                                                <input type="text" class="form-control" placeholder="Product Name" id="product_name">
+                                                <input type="text" class="form-control" placeholder="Product Name" id="product_name" name="pName" required>
                                             </div>
                                         </div>
                                     </div>
@@ -117,13 +119,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Sku</label>
-                                                <input type="text" class="form-control" placeholder="Product Sku" id="product_sku">
+                                                <input type="text" class="form-control" placeholder="Product Sku" id="product_sku" name="pSku" required>
                                             </div>
                                         </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Product Quantity</label>
-                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1" id="product_quantity">
+                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1" id="product_quantity" name="pQu" required>
                                                 </div>
                                             </div>
                                     </div>
@@ -131,13 +133,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Price</label>
-                                                <input type="number" class="form-control" placeholder="Product Price" min="1" id="product_price">
+                                                <input type="number" class="form-control" placeholder="Product Price" min="1" id="product_price" name="pPrice" required>
                                             </div>
                                         </div>
                                             <div class="col-md-6 ">
                                                 <div class="form-group">
                                                     <label>Product Image</label>
-                                                    <input class="form-control-file"  type="file" class="form-control" id="product-image" >
+                                                    <input class="form-control-file" type="file" class="form-control" id="product-image" name="picFile" required>
                                                 </div>
                                             </div>
                                     </div>
@@ -145,7 +147,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Choose Category</label>
-                                                <select class="form-control" id="sel1">
+                                                <select class="form-control" id="sel1" name="pCat">
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>

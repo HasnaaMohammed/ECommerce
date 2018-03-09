@@ -11,7 +11,9 @@ function loginHandler() {
     loginButton.disabled = true;
     $.post("./Login" , postObject , function (data) {
 
-        if(data === "success")
+        if(data === "success-admin")
+            window.location.replace("./admin/addproduct.jsp");
+        else if(data === "success-user")
             window.location.replace("customer-account.jsp");
         else
         {
@@ -37,7 +39,9 @@ function loginHandlerRegisterPage() {
     loginButton.disabled = true;
     $.post("./Login" , postObject , function (data) {
 
-        if(data === "success")
+        if(data === "success-admin")
+            window.location.replace("./admin/addproduct.jsp");
+        else if(data === "success-user")
             window.location.replace("customer-account.jsp");
         else
         {

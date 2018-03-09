@@ -21,14 +21,9 @@ public class AddProductController {
     {
         int added;
         ValidationCheck validationCheck = new ValidationCheck();
-       // if(!validationCheck.isName(product.getName()))
-       // {
-         //   added = INVALID_NAME;
-       // }
-       // else
-       // {
-          /* boolean exist = productOperation.isProductExist(product.getSku));
-            if(!exist ){
+
+           boolean exist = productOperation.getProductInfo(product.getSku()) != null;
+            if(!exist){
 
                 productOperation.addNewProduct(product);
                 added=PRODUCT_ADDED;
@@ -36,11 +31,7 @@ public class AddProductController {
             else
             {
                 added = PRODUCT_EXIST;
-            }*/
-            
-            productOperation.addNewProduct(product);
-            added=PRODUCT_ADDED;
-        //}
+            }
 
        return added;
     }
