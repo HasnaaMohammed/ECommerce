@@ -259,7 +259,7 @@
 
                         $("#productTable").append('<tr><td>' + product[i].products[x].sku + '</td><td>' + product[i].products[x].name + '</td><td>' + product[i].products[x].quantiity + '</td><td>' + product[i].name + '</td><td>'
                             + product[i].products[x].price + '</td><td class="td-actions text-right">' +
-                            '<i id=' + product[i].products[x].sku + ' class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit(this.id)"></i><i class="fa fa-times" title="Delete"></i></td></tr>'
+                            '<i id=' + product[i].products[x].sku + ' class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit(this.id)"></i><i id=' + product[i].products[x].sku + ' class="fa fa-times" title="Delete" onClick="deleteProduct(this.id)"></i></td></tr>'
                         );
                 }}});
     }
@@ -269,5 +269,7 @@
         window.location.href = "editproductmain.jsp?sku="+data;
 
      }
+
 </script>
+<script src="../js/myJs/deleteProductScript.js" type="text/javascript"></script>
 </html>

@@ -190,4 +190,17 @@ public class ProductOperation implements ProductOperationInterface {
 
         return success;
     }
+    
+     @Override
+    public boolean deleteProduct(int sku) {
+        System.out.println("product operation - deleteProduct");
+        boolean success;
+        
+        
+        query="DELETE FROM Product WHERE Sku="+ sku;
+
+        success = databaseHandler.update(query);
+
+        return success;
+    }
 }

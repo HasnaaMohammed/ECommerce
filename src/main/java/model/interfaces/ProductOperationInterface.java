@@ -21,5 +21,6 @@ public interface ProductOperationInterface {
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException;
 
     public boolean editProduct(Product product);
+    public boolean deleteProduct(int sku);
 
 }
