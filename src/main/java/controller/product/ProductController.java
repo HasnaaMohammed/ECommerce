@@ -30,7 +30,7 @@ public class ProductController {
     public Vector<String> getAllCategories() throws SQLException {
         return productOperation.getAllCategories();
     }
-    
+
 
     public Vector<Product> getCategoryProducts(String category) throws SQLException {
         return productOperation.getCategoryProducts(category);
