@@ -125,12 +125,12 @@
                                                 <input type="number" class="form-control" placeholder="Product Price" min="1">
                                             </div>
                                         </div>
-                                            <!-- <div class="col-md-6 ">
+                                            <div class="col-md-6 ">
                                                 <div class="form-group">
-                                                    <label>Product Image</label>
-                                                    <input class="form-control-file"  type="file" class="form-control" >
+                                                    <label>Product SKU</label>
+                                                    <input class="form-control" value="${param.sku}" type="number" class="form-control" disabled>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 ">
