@@ -50,9 +50,11 @@ public class DatabaseHandler {
     }
 
     private boolean executeNonQuery(String query) {
+         System.out.println("database hundler");
         try {
             pres = connection.prepareStatement(query);
             pres.executeUpdate();
+            System.out.println("update true");
             return true;
         } catch (SQLException ex) {
             System.out.println(ex.toString());

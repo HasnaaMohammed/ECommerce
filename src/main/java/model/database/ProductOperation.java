@@ -174,4 +174,20 @@ public class ProductOperation implements ProductOperationInterface {
             products.add(product);
         }
     }
+
+    @Override
+    public boolean editProduct(Product product) {
+        System.out.println("product operation - editProduct");
+        boolean success = false;
+        query = "UPDATE Product SET Name = '"+ product.getName()
+                +"', Quantity ='"+product.getQuantiity()
+                + "', price='"+product.getPrice()
+                + "', product_img='"+ product.getProduct_img() 
+                + "', category_id = '"+ product.getProduct_category()
+                + "' WHERE Sku ="+product.getSku();
+        
+        success = databaseHandler.update(query);
+
+        return success;
+    }
 }

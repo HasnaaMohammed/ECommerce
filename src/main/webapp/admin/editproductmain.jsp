@@ -101,20 +101,21 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Edit Product</h4>
+                                    <b style="color: darkorange">${param.result}</b>
                                     <hr>
-                                    
+                                    <Form ACTION="../EditProduct" ENCTYPE="MULTIPART/FORM-DATA" METHOD="post">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Name</label>
-                                                <input type="text" class="form-control" placeholder="Product Name">
+                                                <input type="text" class="form-control" placeholder="Product Name" id="product_name" name="pName">
                                             </div>
                                         </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Product Quantity</label>
-                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1">
+                                                    <input type="number" class="form-control" placeholder="Product Quantity" min="1" id="product_quantity" name="pQu">
                                                 </div>
                                             </div>
                                     </div>
@@ -122,13 +123,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Price</label>
-                                                <input type="number" class="form-control" placeholder="Product Price" min="1">
+                                                <input type="number" class="form-control" placeholder="Product Price" min="1" id="product_price" name="pPrice">
                                             </div>
                                         </div>
                                             <div class="col-md-6 ">
                                                 <div class="form-group">
                                                     <label>Product SKU</label>
-                                                    <input class="form-control" value="${param.sku}" type="number" class="form-control" disabled>
+                                                    <input class="form-control" value="${param.sku}" type="number" class="form-control" id="product_sku" name="pSku" >
                                                 </div>
                                             </div>
                                     </div>
@@ -136,7 +137,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <label>Choose Category</label>
-                                                <select class="form-control" id="sel1">
+                                                <select class="form-control" id="sel1" name="pCat">
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -148,11 +149,12 @@
                                                 <div class="form-group">
                                                     <br>
                                                     <button type="reset" class="btn btn-default btn-fill btn-md">Cancel</button>
-                                                    <button type="Button" class="btn btn-info btn-fill ">Save</button>
+                                                    <button type="submit" class="btn btn-info btn-fill ">Save</button>
                                                 </div>
                                             </div>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
