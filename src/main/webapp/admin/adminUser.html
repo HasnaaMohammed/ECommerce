@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li >
-                            <a class="nav-link" href="./setting.html">
+                            <a class="nav-link" href="./setting.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Manage</p>
                             </a>

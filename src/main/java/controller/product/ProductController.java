@@ -6,6 +6,7 @@ import model.interfaces.ProductOperationInterface;
 
 import java.sql.SQLException;
 import java.util.Vector;
+import model.beans.Category;
 
 public class ProductController {
 
@@ -36,6 +37,9 @@ public class ProductController {
         return productOperation.getCategoryProducts(category);
     }
 
+    public Vector<Product> getCategoryProducts(String category , int index) throws SQLException {
+        return productOperation.getCategoryProducts(category , index);
+    }
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException {
         return productOperation.getCategoryProductswithPrice(category, minPrice, maxPrice);
 
@@ -45,4 +49,7 @@ public class ProductController {
         return productOperation.decreaseQuantity(productID , quantity);
     }
 
+    public boolean addNewCategory(Category category){
+        return productOperation.addNewCategory(category.getName());
+    }
 }

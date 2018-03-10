@@ -104,7 +104,7 @@ public class CartController {
         return cartOperation.createUserCart(email);
     }
 
-    private void refreshCartDB(int cartID, Vector<Product> products)  {
+    public void refreshCartDB(int cartID, Vector<Product> products)  {
         for(Product product : products) {
             if (cartOperation.productInCart(cartID, product.getProductID())) {
                 cartOperation.updateProductCartQuantity(cartID, product.getProductID(), product.getQuantiity());
