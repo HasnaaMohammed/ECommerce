@@ -22,8 +22,7 @@ public class RegisterController {
     {
         int registered;
         ValidationCheck validationCheck = new ValidationCheck();
-        if(!validationCheck.isEmail(user.getEmail()) || !validationCheck.isEmptyString(user.getPassword())
-                || !validationCheck.isValidLimit(user.getCredit()))
+        if(!validationCheck.isEmail(user.getEmail()))
         {
             registered = INVALID_EMAIL;
         }

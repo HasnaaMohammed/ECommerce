@@ -110,9 +110,22 @@ public class UserOperation implements UserOperationInterface {
         return userID;
     }
 
+    public double getUserCurrentCredit(String email) {
+        Double limit = null;
+        try {
+            query = "select Credit_Limit from User where email = '" + email+ "'";
+            resultSet = databaseHandler.select(query);
+            if (resultSet.next()) {
+                limit =  resultSet.getDouble("Credit_Limit");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return limit;
+    }
     private void fillObject() throws SQLException {
-
-        if (resultSet.next()) {
+        vector.clear();
+        while (resultSet.next()) {
 
             String fullName = resultSet.getString("Full_Name");
             String useremail = resultSet.getString("email");
@@ -123,9 +136,7 @@ public class UserOperation implements UserOperationInterface {
             int credit = resultSet.getInt("credit_limit");
             int userRole = resultSet.getInt("role");
             user = new User(fullName,useremail,birthDate, address, job, credit, userRole  ,password);
-
             vector.add(user);
-
         }
     }
 

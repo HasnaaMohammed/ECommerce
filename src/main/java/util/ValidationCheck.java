@@ -90,7 +90,7 @@ public class ValidationCheck {
         return matchPass;
     }
 
-    public boolean isValidLimit(int limit)
+    public boolean isValidLimit(double limit)
     {
         return limit > 1;
     }

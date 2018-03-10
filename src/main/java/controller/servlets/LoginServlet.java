@@ -54,7 +54,12 @@ public class LoginServlet extends HttpServlet{
                 HttpSession newUserSession = request.getSession(true);
                 newUserSession.setAttribute(LoginController.USER_DATA , loginController.getUserObject());
                 updateUserSessionCart(newUserSession , user.getEmail());
-                out.write("success");
+                if(user.getRole() == 1)
+                    out.write("success-admin");
+                else if(user.getRole() == 0)
+                {
+                    out.write("success-user");
+                }
             }
             else
             {

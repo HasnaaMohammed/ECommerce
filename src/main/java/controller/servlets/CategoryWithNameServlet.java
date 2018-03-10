@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-@WebServlet(name = "CategoryWithNameServlet")
+@WebServlet(name = "CategoryWithNameServlet"  , urlPatterns = "/catName")
 public class CategoryWithNameServlet extends HttpServlet {
 
   private  ProductController productController = new ProductController();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("./404.html");
+        processRequest(req, resp);
     }
 
     @Override
@@ -28,15 +28,22 @@ public class CategoryWithNameServlet extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
-        response.setContentType("Application/Json");
+    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
+
         PrintWriter out = response.getWriter();
         String categoryName = request.getParameter("category");
-        try {
-            Gson gson = new GsonBuilder().create();
-            out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(categoryName == null || categoryName.isEmpty())
+            request.getRequestDispatcher("/index.jsp").forward(request , response);
+        else {
+            request.setAttribute("categoryName", categoryName);
+            try {
+                //  Gson gson = new GsonBuilder().create();
+                // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
+                request.setAttribute("product", productController.getCategoryProducts(categoryName));
+                request.getRequestDispatcher("/Product.jsp").forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

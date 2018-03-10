@@ -31,6 +31,7 @@ public class ProductController {
         return productOperation.getAllCategories();
     }
 
+
     public Vector<Product> getCategoryProducts(String category) throws SQLException {
         return productOperation.getCategoryProducts(category);
     }
@@ -38,6 +39,10 @@ public class ProductController {
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException {
         return productOperation.getCategoryProductswithPrice(category, minPrice, maxPrice);
 
+    }
+
+    public boolean decreaseQuantity(int productID , int quantity){
+        return productOperation.decreaseQuantity(productID , quantity);
     }
 
 }

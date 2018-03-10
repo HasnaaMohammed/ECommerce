@@ -90,7 +90,7 @@ public class CartController {
         return result;
     }
 
-    private int hasCart(String email) {
+    public int hasCart(String email) {
         int result = cartOperation.getUserCartID(email);
         if(result == -1)
         {
@@ -120,6 +120,17 @@ public class CartController {
 
          return cartOperation.getUserUnpaidCart(email);
 
+    }
+
+    public boolean removeFromCart(String email  , int productID)
+    {
+        int cartID = hasCart(email);
+        return cartOperation.removeProductFromCart(cartID , productID);
+    }
+
+    public boolean finalizeCart(int cartID)
+    {
+        return cartOperation.finalizeCart(cartID);
     }
 
 
