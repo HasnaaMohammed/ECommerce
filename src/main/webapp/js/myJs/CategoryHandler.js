@@ -27,7 +27,6 @@ function viewAllProduct()
 
         data = JSON.parse(data);
         data.forEach(param =>{
-
             param.products.forEach(param => {
 
         });
