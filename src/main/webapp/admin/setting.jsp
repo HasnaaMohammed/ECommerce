@@ -138,6 +138,7 @@
                                     <div class="card-body  table-responsive ">
                                         <table class="table table-hover table-striped ">
                                             <thead>
+                                                <th>Order Number</th>
                                                 <th>Date</th>
                                                 <th>User</th>
                                                 <th>Total Price</th>
@@ -199,8 +200,7 @@
                     orders=data;
                     $("#orderTable tr").remove();
                     for(i=0;i<orders.length;i++){
-                        $("#orderTable").append('<tr><td>'+orders[i].timeStamp.day+"/"+orders[i].timeStamp.month+"/"+orders[i].timeStamp.year+'</td><td>'+orders[i].userName+'</td><td>'+orders[i].price+'</td><td>'
-                        +'<i class="fa fa-check" style="margin-right:5px" title="Accept"></i><i class="fa fa-times" title="Refuse"></i></td></tr>');
+                        $("#orderTable").append('<tr><td>'+orders[i].id+'</td><td>'+orders[i].timeStamp.day+"/"+orders[i].timeStamp.month+"/"+orders[i].timeStamp.year+'</td><td>'+orders[i].userName+'</td><td>'+orders[i].price+'</td></tr>');
                     }
                 }
         
