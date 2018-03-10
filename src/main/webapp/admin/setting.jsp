@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -101,12 +101,14 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Add New Category</h4>
+                                    <b style="color: darkorange">${param.result}</b>
                                 </div>
+                                <form ACTION="../AddCategory"  METHOD="post">
                                 <div class="card-body">
                                         <div class="row">
                                                 <div class="col-md-6">
                                                     <label>Category Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="category_name">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <br>
@@ -115,7 +117,8 @@
                                                 </div>
                                           </div>
                                  
-                            </div>
+                                </div>
+                            </form>
                         </div>
                        
                     </div>

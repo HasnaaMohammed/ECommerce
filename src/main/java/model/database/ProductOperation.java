@@ -227,7 +227,8 @@ public class ProductOperation implements ProductOperationInterface {
         boolean success;
         
         
-        query="DELETE FROM Product WHERE Sku="+ sku;
+       // query="DELETE FROM Product WHERE Sku="+ sku;
+        query = "UPDATE Product SET Quantity =0 WHERE Sku ="+sku;
 
         success = databaseHandler.update(query);
 

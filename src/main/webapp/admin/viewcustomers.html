@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li >
-                        <a class="nav-link" href="./setting.html">
+                        <a class="nav-link" href="./setting.jsp">
                             <i class="nc-icon nc-settings-gear-64"></i>
                             <p>Manage</p>
                         </a>
@@ -270,7 +270,7 @@
                 contentType:'application/json',
                 dataType:'json', 
                 success: function (data) {
-                    alert(JSON.stringify(data));
+                   // alert(JSON.stringify(data));
                     customers=data;
                     $("#customerTable tr").remove();
                     for(i=0;i<customers.length;i++){
