@@ -28,3 +28,15 @@ function viewAllProduct()
 }
 
 
+function getAllCategoryAdmin() {
+    $.post("../allcat", function (data) {
+
+
+        var list = JSON.parse(data);
+        for (var i = 0; i < list.length; i++) {
+            $('#sel1').append('<option>'+list[i]+'</option>');
+        }
+
+    });
+
+}

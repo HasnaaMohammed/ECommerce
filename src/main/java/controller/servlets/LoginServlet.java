@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.Vector;
 
 @WebServlet(urlPatterns = "/Login")
@@ -73,9 +74,39 @@ public class LoginServlet extends HttpServlet{
     private void updateUserSessionCart(HttpSession httpSession , String email)
     {
         System.out.println("in Update");
-        Vector<Product> productVector  = new CartController().refreshLoggedUserCart(email).getCartProducts();
-        System.out.println(productVector.size());
-        httpSession.setAttribute(CartController.CART_PRODUCT_LIST , productVector);
+        CartController cartController = new CartController();
+        int cartID = cartController.hasCart(email);
+        Vector<Product> products = (Vector<Product>)httpSession.getAttribute(CartController.CART_PRODUCT_LIST);
+        Vector<Product> productVector  = cartController.refreshLoggedUserCart(email).getCartProducts();
+        if(products != null)
+        {
+            Iterator<Product> productIterator = productVector.iterator();
+
+            System.out.println("in Update2");
+
+            while(productIterator.hasNext())
+            {
+                Product product = productIterator.next();
+                for(Product sessionProducts :  products)
+                {
+                    if(sessionProducts.getSku() == product.getSku())
+                    {
+                        sessionProducts.setQuantiity(sessionProducts.getQuantiity()+product.getQuantiity());
+                        productVector.remove(product);
+                    }
+                }
+                System.out.println("in Update3");
+
+            }
+
+            products.addAll(productVector);
+            new CartController().refreshCartDB(cartID , products);
+        }
+        else
+        {
+            httpSession.setAttribute(CartController.CART_PRODUCT_LIST , productVector);
+        }
+
 
 
     }

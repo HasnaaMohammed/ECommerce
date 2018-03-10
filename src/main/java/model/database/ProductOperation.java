@@ -33,8 +33,8 @@ public class ProductOperation implements ProductOperationInterface {
             } else {
                 query = "insert into Product(Name,Quantity,Sku,price,product_img,category_id) values('" + product.getName()
                         + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
-                        + "','" + product.getProduct_img() + "','" +
-                        product.getProduct_category() + "')";
+                        + "','" + product.getProduct_img() + "' , " +
+                        "(select Category.id from Category where Category.Category_name = '"+product.getProduct_category() + "'))";
 
                 databaseHandler.insert(query);
 
@@ -142,6 +142,30 @@ public class ProductOperation implements ProductOperationInterface {
         getproduct(category, products);
         return products;
     }
+
+    @Override
+    public Vector<Product> getCategoryProducts(String category, int index) throws SQLException {
+        Vector<Product> products = new Vector<>();
+        int start = index * 5;
+        int end = start + 5;
+        System.out.println(start);
+        System.out.println(end);
+        String query = "select  " +
+                "                    `Product`.`Name`, \n" +
+                "                    `Product`.`Quantity`, \n" +
+                "                    `Product`.`Sku`, \n" +
+                "                    `Product`.`Price`, \n" +
+                "                    `Product`.`Product_img`, \n" +
+                "                    `Product`.`Category_id`  \n" +
+                "                 from Product , Category \n" +
+                "                 where Category.Category_name = '"+category+
+                "'                and Product.Category_id = Category.id \n" +
+                "                 and Quantity > 0 Order by Product.ID Limit "+start+" , "+end+";";
+        resultSet = databaseHandler.select(query);
+        getproduct(category, products);
+        return products;
+    }
+
     @Override
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException {
         Vector<Product> products = new Vector<>();
