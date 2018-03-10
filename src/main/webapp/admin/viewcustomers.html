@@ -1,290 +1,316 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <!-- CSS Files -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="../assets/css/demo.css" rel="stylesheet" />
+    </head>
 
-<body onload="render()">
+    <body onload="render()">
         <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Orders</h4>
-            </div>
-            <div class="modal-body">
-              <table>
-                  <thead>
-                      <tr>
-                          <td>Date</td>
-                          <td>Total Price</td>
-                      </tr>
-                  </thead>
-                  <tbody class="table">
-                      <tr>
-                          <td>1/1/2002</td>
-                          <td>200</td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>4</td>
-                      </tr>
-                  </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Orders</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table border=1 style="padding: 5px">
+                            <thead>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>Total Price</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tableOrder">
+                                <tr>
+                                    <td>1/1/2002</td>
+                                    <td>200</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
 
-    <div class="wrapper">
-        <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-    <div class="sidebar-wrapper">
-            <div class="logo">
-                <a class="simple-text">
-                    Admin Panel
-                </a>
-            </div>
-            <ul class="nav">
-                <li >
-                    <a class="nav-link" href="./addproduct.jsp">
-                        <i class="nc-icon nc-simple-add"></i>
-                        <p>Add Product</p>
-                    </a>
-                </li>
-                <li >
-                    <a class="nav-link" href="./editproduct.html">
-                        <i class="nc-icon nc-settings-tool-66"></i>
-                        <p>Edit Products</p>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./viewcustomers.html">
-                        <i class="nc-icon nc-single-02"></i>
-                        <p>View Customers</p>
-                    </a>
-                </li>
-                <li >
-                    <a class="nav-link" href="./adminUser.html">
-                        <i class="nc-icon nc-badge"></i>
-                        <p>Create Admin User</p>
-                    </a>
-                </li>
-                <li >
-                        <a class="nav-link" href="./setting.html">
-                            <i class="nc-icon nc-settings-gear-64"></i>
-                            <p>Manage</p>
+        <div class="wrapper">
+            <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+                <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+    
+            Tip 2: you can also add an image using data-image tag
+                -->
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a class="simple-text">
+                            Admin Panel
                         </a>
-                    </li>
-               </ul>
-        </div>
-        </div>
-        <div class="main-panel">
-           <!-- Navbar -->
-           <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="#pablo"> View Customers </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                      
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link">
-                                    <span class="no-icon">Welcome&nbsp</span><span class="no-icon">User</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                        <div class="row">
-                                <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title">View Customers</h4>
-                                            </div>
-                                            <div class="card-body">
-                                <div class="card-body  table-responsive ">
-                                    <table class="table table-hover table-striped ">
-                                        <thead>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Job</th>
-                                            <th>Credit Limit</th>
-                                            <th>View Orders</th>
-                                        </thead>
-                                        <tbody id="customerTable">
-                                        <tr>
-                                            <td>Loading...</td>
-                                            <td>Loading...</td>
-                                            <td>Loading...</td>
-                                            <td>Loading...</td>
-                                            <td class="td-actions text-right">
-                                                <a data-toggle="modal" href="#myModal" class="fa fa-eye"></i>
-                                            </td>
-                                            <!--<td>Loading...</td>-->
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                               </div>
-                               </div>
+                    <ul class="nav">
+                        <li >
+                            <a class="nav-link" href="./addproduct.jsp">
+                                <i class="nc-icon nc-simple-add"></i>
+                                <p>Add Product</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a class="nav-link" href="./editproduct.html">
+                                <i class="nc-icon nc-settings-tool-66"></i>
+                                <p>Edit Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./viewcustomers.html">
+                                <i class="nc-icon nc-single-02"></i>
+                                <p>View Customers</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a class="nav-link" href="./adminUser.html">
+                                <i class="nc-icon nc-badge"></i>
+                                <p>Create Admin User</p>
+                            </a>
+                        </li>
+                        <li >
+                            <a class="nav-link" href="./setting.html">
+                                <i class="nc-icon nc-settings-gear-64"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-         
-        </div>
-    </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
+            <div class="main-panel">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                    <div class=" container-fluid  ">
+                        <a class="navbar-brand" href="#pablo"> View Customers </a>
+                        <button  class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link">
+                                        <span class="no-icon">Welcome&nbsp</span><span class="no-icon">User</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#pablo">
+                                        <span class="no-icon">Log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
+                </nav>
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">View Customers</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-body  table-responsive ">
+                                            <table class="table table-hover table-striped ">
+                                                <thead>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Job</th>
+                                                <th>Credit Limit</th>
+                                                <th>View Orders</th>
+                                                </thead>
+                                                <tbody id="customerTable">
+                                                    <tr>
+                                                        <td>Loading...</td>
+                                                        <td>Loading...</td>
+                                                        <td>Loading...</td>
+                                                        <td>Loading...</td>
+                                                       <!-- <td class="td-actions text-right">
+                                                            <a data-toggle="modal" href="#myModal" class="fa fa-eye"></a>
+                                                        </td>-->
+                                                        <td>Loading...</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
+                    </div>
                 </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
+                <!--   -->
+                <!-- <div class="fixed-plugin">
+                <div class="dropdown show-dropdown">
+                    <a href="#" data-toggle="dropdown">
+                        <i class="fa fa-cog fa-2x"> </i>
+                    </a>
+            
+                    <ul class="dropdown-menu">
+                                    <li class="header-title"> Sidebar Style</li>
+                        <li class="adjustments-line">
+                            <a href="javascript:void(0)" class="switch-trigger">
+                                <p>Background Image</p>
+                                <label class="switch">
+                                    <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
+                                </label>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="adjustments-line">
+                            <a href="javascript:void(0)" class="switch-trigger background-color">
+                                <p>Filters</p>
+                                <div class="pull-right">
+                                    <span class="badge filter badge-black" data-color="black"></span>
+                                    <span class="badge filter badge-azure" data-color="azure"></span>
+                                    <span class="badge filter badge-green" data-color="green"></span>
+                                    <span class="badge filter badge-orange" data-color="orange"></span>
+                                    <span class="badge filter badge-red" data-color="red"></span>
+                                    <span class="badge filter badge-purple active" data-color="purple"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="header-title">Sidebar Images</li>
+            
+                        <li class="active">
+                            <a class="img-holder switch-trigger" href="javascript:void(0)">
+                                <img src="../assets/img/sidebar-1.jpg" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="img-holder switch-trigger" href="javascript:void(0)">
+                                <img src="../assets/img/sidebar-3.jpg" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="img-holder switch-trigger" href="javascript:void(0)">
+                                <img src="..//assets/img/sidebar-4.jpg" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="img-holder switch-trigger" href="javascript:void(0)">
+                                <img src="../assets/img/sidebar-5.jpg" alt="" />
+                            </a>
+                        </li>
+            
+                        <li class="button-container">
+                            <div class="">
+                                <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
+                            </div>
+                        </li>
+            
+                        <li class="header-title pro-title text-center">Want more components?</li>
+            
+                        <li class="button-container">
+                            <div class="">
+                                <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
+                            </div>
+                        </li>
+            
+                        <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
+            
+                        <li class="button-container">
+                                            <button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
+                            <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
+            </div>
+                -->
 
 
- 
-</body>
-<!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="../assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
-<script>
-    function render(){
-        $.ajax({url: '../ViewCustomersServlet',
-                type:'GET',
-                contentType:'application/json',
-                dataType:'json', 
+            </div></div>
+
+        <!--   Core JS Files   -->
+        <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+        <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+        <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="../assets/js/plugins/bootstrap-switch.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!--  Chartist Plugin  -->
+        <script src="../assets/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+        <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+        <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+        <script src="../assets/js/demo.js"></script>
+        <script>
+        function render() {
+            $.ajax({url: '../ViewCustomersServlet',
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
                 success: function (data) {
-                    alert(JSON.stringify(data));
-                    customers=data;
+                   // alert(JSON.stringify(data));
+                    customers = data;
                     $("#customerTable tr").remove();
-                    for(i=0;i<customers.length;i++){
-                        $("#customerTable").append('<tr><td>'+customers[i].fullName+'</td><td>'+customers[i].email+'</td><td>'+customers[i].job+'</td><td>'
-                                +customers[i].credit+'</td><td class=\"td-actions text-right\"><a data-toggle=\"modal\" href=\"#myModal\" class=\"fa fa-eye\"></i></td></tr>');
+                    for (i = 0; i < customers.length; i++) {
+                        $("#customerTable").append('<tr><td>' + customers[i].fullName + '</td><td>' + customers[i].email + '</td><td>' + customers[i].job + '</td><td>'
+                                + customers[i].credit + '</td><td class="td-actions text-right"><a data-toggle="modal" href="#myModal" id="' + customers[i].email + '" class="fa fa-eye" onClick="viewOrder(this.id)"></a></td></tr>');
+                        // <td class="td-actions text-right"><a data-toggle="modal" href="#myModal" class="fa fa-eye"></i>-->
+
 
                     }
                 }
-        
-              });
-     }
-</script>
+            });
+        }
+                                                                                        
+function viewOrder(mail){
+    //alert(mail);
+    //window.location.href="#myModal";
+    //alert(mail);
+     $.ajax({url: '../ViewOrderServlet',
+                type: 'GET',
+                contentType: 'application/json',
+                data :{email:mail},
+                dataType: 'json',
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    orders = data;
+                    
+                    $("#tableOrder tr").remove();
+                    for (i = 0; i < orders.length; i++) {
+                        //alert(orders[i].price);
+                        $("#tableOrder").append('<tr><td>'+orders[i].timeStamp.day+"/"+orders[i].timeStamp.month+"/"+orders[i].timeStamp.year+'</td><td>'+order[i].price+'</td></tr>');
+
+
+                    }
+                }
+            });
+}
+
+
+        </script>
+    </body>
+
 </html>
