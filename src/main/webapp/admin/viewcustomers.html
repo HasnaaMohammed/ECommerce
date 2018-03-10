@@ -270,7 +270,7 @@
                 contentType:'application/json',
                 dataType:'json', 
                 success: function (data) {
-                    alert(JSON.stringify(data));
+                   // alert(JSON.stringify(data));
                     customers=data;
                     $("#customerTable tr").remove();
                     for(i=0;i<customers.length;i++){
