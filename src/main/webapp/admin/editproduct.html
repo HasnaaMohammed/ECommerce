@@ -256,11 +256,12 @@
                 $("#productTable tr").remove();
                 for (i = 0; i < product.length; i++) {
                     for (x = 0; x < product[i].products.length; x++)
-
-                        $("#productTable").append('<tr><td>' + product[i].products[x].sku + '</td><td>' + product[i].products[x].name + '</td><td>' + product[i].products[x].quantiity + '</td><td>' + product[i].name + '</td><td>'
+                        if((product[i].products[x].quantiity)>0){
+                            $("#productTable").append('<tr><td>' + product[i].products[x].sku + '</td><td>' + product[i].products[x].name + '</td><td>' + product[i].products[x].quantiity + '</td><td>' + product[i].name + '</td><td>'
                             + product[i].products[x].price + '</td><td class="td-actions text-right">' +
                             '<i id=' + product[i].products[x].sku + ' class="fa fa-edit" title="Edit" style="margin-right:10px" onClick="edit(this.id)"></i><i id=' + product[i].products[x].sku + ' class="fa fa-times" title="Delete" onClick="deleteProduct(this.id)"></i></td></tr>'
-                        );
+                            );
+                        }
                 }}});
     }
 
@@ -271,5 +272,5 @@
      }
 
 </script>
-<script src="../js/myJs/deleteProductScript.js" type="text/javascript"></script>
+<script src="../js/myJs/deleteProductScript.js"  type="text/javascript"></script>
 </html>

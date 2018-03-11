@@ -142,22 +142,13 @@
                                                 <th>Date</th>
                                                 <th>User</th>
                                                 <th>Total Price</th>
-                                                <th>confirm</th>
                                             </thead>
                                             <tbody id="orderTable">
                                             <tr>
-                                                <td>1/1/2016</td>
-                                                <td>Mike</td>
-                                                <td>100.00</td>
-                                                
-                                                <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="confirm order" class="btn btn-info btn-simple btn-link">
-                                                            <i class="fa fa-check"></i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Delete" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td class="td-actions text-right">Loading...</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -165,7 +156,6 @@
                                    </div>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
