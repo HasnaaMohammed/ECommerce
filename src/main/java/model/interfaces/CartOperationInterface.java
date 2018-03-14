@@ -18,4 +18,6 @@ public interface CartOperationInterface {
     public void updateProductCartQuantity(int cartID , int productID , int quantity);
     public void addProductToCart(int cartID , int productID , int quantity);
     public void getCartTotalPrice(int cartID);
+    public boolean removeProductFromCart(int cartID , int ProductID);
+    public boolean finalizeCart(int cartID);
 }

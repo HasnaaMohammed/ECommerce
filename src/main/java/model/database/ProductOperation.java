@@ -33,8 +33,8 @@ public class ProductOperation implements ProductOperationInterface {
             } else {
                 query = "insert into Product(Name,Quantity,Sku,price,product_img,category_id) values('" + product.getName()
                         + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
-                        + "','" + product.getProduct_img() + "','" +
-                        product.getProduct_category() + "')";
+                        + "','" + product.getProduct_img() + "' , " +
+                        "(select Category.id from Category where Category.Category_name = '"+product.getProduct_category() + "'))";
 
                 databaseHandler.insert(query);
 
@@ -114,7 +114,7 @@ public class ProductOperation implements ProductOperationInterface {
     }
 
     @Override
-    public Vector<String> getAllCategories() throws SQLException {
+    public synchronized Vector<String> getAllCategories() throws SQLException {
         String query = "select * from Category;";
         resultSet = databaseHandler.select(query);
         Vector<String> result = new Vector<>();
@@ -142,6 +142,30 @@ public class ProductOperation implements ProductOperationInterface {
         getproduct(category, products);
         return products;
     }
+
+    @Override
+    public Vector<Product> getCategoryProducts(String category, int index) throws SQLException {
+        Vector<Product> products = new Vector<>();
+        int start = index * 5;
+        int end = start + 5;
+        System.out.println(start);
+        System.out.println(end);
+        String query = "select  " +
+                "                    `Product`.`Name`, \n" +
+                "                    `Product`.`Quantity`, \n" +
+                "                    `Product`.`Sku`, \n" +
+                "                    `Product`.`Price`, \n" +
+                "                    `Product`.`Product_img`, \n" +
+                "                    `Product`.`Category_id`  \n" +
+                "                 from Product , Category \n" +
+                "                 where Category.Category_name = '"+category+
+                "'                and Product.Category_id = Category.id \n" +
+                "                 and Quantity > 0 Order by Product.ID Limit "+start+" , "+end+";";
+        resultSet = databaseHandler.select(query);
+        getproduct(category, products);
+        return products;
+    }
+
     @Override
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException {
         Vector<Product> products = new Vector<>();
@@ -186,6 +210,26 @@ public class ProductOperation implements ProductOperationInterface {
                 + "', category_id = '"+ product.getProduct_category()
                 + "' WHERE Sku ="+product.getSku();
         
+        success = databaseHandler.update(query);
+
+        return success;
+    }
+
+    public boolean decreaseQuantity(int productID , int quantity)
+    {
+        String sql = "UPDATE Product SET Quantity = Quantity - "+quantity+" WHERE id= "+productID+";";
+        return databaseHandler.update(sql);
+    }
+    
+     @Override
+    public boolean deleteProduct(int sku) {
+        System.out.println("product operation - deleteProduct");
+        boolean success;
+        
+        
+       // query="DELETE FROM Product WHERE Sku="+ sku;
+        query = "UPDATE Product SET Quantity =0 WHERE Sku ="+sku;
+
         success = databaseHandler.update(query);
 
         return success;

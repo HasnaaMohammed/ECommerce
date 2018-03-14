@@ -27,4 +27,8 @@ public class UpdateUserController {
     public boolean updateUserData() {
         return validateData() && userOperation.updateUser(user);
     }
+
+    public double getUserLimit(String email){
+        return userOperation.getUserCurrentCredit(email);
+    }
 }

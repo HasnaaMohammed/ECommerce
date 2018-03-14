@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -101,12 +101,14 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Add New Category</h4>
+                                    <b style="color: darkorange">${param.result}</b>
                                 </div>
+                                <form ACTION="../AddCategory"  METHOD="post">
                                 <div class="card-body">
                                         <div class="row">
                                                 <div class="col-md-6">
                                                     <label>Category Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="category_name">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <br>
@@ -115,7 +117,8 @@
                                                 </div>
                                           </div>
                                  
-                            </div>
+                                </div>
+                            </form>
                         </div>
                        
                     </div>
@@ -135,25 +138,17 @@
                                     <div class="card-body  table-responsive ">
                                         <table class="table table-hover table-striped ">
                                             <thead>
+                                                <th>Order Number</th>
                                                 <th>Date</th>
                                                 <th>User</th>
                                                 <th>Total Price</th>
-                                                <th>confirm</th>
                                             </thead>
                                             <tbody id="orderTable">
                                             <tr>
-                                                <td>1/1/2016</td>
-                                                <td>Mike</td>
-                                                <td>100.00</td>
-                                                
-                                                <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="confirm order" class="btn btn-info btn-simple btn-link">
-                                                            <i class="fa fa-check"></i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Delete" class="btn btn-danger btn-simple btn-link">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td>Loading...</td>
+                                                <td class="td-actions text-right">Loading...</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -161,7 +156,6 @@
                                    </div>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
@@ -196,8 +190,7 @@
                     orders=data;
                     $("#orderTable tr").remove();
                     for(i=0;i<orders.length;i++){
-                        $("#orderTable").append('<tr><td>'+orders[i].timeStamp.day+"/"+orders[i].timeStamp.month+"/"+orders[i].timeStamp.year+'</td><td>'+orders[i].userName+'</td><td>'+orders[i].price+'</td><td>'
-                        +'<i class="fa fa-check" style="margin-right:5px" title="Accept"></i><i class="fa fa-times" title="Refuse"></i></td></tr>');
+                        $("#orderTable").append('<tr><td>'+orders[i].id+'</td><td>'+orders[i].timeStamp.day+"/"+orders[i].timeStamp.month+"/"+orders[i].timeStamp.year+'</td><td>'+orders[i].userName+'</td><td>'+orders[i].price+'</td></tr>');
                     }
                 }
         

@@ -17,9 +17,10 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
     <script src="../js/myJs/addProductScript.js" type="text/javascript"></script>
+    <script src="../js/myJs/CategoryHandler.js"></script>
 </head>
 
-<body>
+<body onload="getAllCategoryAdmin()">
     <div class="wrapper">
         <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
             <!--
@@ -59,7 +60,7 @@
                         </a>
                     </li>
                     <li >
-                            <a class="nav-link" href="./setting.html">
+                            <a class="nav-link" href="./setting.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Manage</p>
                             </a>
@@ -148,10 +149,6 @@
                                             <div class="form-group">
                                                 <label>Choose Category</label>
                                                 <select class="form-control" id="sel1" name="pCat">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
                                                 </select>
                                             </div>
                                         </div>

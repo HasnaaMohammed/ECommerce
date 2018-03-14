@@ -123,7 +123,7 @@ public class CartOperation implements CartOperationInterface {
 
     @Override
     public void updateProductCartQuantity(int cartID, int productID, int quantity) {
-        String sql = "UPDATE ECommerce.Cart_product SET Quantity='2' WHERE Product_id= "+productID+ " and Cart_id = "+cartID+";";
+        String sql = "UPDATE ECommerce.Cart_product SET Quantity="+quantity+" WHERE Product_id= "+productID+ " and Cart_id = "+cartID+";";
         databaseHandler.update(sql);
 
     }
@@ -139,6 +139,19 @@ public class CartOperation implements CartOperationInterface {
 
     }
 
+    @Override
+    public boolean removeProductFromCart(int cartID, int productID) {
+        String sql = "DELETE FROM `ECommerce`.`Cart_product` WHERE Cart_id = "+cartID+" and Product_id = "+productID+";";
+        return databaseHandler.delete(sql);
+
+    }
+
+    @Override
+    public boolean finalizeCart(int cartID) {
+        String sql = "UPDATE `ECommerce`.`Cart` SET `Checkout`='1' WHERE `id`="+cartID+";";
+        return databaseHandler.update(sql);
+
+    }
 
     private void fillObject() throws SQLException {
         if (resultSet.next()) {

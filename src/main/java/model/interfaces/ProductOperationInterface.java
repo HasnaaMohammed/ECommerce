@@ -18,8 +18,10 @@ public interface ProductOperationInterface {
     public Vector<Category> getAllCategoriesWithProducts();
     public Vector<String> getAllCategories() throws SQLException;
     public Vector<Product> getCategoryProducts(String category) throws SQLException;
+    public Vector<Product> getCategoryProducts(String category , int index) throws SQLException ;
     public Vector<Product> getCategoryProductswithPrice(String category, double minPrice, double maxPrice) throws SQLException;
-
+    public boolean decreaseQuantity(int productID , int quantity);
     public boolean editProduct(Product product);
+    public boolean deleteProduct(int sku);
 
 }

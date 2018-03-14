@@ -90,7 +90,7 @@ public class CartController {
         return result;
     }
 
-    private int hasCart(String email) {
+    public int hasCart(String email) {
         int result = cartOperation.getUserCartID(email);
         if(result == -1)
         {
@@ -104,7 +104,7 @@ public class CartController {
         return cartOperation.createUserCart(email);
     }
 
-    private void refreshCartDB(int cartID, Vector<Product> products)  {
+    public void refreshCartDB(int cartID, Vector<Product> products)  {
         for(Product product : products) {
             if (cartOperation.productInCart(cartID, product.getProductID())) {
                 cartOperation.updateProductCartQuantity(cartID, product.getProductID(), product.getQuantiity());
@@ -120,6 +120,17 @@ public class CartController {
 
          return cartOperation.getUserUnpaidCart(email);
 
+    }
+
+    public boolean removeFromCart(String email  , int productID)
+    {
+        int cartID = hasCart(email);
+        return cartOperation.removeProductFromCart(cartID , productID);
+    }
+
+    public boolean finalizeCart(int cartID)
+    {
+        return cartOperation.finalizeCart(cartID);
     }
 
 

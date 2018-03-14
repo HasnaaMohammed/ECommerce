@@ -1,7 +1,7 @@
 function getAllCategories() {
 
     $.post("./allcategories" , function (data) {
-        var categoryList = document.getElementById("categoryList");
+        var categoryList = document.getElementById("categoryLists");
         data.forEach(param => {
            var anchor = document.createElement("a");
            anchor.innerHTML = param;

@@ -18,4 +18,8 @@ public class OrderController {
     {
             return orderOperation.getAllOrders(email);
     }
+    public boolean createNewOrder(int cartID , double totalPrice)
+    {
+       return orderOperation.createNewOrder(cartID , totalPrice);
+    }
 }

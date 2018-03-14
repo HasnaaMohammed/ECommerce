@@ -28,20 +28,32 @@ public class CategoryWithNameServlet extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException {
+    private void processRequest(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
 
         PrintWriter out = response.getWriter();
         String categoryName = request.getParameter("category");
-        request.setAttribute("categoryName",categoryName);
-        try {
-          //  Gson gson = new GsonBuilder().create();
-           // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
-            request.setAttribute("product", productController.getCategoryProducts(categoryName));
-            request.getRequestDispatcher("/Product.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
+        int index ;
+        if(request.getParameter("page") != null && request.getParameter("page").chars().allMatch( Character::isDigit ))
+        {
+            index = Integer.parseInt(request.getParameter("page"));
+            index = index < 0 ? 0 : index;
+        }
+        else
+            index = 0;
+        System.out.println(index);
+        if(categoryName == null || categoryName.isEmpty())
+            request.getRequestDispatcher("/index.jsp").forward(request , response);
+        else {
+            request.setAttribute("categoryName", categoryName);
+            request.setAttribute("pageNum" , index);
+            try {
+                //  Gson gson = new GsonBuilder().create();
+                // out.write(gson.toJson(productController.getCategoryProducts(categoryName)));
+                request.setAttribute("product", productController.getCategoryProducts(categoryName , index));
+                request.getRequestDispatcher("/Product.jsp").forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

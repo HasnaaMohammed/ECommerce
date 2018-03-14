@@ -323,65 +323,7 @@
 
             </div>
             <!--End Product-->
-            <div id="footer" data-animate="fadeInUp">
-
-                <div class="container">
-
-                    <div class="row" style="margin-left: 40%;">
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>User section</h4>
-
-                            <ul>
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.jsp">Regiter</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg hidden-sm">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-                        <div class="col-md-3 col-sm-6">
-
-                            <h4>Categories</h4>
-
-
-
-                            <ul>
-                                <li>
-                                    <a href="category.html">T-shirts</a>
-                                </li>
-                                <li>
-                                    <a href="category.html">Skirts</a>
-                                </li>
-                                <li>
-                                    <a href="category.html">Pants</a>
-                                </li>
-                                <li>
-                                    <a href="category.html">Accessories</a>
-                                </li>
-                            </ul>
-
-                            <hr class="hidden-md hidden-lg">
-
-                        </div>
-                        <!-- /.col-md-3 -->
-
-
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
-                </div>
-                <!-- /.row -->
-
-            </div>
+<jsp:include page="footer.jsp"/>
             <!-- /.container -->
 
         </div>

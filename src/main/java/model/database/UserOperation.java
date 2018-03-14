@@ -110,7 +110,19 @@ public class UserOperation implements UserOperationInterface {
         return userID;
     }
 
-
+    public double getUserCurrentCredit(String email) {
+        Double limit = null;
+        try {
+            query = "select Credit_Limit from User where email = '" + email+ "'";
+            resultSet = databaseHandler.select(query);
+            if (resultSet.next()) {
+                limit =  resultSet.getDouble("Credit_Limit");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return limit;
+    }
     private void fillObject() throws SQLException {
         vector.clear();
         while (resultSet.next()) {

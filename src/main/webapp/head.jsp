@@ -6,7 +6,7 @@
         <script src="js/myJs/loginScript.js"></script>
         <script src="js/myJs/header.js"></script>
 </head>
-<body>
+<body >
 
 <div id="top">
     <div class="container">
@@ -114,7 +114,7 @@ _________________________________________________________ -->
                         <b class="caret"></b>
                     </a>
 
-                    <ul id="categoryList" class="dropdown-menu">
+                    <ul id="categoryLists" class="dropdown-menu">
                     </ul>
                 </li>
 
@@ -133,29 +133,29 @@ _________________________________________________________ -->
             </div>
             <!--/.nav-collapse -->
 
-            <div class="navbar-collapse collapse right" id="search-not-mobile">
-                <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
-                    <span class="sr-only">Toggle search</span>
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+            <%--<div class="navbar-collapse collapse right" id="search-not-mobile">--%>
+                <%--<button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">--%>
+                    <%--<span class="sr-only">Toggle search</span>--%>
+                    <%--<i class="fa fa-search"></i>--%>
+                <%--</button>--%>
+            <%--</div>--%>
 
-        </div>
+        <%--</div>--%>
 
-        <div class="collapse clearfix" id="search">
+        <%--<div class="collapse clearfix" id="search">--%>
 
-            <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="input-group-btn">
+            <%--<form class="navbar-form" role="search">--%>
+                <%--<div class="input-group">--%>
+                    <%--<input type="text" class="form-control" placeholder="Search">--%>
+                    <%--<span class="input-group-btn">--%>
 
-<button type="submit" class="btn btn-primary">
-<i class="fa fa-search"></i>
-</button>
+<%--<button type="submit" class="btn btn-primary">--%>
+<%--<i class="fa fa-search"></i>--%>
+<%--</button>--%>
 
-</span>
-                </div>
-            </form>
+<%--</span>--%>
+                <%--</div>--%>
+            <%--</form>--%>
 
         </div>
         <!--/.nav-collapse -->

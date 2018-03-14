@@ -85,8 +85,7 @@ public class AddProductServlet extends HttpServlet {
                     String url = request.getServletContext().getRealPath("/products") + "/" +partName;
                     File file = new File(url);
                     item.write(file);
-                    img = "http://" + request.getServerName() + ":" + request.getServerPort() +
-                            "/ECommerce/products/" + partName;
+                    img = "./products/" + partName;
                 }
 
             }
