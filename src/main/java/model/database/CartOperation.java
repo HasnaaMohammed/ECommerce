@@ -49,24 +49,12 @@ public class CartOperation implements CartOperationInterface {
 
         int userCartID = getUserCartID(email);
         Cart cart = new Cart();
-        query = "SELECT `Product`.`id`,\n" +
-                "    `Product`.`Name`,\n" +
-                "    Cart_product.Quantity,\n" +
-                "    `Product`.`Sku`,\n" +
-                "    `Product`.`Price`,\n" +
-                "    `Product`.`Product_img`,\n" +
-                "    Category.Category_name\n" +
-                "FROM Product , Cart , Cart_product , Category\n" +
-                "where Cart.id = " + userCartID +
-                " and Cart_product.Cart_id = Cart.id\n" +
-                "and Product.id = Cart_product.Product_id\n" +
-                "and Category.id = Product.Category_id;\n" +
-                ";";
         String cartQuery = "select c from CartEntity c where " +
                 "c.id = " + userCartID;
         CartEntity cartEntity = cartDao.select(cartQuery).get(0);
-        if (cartEntity != null)
+        if (cartEntity != null) {
             cart = EntityAdapter.cartAdapter(cartEntity);
+        }
 
         return cart;
 
