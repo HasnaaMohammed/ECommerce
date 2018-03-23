@@ -1,9 +1,7 @@
 package controller.product;
 
-import model.beans.Product;
 import model.database.ProductOperation;
-import model.interfaces.ProductOperationInterface;
-import util.ValidationCheck;
+import model2.interfaces.ProductOperationInterface;
 
 public class DeleteProductController {
     

@@ -5,12 +5,9 @@ import model.beans.Cart;
 import model.beans.Product;
 import model.beans.User;
 import model.database.CartOperation;
-import model.database.ProductOperation;
-import model.interfaces.CartOperationInterface;
-import model.interfaces.ProductOperationInterface;
+import model2.interfaces.CartOperationInterface;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.Vector;
 
 public class CartController {

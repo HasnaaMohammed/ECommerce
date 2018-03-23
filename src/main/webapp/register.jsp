@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="reg-password">Password</label>
-                                <input type="password" class="form-control" id="reg-password" required>
+                                <input type="password" class="form-control" id="reg-password" required maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="reg-birthdate">Birth Date</label>
@@ -101,7 +101,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="reg-limit">Credit Limit</label>
-                                <input type="number" class="form-control" id="reg-limit" required>
+                                <input type="number" class="form-control" id="reg-limit" required max="6">
                             </div>
                             <div class="text-center">
                                 <p style="color: red" id="registerErrorLabel"></p>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password-modal-register">Password</label>
-                                <input type="password" class="form-control" id="password-modal-register" required>
+                                <input type="password" class="form-control" id="password-modal-register" required max="10">
                             </div>
                             <div class="text-center">
                                 <p style="color: red" id="errorMsg-register"></p>

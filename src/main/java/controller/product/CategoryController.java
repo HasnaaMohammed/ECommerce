@@ -1,6 +1,6 @@
 package controller.product;
 
-import model.interfaces.ProductOperationInterface;
+import model2.interfaces.ProductOperationInterface;
 
 public class CategoryController {
 

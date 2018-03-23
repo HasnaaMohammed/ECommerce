@@ -2,8 +2,8 @@ package controller.product;
 
 import model.beans.Order;
 import model.database.OrderOperation;
-import model.interfaces.OrderOperationInterface;
-import java.sql.SQLException;
+import model2.interfaces.OrderOperationInterface;
+
 import java.util.Vector;
 
 public class OrderController {

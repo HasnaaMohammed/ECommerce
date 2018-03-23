@@ -1,9 +1,8 @@
-package model.interfaces;
+package model2.interfaces;
 
-import model.beans.Cart;
 import model.beans.Category;
 import model.beans.Product;
-import model.beans.User;
+import model2.entity.ProductEntity;
 
 import java.sql.SQLException;
 import java.util.Vector;
@@ -13,6 +12,7 @@ public interface ProductOperationInterface {
 
 
     public boolean addNewProduct(Product product);
+    public ProductEntity getProductByID(int id);
     public boolean addNewCategory(String category);
     public Product getProductInfo(int id);
     public Vector<Category> getAllCategoriesWithProducts();

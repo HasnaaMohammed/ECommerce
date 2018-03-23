@@ -8,7 +8,7 @@ package controller.product;
 import java.util.Vector;
 import model.beans.Category;
 import model.database.ProductOperation;
-import model.interfaces.ProductOperationInterface;
+import model2.interfaces.ProductOperationInterface;
 
 /**
  *

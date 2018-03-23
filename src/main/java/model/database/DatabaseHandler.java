@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class DatabaseHandler {
 
     private static DatabaseHandler databaseHandler;
-    private Connection connection;
+    private volatile Connection connection;
     private Statement statement;
     private ResultSet resultSet;
     private PreparedStatement pres;
@@ -25,7 +25,6 @@ public class DatabaseHandler {
     private DatabaseHandler() {
 
         Database database = Database.getInstance();
-        database.connect();
         connection = database.getConnection();
     }
 

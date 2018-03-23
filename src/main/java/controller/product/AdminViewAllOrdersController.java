@@ -8,7 +8,7 @@ package controller.product;
 import java.util.Vector;
 import model.beans.Order;
 import model.database.OrderOperation;
-import model.interfaces.OrderOperationInterface;
+import model2.interfaces.OrderOperationInterface;
 
 /**
  *

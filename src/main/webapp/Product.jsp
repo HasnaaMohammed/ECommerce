@@ -73,7 +73,7 @@ _________________________________________________________ -->
                 <ul class="breadcrumb">
                     <li><a href="#">Home</a>
                     </li>
-                    <li>Ladies</li>
+                    <li>${requestScope.categoryName}</li>
                 </ul>
             </div>
 
@@ -150,29 +150,16 @@ _________________________________________________________ -->
                 </div>
                 <!-- /.products -->
 
-                <%--<div class="pages">--%>
+                <div class="pages">
 
-                    <%--<p class="loadMore">--%>
-                        <%--<a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a>--%>
-                    <%--</p>--%>
+                <p class="loadMore">
+                    <a href="catName?category=${requestScope.categoryName}&page=${requestScope.pageNum-1}" class="btn btn-primary btn-lg"><i class="fa fa-chevron-left"></i> Last Page</a>
+                    <a href="catName?category=${requestScope.categoryName}&page=${requestScope.pageNum+1}" class="btn btn-primary btn-lg"><i class="fa fa-chevron-right"></i> Next Page</a>
 
-                    <%--<ul class="pagination">--%>
-                        <%--<li><a href="#">&laquo;</a>--%>
-                        <%--</li>--%>
-                        <%--<li class="active"><a href="#">1</a>--%>
-                        <%--</li>--%>
-                        <%--<li><a href="#">2</a>--%>
-                        <%--</li>--%>
-                        <%--<li><a href="#">3</a>--%>
-                        <%--</li>--%>
-                        <%--<li><a href="#">4</a>--%>
-                        <%--</li>--%>
-                        <%--<li><a href="#">5</a>--%>
-                        <%--</li>--%>
-                        <%--<li><a href="#">&raquo;</a>--%>
-                        <%--</li>--%>
-                    <%--</ul>--%>
-                <%--</div>--%>
+                </p>
+
+
+            </div>
 
 
             </div>

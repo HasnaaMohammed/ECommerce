@@ -1,8 +1,7 @@
-package model.interfaces;
+package model2.interfaces;
 
 import model.beans.Order;
 
-import java.sql.SQLException;
 import java.util.Vector;
 
 public interface OrderOperationInterface {

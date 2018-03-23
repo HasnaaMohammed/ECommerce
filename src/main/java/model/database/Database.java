@@ -1,6 +1,5 @@
 package model.database;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ public class Database {
 
 
     private Connection connection ;
-    private Database(){}
+    private Database(){connect();}
     private static Database instance;
     public static Database getInstance()
     {
@@ -25,7 +24,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver");
             String dbUrl = "jdbc:mysql://104.154.93.46:3306/ECommerce";
 //            String dbUrl = "jdbc:mysql://127.0.0.1:3306/ECommerce";
-            connection = DriverManager.getConnection(dbUrl, "root", "HelloWorldmfawzy0000");
+            connection = DriverManager.getConnection(dbUrl, "root", "##HelloWorld##");
 //            connection = DriverManager.getConnection(dbUrl, "root", "root");
 
             System.out.println("connection succeeded");

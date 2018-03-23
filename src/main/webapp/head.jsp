@@ -1,6 +1,7 @@
+
+<%@page session="true" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page session="true" %>
 <head>
     <%--<script src="js/jquery-1.11.0.min.js"></script>--%>
         <script src="js/myJs/loginScript.js"></script>
@@ -51,7 +52,7 @@
                             <input type="email" class="form-control" id="email-modal" placeholder="email">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="password-modal" placeholder="password">
+                            <input type="password" class="form-control" id="password-modal" placeholder="password" max="10">
                         </div>
                         <p style="color: red" id="errorMsg"></p>
                         <p class="text-center">

@@ -2,11 +2,13 @@ package model.database;
 
 import model.beans.Category;
 import model.beans.Product;
-import model.interfaces.ProductOperationInterface;
+import model2.adapter.EntityAdapter;
+import model2.doa.ProductDao;
+import model2.entity.ProductEntity;
+import model2.interfaces.ProductOperationInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +19,8 @@ public class ProductOperation implements ProductOperationInterface {
     private ResultSet resultSet;
     private Product product = null;
 
+
+    private ProductDao productDao = ProductDao.getInstance();
 
     public ProductOperation() {
         databaseHandler = DatabaseHandler.getInstance();
@@ -44,6 +48,15 @@ public class ProductOperation implements ProductOperationInterface {
         }
 
         return true;
+    }
+
+    @Override
+    public ProductEntity getProductByID(int id) {
+        ProductEntity productEntity = productDao.getProductByID(id);
+        if(productEntity != null)
+            return productEntity;
+        else
+            return null;
     }
 
     @Override
@@ -206,7 +219,6 @@ public class ProductOperation implements ProductOperationInterface {
         query = "UPDATE Product SET Name = '"+ product.getName()
                 +"', Quantity ='"+product.getQuantiity()
                 + "', price='"+product.getPrice()
-                + "', product_img='"+ product.getProduct_img() 
                 + "', category_id = '"+ product.getProduct_category()
                 + "' WHERE Sku ="+product.getSku();
         
@@ -234,4 +246,6 @@ public class ProductOperation implements ProductOperationInterface {
 
         return success;
     }
+
+
 }

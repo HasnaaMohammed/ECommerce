@@ -2,7 +2,7 @@ package controller.product;
 
 import model.beans.Product;
 import model.database.ProductOperation;
-import model.interfaces.ProductOperationInterface;
+import model2.interfaces.ProductOperationInterface;
 import util.ValidationCheck;
 
 public class AddProductController {

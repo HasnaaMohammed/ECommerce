@@ -1,8 +1,7 @@
 package model.database;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.beans.User;
-import model.interfaces.UserOperationInterface;
+import model2.interfaces.UserOperationInterface;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -47,7 +46,6 @@ public class UserOperation implements UserOperationInterface {
             resultSet = databaseHandler.select(query);
 
             if (resultSet.next()) {
-                databaseHandler.closeConnection();
                 return 1;  //user already exist
             } else {
                 query = "insert into User(Full_Name,password,email,birthDate,address,job,Credit_Limit,role) values('" + newUse.getFullName()

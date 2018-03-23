@@ -60,7 +60,7 @@ public class AdminAccessFilter implements Filter {
             }else
             {
                 System.out.println("you are not admin");
-               httpResponse.sendRedirect("../NotAuthorized.html");
+               httpResponse.sendRedirect("../NotAuthorized.jsp");
                //should put the equivlant page
             }
         }

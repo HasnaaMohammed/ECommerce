@@ -8,7 +8,7 @@ package controller.user;
 import java.util.Vector;
 import model.beans.User;
 import model.database.UserOperation;
-import model.interfaces.UserOperationInterface;
+import model2.interfaces.UserOperationInterface;
 
 /**
  *

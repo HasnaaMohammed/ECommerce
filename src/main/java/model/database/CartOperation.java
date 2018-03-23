@@ -2,11 +2,17 @@ package model.database;
 
 import model.beans.Cart;
 import model.beans.Product;
-import model.beans.User;
-import model.interfaces.CartOperationInterface;
+import model2.adapter.EntityAdapter;
+import model2.doa.*;
+import model2.entity.CartEntity;
+import model2.entity.CartProductEntity;
+import model2.entity.ProductEntity;
+import model2.interfaces.CartOperationInterface;
 
+import javax.persistence.EntityManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Vector;
 
 public class CartOperation implements CartOperationInterface {
@@ -17,12 +23,28 @@ public class CartOperation implements CartOperationInterface {
     private String query;
     private ResultSet resultSet;
 
-    public CartOperation()
-    {
+
+    private CartDao cartDao = CartDao.getInstance();
+    private CartProductDao cartProductDao = CartProductDao.getInstance();
+
+    private ProductOperation productOperation = new ProductOperation();
+    public CartOperation() {
         databaseHandler = DatabaseHandler.getInstance();
     }
+
+    //Converted
     @Override
-    public Cart getUserUnpaidCart(String email)  {
+    public CartEntity getCartByID(int id) {
+        CartEntity cartEntity = cartDao.getProductByID(id);
+        if(cartEntity != null)
+            return cartEntity;
+        else
+            return null;
+    }
+
+    //Converted
+    @Override
+    public Cart getUserUnpaidCart(String email) {
 
 
         int userCartID = getUserCartID(email);
@@ -35,133 +57,111 @@ public class CartOperation implements CartOperationInterface {
                 "    `Product`.`Product_img`,\n" +
                 "    Category.Category_name\n" +
                 "FROM Product , Cart , Cart_product , Category\n" +
-                "where Cart.id = "+userCartID +
+                "where Cart.id = " + userCartID +
                 " and Cart_product.Cart_id = Cart.id\n" +
                 "and Product.id = Cart_product.Product_id\n" +
                 "and Category.id = Product.Category_id;\n" +
                 ";";
-        resultSet = databaseHandler.select(query);
-        cart.setCartID(userCartID);
-        cart.setCheckOut(false);
-        Vector<Product> products = new Vector<>();
-        try {
-        while(resultSet.next())
-        {
-            Product product = new Product();
-            product.setProductID(resultSet.getInt(1));
-            product.setName(resultSet.getString(2));
-            product.setQuantiity(resultSet.getInt(3));
-
-                product.setSku(resultSet.getInt(4));
-
-            product.setPrice(resultSet.getDouble(5));
-            product.setProduct_img(resultSet.getString(6));
-            product.setProduct_category(resultSet.getString(7));
-            products.add(product);
-        }
-            cart.setCartProducts(products);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String cartQuery = "select c from CartEntity c where " +
+                "c.id = " + userCartID;
+        CartEntity cartEntity = cartDao.select(cartQuery).get(0);
+        if (cartEntity != null)
+            cart = EntityAdapter.cartAdapter(cartEntity);
 
         return cart;
 
     }
 
-    @Override
-    public Vector<Cart> getUserpaidCart(String email) {
-        return null;
+    //Converted
+    public int getUserCartID(String email) {
+
+        String cartQuery = "select c from CartEntity c , UserEntity u" +
+                " where c.userByUserId.email = '" + email + "' and c.checkout = 0";
+        return cartDao.select(cartQuery).get(0).getId();
     }
 
-    public int getUserCartID(String email){
-        int cart_id = -1;
-        try {
-
-            query = "select Cart.id from Cart , User " +
-                    " where User.Email = '"+ email +
-                    "' and Cart.User_id = User.id " +
-                    " and Cart.Checkout = 0 ";
-            resultSet = databaseHandler.select(query);
-
-            if (resultSet.next()) {
-                cart_id =  resultSet.getInt(1);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return cart_id;
-    }
-
+    //TODO finsih UserOperation and Then Complete it !
     @Override
     public int createUserCart(String email) {
         String sql = "INSERT INTO `ECommerce`.`Cart` (`User_id`, `Checkout`) " +
-                "VALUES ((select User.id from User where User.email = '"+email+"'), '0')";
-        if(databaseHandler.update(sql))
-        {
+                "VALUES ((select User.id from User where User.email = '" + email + "'), '0')";
+        if (databaseHandler.update(sql)) {
             return getUserCartID(email);
-        }
-        else
+        } else
             return -1;
 
     }
 
-
+    //Converted
     @Override
-    public boolean productInCart(int cartID, int productID)  {
-        String sql = "select id from Cart_product where Product_id = "+productID+" and Cart_id = "+cartID+";";
-        resultSet = databaseHandler.select(sql);
-        try {
-            if (resultSet.next()) {
-                return true;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
+    public boolean productInCart(int cartID, int productID) {
+        String cartQuery = "select c from CartProductEntity c where c.productByProductId.id = " + productID + " " +
+                "and c.cartByCartId.id = " + cartID;
+        List<CartProductEntity> cartProductEntity = cartProductDao.select(cartQuery);
+        if (cartProductEntity != null)
+            return cartProductEntity.size() > 0;
+        else return false;
+
+    }
+
+    //Converted
+    @Override
+    public void updateProductCartQuantity(int cartID, int productID, int quantity) {
+        String cartQuery = "select c from CartProductEntity c where c.productByProductId.id = " + productID + "and c.cartByCartId.id = " + cartID;
+
+        List<CartProductEntity> cartProductEntity = cartProductDao.select(cartQuery);
+        if (cartProductEntity != null && cartProductEntity.size() > 0) {
+            CartProductEntity cartProductEntity1 = cartProductEntity.get(0);
+            System.out.println(cartProductEntity1.getQuantity());
+            cartProductEntity1.setQuantity(cartProductEntity1.getQuantity() + quantity);
+            cartProductDao.update(cartProductEntity1);
+        }
+    }
+    //Converted
+    @Override
+    public void addProductToCart(int cartID, int productID, int quantity) {
+
+        ProductEntity productEntity =  productOperation.getProductByID(productID);
+        CartEntity cartEntity = getCartByID(cartID);
+        if(productEntity != null && cartEntity != null){
+            CartProductEntity cartProductEntity = new CartProductEntity();
+            cartProductEntity.setCartByCartId(cartEntity);
+            cartProductEntity.setProductByProductId(productEntity);
+            cartProductEntity.setQuantity(quantity);
+            cartProductDao.insert(cartProductEntity);
+        }
+
+    }
+
+    //Converted
+    @Override
+    public boolean removeProductFromCart(int cartID, int productID) {
+        String cartQuery = "Select c from CartProductEntity c where c.productByProductId.id = "+productID+" and c.cartByCartId = "+cartID;
+        List<CartProductEntity> cartProductEntities =  cartProductDao.select(cartQuery);
+        if(cartProductEntities != null && cartProductEntities.size() > 0)
+        {
+            CartProductEntity cartProductEntity = cartProductEntities.get(0);
+            cartProductDao.delete(cartProductEntity);
+            return true;
         }
         return false;
     }
 
-    @Override
-    public void updateProductCartQuantity(int cartID, int productID, int quantity) {
-        String sql = "UPDATE ECommerce.Cart_product SET Quantity="+quantity+" WHERE Product_id= "+productID+ " and Cart_id = "+cartID+";";
-        databaseHandler.update(sql);
-
-    }
-
-    @Override
-    public void addProductToCart(int cartID, int productID, int quantity) {
-        String sql ="INSERT INTO `ECommerce`.`Cart_product` (`Product_id`, `Cart_id`, `Quantity`) VALUES ("+productID+","+cartID+","+quantity+");";
-        databaseHandler.update(sql);
-    }
-
-    @Override
-    public void getCartTotalPrice(int cartID) {
-
-    }
-
-    @Override
-    public boolean removeProductFromCart(int cartID, int productID) {
-        String sql = "DELETE FROM `ECommerce`.`Cart_product` WHERE Cart_id = "+cartID+" and Product_id = "+productID+";";
-        return databaseHandler.delete(sql);
-
-    }
-
+    //Converted
     @Override
     public boolean finalizeCart(int cartID) {
-        String sql = "UPDATE `ECommerce`.`Cart` SET `Checkout`='1' WHERE `id`="+cartID+";";
-        return databaseHandler.update(sql);
 
-    }
-
-    private void fillObject() throws SQLException {
-        if (resultSet.next()) {
-            String name = resultSet.getString("Name");
-            int quantity = resultSet.getInt("Quantity");
-            double price = resultSet.getDouble("price");
-            String prodect_img = resultSet.getString("prodect_img");
-            String category_id = resultSet.getString("category_id");
-//            product = new Product(name,quantity,price,prodect_img,category_id);
-
+        String cartQuery = "select c from CartEntity c where c.id = "+cartID;
+        List<CartEntity> carts = cartDao.select(cartQuery);
+        if(carts != null && carts.size() > 0)
+        {
+            CartEntity cartEntity = carts.get(0);
+            cartEntity.setCheckout((byte)1);
+            cartDao.update(cartEntity);
+            return true;
         }
+        return false;
+
     }
+
 }
