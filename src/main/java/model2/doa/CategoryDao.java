@@ -1,5 +1,6 @@
 package model2.doa;
 
+import model2.entity.ProductEntity;
 import model2.interfaces.DaoInterface;
 import model2.entity.CategoryEntity;
 

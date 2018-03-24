@@ -32,12 +32,10 @@ public class HeaderServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
 
         ProductOperation productOperation = new ProductOperation();
-        try {
+
             Vector<String> allCategories = productOperation.getAllCategories();
             Gson gson = new GsonBuilder().create();
             printWriter.write(gson.toJson(allCategories));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 }

@@ -3,13 +3,17 @@ package model.database;
 import model.beans.Order;
 import model2.adapter.EntityAdapter;
 import model2.doa.OrderDao;
+import model2.entity.CartEntity;
 import model2.entity.OrderEntity;
 import model2.interfaces.OrderOperationInterface;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 
@@ -27,37 +31,9 @@ public class OrderOperation implements OrderOperationInterface {
     public void addCartToOrder(int cartID) {
 
     }
-    //Converted - Not Tested
+    //Converted
     @Override
     public Vector<Order> getAllOrders(String email) {
-//        Vector<Order> orders = new Vector<>();
-////        String sql = "SELECT `Order`.`id`,\n" +
-////                "    `Order`.`Total_Price`,\n" +
-////                "    `Order`.`Cart_id`,\n" +
-////                "    `Order`.`Timestamp`\n" +
-////                "FROM `Order` , User , Cart\n" +
-////                "where User.Email = '"+email +
-////                "' and Cart.User_id = User.id\n" +
-////                "and `Order`.Cart_id = Cart.id and\n" +
-////                "Cart.Checkout = 1;";
-////        resultSet = databaseHandler.select(sql);
-////        try {
-////            while (resultSet.next())
-////            {
-////                Order order = new Order();
-////
-////                    order.setId(resultSet.getInt(1));
-////
-////                order.setPrice(resultSet.getDouble(2));
-////                order.setTimeStamp(resultSet.getDate(4).toLocalDate());
-////                orders.add(order);
-////            }
-////        } catch (SQLException e) {
-////            e.printStackTrace();
-////        }
-////        System.out.println(orders.size());
-////        return orders;
-
 
         String orderQuery = "select o from OrderEntity o where o.cartByCartId.userByUserId.email = '" + email + "'";
         List<OrderEntity> orderEntities = orderDao.select(orderQuery);
@@ -69,36 +45,10 @@ public class OrderOperation implements OrderOperationInterface {
         return orders;
 
     }
-    //Converted - Not Tested
+    //Converted
     @Override
     public Vector<Order> getAllOrders() {
         Vector<Order> orders = new Vector<>();
-//        String sql = "SELECT `Order`.`id`,\n" +
-//                "    `Order`.`Total_Price`,\n" +
-//                "    `Order`.`Cart_id`,\n" +
-//                "    `Order`.`Timestamp`,\n" +
-//                "    `User`.`Full_Name`\n" +
-//                "FROM `Order` , User , Cart\n" +
-//                "where " +
-//                "Cart.User_id = User.id\n" +
-//                "and `Order`.Cart_id = Cart.id and\n" +
-//                "Cart.Checkout = 1;";
-//        resultSet = databaseHandler.select(sql);
-//        try {
-//            while (resultSet.next()) {
-//                Order order = new Order();
-//
-//                order.setId(resultSet.getInt(1));
-//                order.setPrice(resultSet.getDouble(2));
-//                order.setTimeStamp(resultSet.getDate(4).toLocalDate());
-//                order.setUserName(resultSet.getString(5));
-//                orders.add(order);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("asmaaDB " + orders.size());
-//        return orders;
         String orderQuery = "select o from OrderEntity o";
         List<OrderEntity> orderEntities = orderDao.select(orderQuery);
         if(orderEntities != null && orderEntities.size() > 0){
@@ -110,16 +60,17 @@ public class OrderOperation implements OrderOperationInterface {
 
         return orders;
     }
-
+    //Converted
     @Override
     public boolean createNewOrder(int cartID, double totalPrice) {
-        String sql = "INSERT INTO `ECommerce`.`Order` (`Total_Price`, `Cart_id`, `Timestamp`) VALUES (" + totalPrice + ","
-                + cartID + ", Now());";
-        return databaseHandler.insert(sql);
+
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setTotalPrice(totalPrice);
+        orderEntity.setTimestamp(new Timestamp(Calendar.getInstance().getTime().getTime()));
+        CartEntity cartEntity = new CartOperation().getCartByID(cartID);
+        orderEntity.setCartByCartId(cartEntity);
+        orderDao.insert(orderEntity);
+        return true;
     }
 
-    public static java.sql.Date localTimeToDate(LocalDateTime lt) {
-        return new java.sql.Date(lt.atZone(ZoneId.systemDefault()).toInstant()
-                .toEpochMilli());
-    }
 }

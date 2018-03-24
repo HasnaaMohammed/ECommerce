@@ -113,7 +113,7 @@ public class ProductOperation implements ProductOperationInterface {
     public Vector<Category> getAllCategoriesWithProducts() {
         Vector<Category> categories = new Vector<>();
 
-        try {
+
             Vector<String> categoriesQuery = getAllCategories();
             for (String categorys : categoriesQuery) {
                 Category category = new Category();
@@ -122,15 +122,13 @@ public class ProductOperation implements ProductOperationInterface {
                 categories.add(category);
 
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         return categories;
     }
 
     //Converted
     @Override
-    public synchronized Vector<String> getAllCategories() throws SQLException {
+    public synchronized Vector<String> getAllCategories() {
         query = "select c from CategoryEntity c";
         Vector<String> categoryNameVector = new Vector<>();
 
@@ -149,7 +147,7 @@ public class ProductOperation implements ProductOperationInterface {
 
     //Converted
     @Override
-    public Vector<Product> getCategoryProducts(String category) throws SQLException {
+    public Vector<Product> getCategoryProducts(String category){
         Vector<Product> productsVector = new Vector<>();
         Product product = null;
         query = "select c  from  CategoryEntity c where categoryName ='" + category + "'";
@@ -163,24 +161,23 @@ public class ProductOperation implements ProductOperationInterface {
         return productsVector;
     }
 
+    //Converted
     @Override
-    public Vector<Product> getCategoryProducts(String category, int index) throws SQLException {
+    public Vector<Product> getCategoryProducts(String category, int index) {
         Vector<Product> productsVector = new Vector<>();
         Product product = null;
-        int start = index * 5;
-        int end = start + 5;
-        query = "select c  from  CategoryEntity c  where categoryName ='" + category + "'" + "'and  Order by ProductEntity.id limit " + start + " , " + end + ";";
-        List<CategoryEntity> categoryEntityList = categoryDao.select(query);
-        if (categoryEntityList != null && categoryEntityList.size() > 0) {
-            CategoryEntity categoryEntity = categoryEntityList.get(0);
-            for (ProductEntity productEntity : categoryEntity.getProductsById()) {
+
+        query = "select p from  ProductEntity p where p.categoryByCategoryId.categoryName ='" + category + "' and p.quantity > 0 ";
+        List<ProductEntity> productEntities = productDao.select(query , index);
+        if (productEntities != null && productEntities.size() > 0) {
+            for (ProductEntity productEntity : productEntities) {
                 productsVector.add(EntityAdapter.productAdapter(productEntity));
             }
         }
         return productsVector;
     }
 
-    //feha moshklaaaa eny a7ot category id 
+    //Converted
     @Override
     public boolean editProduct(Product product) {
         query = "select p from ProductEntity p where p.sku ='" + product.getSku() + "'";
@@ -191,8 +188,13 @@ public class ProductOperation implements ProductOperationInterface {
             productEntity.setSku(product.getSku());
             productEntity.setProductImg(product.getProduct_img());
             productEntity.setPrice(product.getPrice());
-            productDao.update(productEntity);
-            return true;
+            CategoryEntity categoryEntity = categoryDao.getEntityByID(Integer.parseInt(product.getProduct_category()));
+            if(categoryEntity != null)
+            {
+                productEntity.setCategoryByCategoryId(categoryEntity);
+                productDao.update(productEntity);
+                return true;
+            }
 
         }
         return  false;

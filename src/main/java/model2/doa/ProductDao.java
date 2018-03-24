@@ -42,6 +42,15 @@ public class ProductDao implements DaoInterface<ProductEntity> {
         return query.getResultList();
     }
 
+    public List<ProductEntity> select(String queryString , int index) {
+        int start = index * 5;
+        int end = start + 5;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(end);
+        return query.getResultList();
+    }
+
     @Override
     public void delete(ProductEntity entity) {
         entityManager.getTransaction().begin();

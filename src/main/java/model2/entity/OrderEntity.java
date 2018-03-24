@@ -5,10 +5,10 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Order", schema = "ECommerce", catalog = "")
+@Table(name = "Orders", schema = "ECommerce", catalog = "")
 public class OrderEntity {
     private Integer id;
-    private Integer totalPrice;
+    private double totalPrice;
     private Timestamp timestamp;
     private CartEntity cartByCartId;
 
@@ -25,11 +25,11 @@ public class OrderEntity {
 
     @Basic
     @Column(name = "Total_Price")
-    public Integer getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
