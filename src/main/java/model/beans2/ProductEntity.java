@@ -1,4 +1,4 @@
-package model2.entity;
+package model.beans2;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -11,15 +11,13 @@ public class ProductEntity {
     private String name;
     private Integer quantity;
     private Integer sku;
-    private double price;
+    private Integer price;
     private String productImg;
     private Collection<CartProductEntity> cartProductsById;
     private CategoryEntity categoryByCategoryId;
-    private boolean availableForCart;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -60,11 +58,11 @@ public class ProductEntity {
 
     @Basic
     @Column(name = "Price")
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -114,13 +112,5 @@ public class ProductEntity {
 
     public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
         this.categoryByCategoryId = categoryByCategoryId;
-    }
-    @Transient
-    public boolean isAvailableForCart() {
-        return availableForCart;
-    }
-
-    public void setAvailableForCart(boolean availableForCart) {
-        this.availableForCart = availableForCart;
     }
 }
