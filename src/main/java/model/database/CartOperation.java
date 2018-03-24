@@ -7,11 +7,10 @@ import model2.doa.*;
 import model2.entity.CartEntity;
 import model2.entity.CartProductEntity;
 import model2.entity.ProductEntity;
+import model2.entity.UserEntity;
 import model2.interfaces.CartOperationInterface;
 
-import javax.persistence.EntityManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
@@ -26,8 +25,9 @@ public class CartOperation implements CartOperationInterface {
 
     private CartDao cartDao = CartDao.getInstance();
     private CartProductDao cartProductDao = CartProductDao.getInstance();
-
+    private UserDao userDao = UserDao.getInstance();
     private ProductOperation productOperation = new ProductOperation();
+
     public CartOperation() {
         databaseHandler = DatabaseHandler.getInstance();
     }
@@ -35,7 +35,7 @@ public class CartOperation implements CartOperationInterface {
     //Converted
     @Override
     public CartEntity getCartByID(int id) {
-        CartEntity cartEntity = cartDao.getProductByID(id);
+        CartEntity cartEntity = cartDao.getEntityByID(id);
         if(cartEntity != null)
             return cartEntity;
         else
@@ -77,19 +77,33 @@ public class CartOperation implements CartOperationInterface {
 
         String cartQuery = "select c from CartEntity c , UserEntity u" +
                 " where c.userByUserId.email = '" + email + "' and c.checkout = 0";
-        return cartDao.select(cartQuery).get(0).getId();
+        List<CartEntity> list = cartDao.select(cartQuery);
+        if(list != null && list.size()>0)
+        {
+            return list.get(0).getId();
+        }
+        else
+            return -1;
     }
 
-    //TODO finsih UserOperation and Then Complete it !
+    //Converted
     @Override
     public int createUserCart(String email) {
-        String sql = "INSERT INTO `ECommerce`.`Cart` (`User_id`, `Checkout`) " +
-                "VALUES ((select User.id from User where User.email = '" + email + "'), '0')";
-        if (databaseHandler.update(sql)) {
-            return getUserCartID(email);
-        } else
-            return -1;
 
+        String userQuery = "select u from UserEntity u where u.email = '"+email+"'";
+        CartEntity cartEntity = new CartEntity();
+        List<UserEntity> userEntities = userDao.select(userQuery);
+        if(userEntities != null && userEntities.size() > 0)
+        {
+            cartEntity.setUserByUserId(userEntities.get(0));
+            cartEntity.setCheckout((byte)0);
+            cartDao.insert(cartEntity);
+            return cartEntity.getId();
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     //Converted

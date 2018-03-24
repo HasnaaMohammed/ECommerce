@@ -60,7 +60,7 @@ public class CartDao implements DaoInterface<CartEntity> {
     }
 
     @Override
-    public CartEntity getProductByID(int id) {
+    public CartEntity getEntityByID(int id) {
         return entityManager.find(CartEntity.class , id);
     }
 

@@ -2,7 +2,6 @@ package model.database;
 
 import model.beans.Category;
 import model.beans.Product;
-import model2.adapter.EntityAdapter;
 import model2.doa.ProductDao;
 import model2.entity.ProductEntity;
 import model2.interfaces.ProductOperationInterface;
@@ -39,9 +38,7 @@ public class ProductOperation implements ProductOperationInterface {
                         + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
                         + "','" + product.getProduct_img() + "' , " +
                         "(select Category.id from Category where Category.Category_name = '"+product.getProduct_category() + "'))";
-
                 databaseHandler.insert(query);
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserOperation.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,7 +49,7 @@ public class ProductOperation implements ProductOperationInterface {
 
     @Override
     public ProductEntity getProductByID(int id) {
-        ProductEntity productEntity = productDao.getProductByID(id);
+        ProductEntity productEntity = productDao.getEntityByID(id);
         if(productEntity != null)
             return productEntity;
         else
@@ -136,10 +133,10 @@ public class ProductOperation implements ProductOperationInterface {
         }
         return result;
     }
+
     @Override
     public Vector<Product> getCategoryProducts(String category) throws SQLException {
         Vector<Product> products = new Vector<>();
-
         String query = "select " +
                 "    `Product`.`Name`,\n" +
                 "    `Product`.`Quantity`,\n" +
@@ -227,13 +224,12 @@ public class ProductOperation implements ProductOperationInterface {
         return success;
     }
 
-    public boolean decreaseQuantity(int productID , int quantity)
-    {
+    public boolean decreaseQuantity(int productID , int quantity) {
         String sql = "UPDATE Product SET Quantity = Quantity - "+quantity+" WHERE id= "+productID+";";
         return databaseHandler.update(sql);
     }
     
-     @Override
+    @Override
     public boolean deleteProduct(int sku) {
         System.out.println("product operation - deleteProduct");
         boolean success;

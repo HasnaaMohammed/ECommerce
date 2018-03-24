@@ -9,8 +9,7 @@ import java.util.Vector;
 
 public class EntityAdapter {
 
-    public static User userAdapter(UserEntity userEntity)
-    {
+    public static User userAdapter(UserEntity userEntity) {
         User user = new User();
         user.setFullName(userEntity.getFullName());
         user.setJob(userEntity.getJob());
@@ -23,20 +22,19 @@ public class EntityAdapter {
         return user;
     }
 
-    public static Cart cartAdapter(CartEntity cartEntity)
-    {
+    public static Cart cartAdapter(CartEntity cartEntity) {
         Cart cart = new Cart();
         cart.setCartID(cartEntity.getId());
         cart.setCartProducts(new Vector<Product>());
-        for(CartProductEntity productEntity :  cartEntity.getCartProductsById())
-            cart.getCartProducts().add(productAdapter(productEntity.getProductByProductId()));
+        if(cartEntity.getCartProductsById() != null)
+            for(CartProductEntity productEntity :  cartEntity.getCartProductsById())
+                cart.getCartProducts().add(productAdapter(productEntity.getProductByProductId()));
         cart.setCheckOut(Boolean.parseBoolean(cartEntity.getCheckout().toString()));
 
         return cart;
     }
 
-    public static Product productAdapter(ProductEntity productEntity)
-    {
+    public static Product productAdapter(ProductEntity productEntity) {
         Product product = new Product();
         product.setProductID(productEntity.getId());
         product.setQuantiity(productEntity.getQuantity());
@@ -49,8 +47,7 @@ public class EntityAdapter {
 
     }
 
-    public static Order orderAdapter(OrderEntity orderEntity)
-    {
+    public static Order orderAdapter(OrderEntity orderEntity) {
         Order order = new Order();
         order.setId(orderEntity.getId());
         order.setPrice(orderEntity.getTotalPrice());
@@ -59,8 +56,7 @@ public class EntityAdapter {
         return order;
     }
 
-    public static Category categoryAdapter(CategoryEntity categoryEntity)
-    {
+    public static Category categoryAdapter(CategoryEntity categoryEntity) {
         Category category = new Category();
         category.setName(categoryEntity.getCategoryName());
         category.setProducts(new Vector<Product>());
@@ -68,4 +64,6 @@ public class EntityAdapter {
            category.getProducts().add(productAdapter(productEntity));
         return category;
     }
+
+
 }

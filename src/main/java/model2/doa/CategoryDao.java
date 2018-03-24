@@ -56,7 +56,7 @@ public class CategoryDao implements DaoInterface<CategoryEntity> {
     }
 
     @Override
-    public CategoryEntity getProductByID(int id) {
+    public CategoryEntity getEntityByID(int id) {
         return entityManager.find(CategoryEntity.class , id);
 
     }

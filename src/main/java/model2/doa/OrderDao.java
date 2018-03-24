@@ -56,7 +56,7 @@ public class OrderDao implements DaoInterface<OrderEntity> {
     }
 
     @Override
-    public OrderEntity getProductByID(int id) {
+    public OrderEntity getEntityByID(int id) {
         return entityManager.find(OrderEntity.class , id);
 
     }

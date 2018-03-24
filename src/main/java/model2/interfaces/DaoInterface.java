@@ -16,5 +16,5 @@ public interface DaoInterface<T> extends Serializable {
 
     public List<T> findAll();
 
-    public T getProductByID(int id);
+    public T getEntityByID(int id);
 }

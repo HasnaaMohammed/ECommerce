@@ -13,7 +13,7 @@
         <class>model2.entity.UserEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://104.154.93.46:3306/ECommerce?zeroDateTimeBehavior=convertToNull"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="##HelloWorld##"/>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -21,6 +21,5 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hbm2ddl.auto" value="update"/>
         </properties>
-
     </persistence-unit>
 </persistence>

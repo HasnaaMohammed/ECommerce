@@ -55,7 +55,7 @@ public class ProductDao implements DaoInterface<ProductEntity> {
     }
 
     @Override
-    public ProductEntity getProductByID(int id) {
+    public ProductEntity getEntityByID(int id) {
         return entityManager.find(ProductEntity.class , id);
 
     }

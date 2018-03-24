@@ -15,7 +15,7 @@ public class UserEntity {
     private Date birthdate;
     private String address;
     private String job;
-    private Integer creditLimit;
+    private double creditLimit;
     private Byte role;
     private Collection<CartEntity> cartsById;
     private Collection<UserCategoriesEntity> userCategoriesById;
@@ -93,11 +93,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "Credit_Limit")
-    public Integer getCreditLimit() {
+    public double getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(Integer creditLimit) {
+    public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
     }
 

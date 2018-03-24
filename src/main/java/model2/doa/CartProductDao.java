@@ -57,7 +57,7 @@ public class CartProductDao implements DaoInterface<CartProductEntity> {
     }
 
     @Override
-    public CartProductEntity getProductByID(int id) {
+    public CartProductEntity getEntityByID(int id) {
         return entityManager.find(CartProductEntity.class , id);
 
     }

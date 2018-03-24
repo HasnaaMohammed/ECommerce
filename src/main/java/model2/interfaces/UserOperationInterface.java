@@ -10,6 +10,5 @@ public interface UserOperationInterface {
     public boolean isUserExist(String email);
     public int addUser(User newUser);
     public Vector<User> getUsers(int type);
-    public Vector<User> getUsers();
     public boolean updateUser(User user);
 }

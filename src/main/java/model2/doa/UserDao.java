@@ -55,7 +55,7 @@ public class UserDao implements DaoInterface<UserEntity> {
     }
 
     @Override
-    public UserEntity getProductByID(int id) {
+    public UserEntity getEntityByID(int id) {
         return entityManager.find(UserEntity.class , id);
 
     }
