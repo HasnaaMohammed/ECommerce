@@ -11,8 +11,8 @@ import java.util.List;
 public class CategoryDao implements DaoInterface<CategoryEntity> {
 
     private static CategoryDao instance;
-    private EntityManager entityManager;
-    public static CategoryDao getInstance()
+    private volatile EntityManager entityManager;
+    public synchronized static CategoryDao getInstance()
     {
         if (instance == null)
             instance = new CategoryDao();
@@ -25,41 +25,48 @@ public class CategoryDao implements DaoInterface<CategoryEntity> {
 
 
     @Override
-    public void insert(CategoryEntity entity) {
+    public synchronized void insert(CategoryEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public void update(CategoryEntity entity) {
+    public synchronized void update(CategoryEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<CategoryEntity> select(String queryString) {
+    public synchronized List<CategoryEntity> select(String queryString) {
+        clearSession();
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
 
     @Override
-    public void delete(CategoryEntity entity) {
+    public synchronized void delete(CategoryEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<CategoryEntity> findAll() {
+    public synchronized List<CategoryEntity> findAll() {
         return null;
     }
 
     @Override
-    public CategoryEntity getEntityByID(int id) {
+    public synchronized CategoryEntity getEntityByID(int id) {
         return entityManager.find(CategoryEntity.class , id);
 
+    }
+
+    public synchronized void clearSession()
+    {
+        if(entityManager != null)
+            entityManager.clear();
     }
 
 }

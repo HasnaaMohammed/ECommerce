@@ -11,7 +11,7 @@ public class DaoSessionProvider {
     private EntityManager entityManager;
     private List<EntityManager> entityManagerList;
 
-    public static DaoSessionProvider getInstance() {
+    public synchronized static DaoSessionProvider getInstance() {
         if (instance == null)
             instance = new DaoSessionProvider();
         return instance;
@@ -19,15 +19,17 @@ public class DaoSessionProvider {
 
     private DaoSessionProvider() {
         entityManagerList = new ArrayList<>();
+        sessionFactory();
     }
 
     private void sessionFactory() {
         entityManager = Persistence.createEntityManagerFactory("NewPersistenceUnit").createEntityManager();
     }
 
-    public EntityManager getSession() {
+    public synchronized EntityManager getSession() {
         sessionFactory();
         entityManagerList.add(entityManager);
+        System.out.println(entityManagerList.size());
         return entityManager;
     }
 

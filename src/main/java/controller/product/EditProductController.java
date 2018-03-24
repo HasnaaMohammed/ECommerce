@@ -19,7 +19,7 @@ public class EditProductController {
         System.out.println("edit product controller - edit product");
         boolean updated;
 
-        updated= productOperation.editProduct(product);
+        updated = productOperation.editProduct(product);
 
        return updated;
     }

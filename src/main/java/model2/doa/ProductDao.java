@@ -10,8 +10,8 @@ import java.util.List;
 public class ProductDao implements DaoInterface<ProductEntity> {
 
     private static ProductDao instance;
-    private EntityManager entityManager;
-    public static ProductDao getInstance()
+    private volatile EntityManager entityManager;
+    public synchronized static ProductDao getInstance()
     {
         if (instance == null)
             instance = new ProductDao();
@@ -23,26 +23,26 @@ public class ProductDao implements DaoInterface<ProductEntity> {
     }
 
     @Override
-    public void insert(ProductEntity entity) {
+    public synchronized void insert(ProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public void update(ProductEntity entity) {
+    public synchronized void update(ProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<ProductEntity> select(String queryString) {
+    public synchronized List<ProductEntity> select(String queryString) {
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
 
-    public List<ProductEntity> select(String queryString , int index) {
+    public synchronized List<ProductEntity> select(String queryString , int index) {
         int start = index * 5;
         int end = start + 5;
         Query query = entityManager.createQuery(queryString);
@@ -52,19 +52,19 @@ public class ProductDao implements DaoInterface<ProductEntity> {
     }
 
     @Override
-    public void delete(ProductEntity entity) {
+    public synchronized void delete(ProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<ProductEntity> findAll() {
+    public synchronized List<ProductEntity> findAll() {
         return null;
     }
 
     @Override
-    public ProductEntity getEntityByID(int id) {
+    public synchronized ProductEntity getEntityByID(int id) {
         return entityManager.find(ProductEntity.class , id);
 
     }

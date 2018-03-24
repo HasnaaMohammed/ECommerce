@@ -13,7 +13,7 @@ public class CartProductDao implements DaoInterface<CartProductEntity> {
 
     private static CartProductDao instance;
     private volatile EntityManager entityManager;
-    public static CartProductDao getInstance()
+    public synchronized static CartProductDao getInstance()
     {
         if (instance == null)
             instance = new CartProductDao();
@@ -25,34 +25,34 @@ public class CartProductDao implements DaoInterface<CartProductEntity> {
     }
 
     @Override
-    public void insert(CartProductEntity entity) {
+    public synchronized void insert(CartProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public void update(CartProductEntity entity) {
+    public synchronized void update(CartProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<CartProductEntity> select(String queryString) {
+    public synchronized List<CartProductEntity> select(String queryString) {
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
 
     @Override
-    public void delete(CartProductEntity entity) {
+    public synchronized void delete(CartProductEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<CartProductEntity> findAll() {
+    public synchronized List<CartProductEntity> findAll() {
         return null;
     }
 

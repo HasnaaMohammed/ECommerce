@@ -11,8 +11,8 @@ public class OrderDao implements DaoInterface<OrderEntity> {
 
 
     private static OrderDao instance;
-    private EntityManager entityManager;
-    public static OrderDao getInstance()
+    private volatile EntityManager entityManager;
+    public synchronized static OrderDao getInstance()
     {
         if (instance == null)
             instance = new OrderDao();
@@ -24,39 +24,39 @@ public class OrderDao implements DaoInterface<OrderEntity> {
     }
 
     @Override
-    public void insert(OrderEntity entity) {
+    public synchronized void insert(OrderEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public void update(OrderEntity entity) {
+    public synchronized void update(OrderEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<OrderEntity> select(String queryString) {
+    public synchronized List<OrderEntity> select(String queryString) {
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
 
     @Override
-    public void delete(OrderEntity entity) {
+    public synchronized void delete(OrderEntity entity) {
         entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<OrderEntity> findAll() {
+    public synchronized List<OrderEntity> findAll() {
         return null;
     }
 
     @Override
-    public OrderEntity getEntityByID(int id) {
+    public synchronized OrderEntity getEntityByID(int id) {
         return entityManager.find(OrderEntity.class , id);
 
     }

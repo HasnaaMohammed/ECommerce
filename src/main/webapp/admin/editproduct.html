@@ -18,7 +18,7 @@
     <link href="../assets/css/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="setInterval('render()', 1000)">
+<body onload="render()">
     <div class="wrapper">
         <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
             <!--

@@ -29,7 +29,8 @@ public class CartOperation implements CartOperationInterface {
     private ProductOperation productOperation = new ProductOperation();
 
     public CartOperation() {
-        databaseHandler = DatabaseHandler.getInstance();
+
+//        databaseHandler = DatabaseHandler.getInstance();
     }
 
     //Converted

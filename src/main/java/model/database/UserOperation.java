@@ -30,7 +30,7 @@ public class UserOperation implements UserOperationInterface {
     private UserDao userDao ;
     public UserOperation() {
 
-        databaseHandler = DatabaseHandler.getInstance();
+//        databaseHandler = DatabaseHandler.getInstance();
         userDao = UserDao.getInstance();
     }
     //Converted

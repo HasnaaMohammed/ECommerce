@@ -14,7 +14,7 @@ public class DatabaseAwakeListener implements ServletContextListener {
         new Thread(()->{
             invokeDB(databaseHandler);
             try {
-                Thread.sleep(600_000);
+                Thread.sleep(60_000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

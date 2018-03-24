@@ -30,7 +30,7 @@ public class ProductOperation implements ProductOperationInterface {
 
 
     public ProductOperation() {
-        databaseHandler = DatabaseHandler.getInstance();
+//        databaseHandler = DatabaseHandler.getInstance();
 
     }
 
@@ -100,29 +100,29 @@ public class ProductOperation implements ProductOperationInterface {
 
         query = "select p from ProductEntity p where p.sku='" + sku + "'";
         Product product = null;
-        ProductEntity productEntity = productDao.select(query).get(0);
-        if (productEntity != null)
-            product = EntityAdapter.productAdapter(productEntity);
-
+        List<ProductEntity> productEntities = productDao.select(query);
+        ProductEntity productEntity;
+        if(productEntities != null && productEntities.size()>0)
+        {
+            productEntity = productDao.select(query).get(0);
+            if (productEntity != null)
+                product = EntityAdapter.productAdapter(productEntity);
+        }
         return product;
-
     }
 
     //Converted
     @Override
     public Vector<Category> getAllCategoriesWithProducts() {
         Vector<Category> categories = new Vector<>();
-
-
-            Vector<String> categoriesQuery = getAllCategories();
-            for (String categorys : categoriesQuery) {
-                Category category = new Category();
-                category.setName(categorys);
-                category.setProducts(getCategoryProducts(categorys));
-                categories.add(category);
-
-            }
-
+        Vector<String> categoriesQuery = getAllCategories();
+        for (String categorys : categoriesQuery)
+        {
+            Category category = new Category();
+            category.setName(categorys);
+            category.setProducts(getCategoryProducts(categorys));
+            categories.add(category);
+        }
         return categories;
     }
 
@@ -131,12 +131,11 @@ public class ProductOperation implements ProductOperationInterface {
     public synchronized Vector<String> getAllCategories() {
         query = "select c from CategoryEntity c";
         Vector<String> categoryNameVector = new Vector<>();
-
         List<CategoryEntity> categoryEntityList = categoryDao.select(query);
         if (categoryEntityList != null && categoryEntityList.size() > 0)
 
-            for (int i = 0; i < categoryEntityList.size(); i++) {
-                String categoryName = categoryEntityList.get(i).getCategoryName();
+            for (CategoryEntity aCategoryEntityList : categoryEntityList) {
+                String categoryName = aCategoryEntityList.getCategoryName();
                 categoryNameVector.add(categoryName);
 
             }
@@ -154,9 +153,12 @@ public class ProductOperation implements ProductOperationInterface {
         List<CategoryEntity> categoryEntityList = categoryDao.select(query);
         if (categoryEntityList != null && categoryEntityList.size() > 0) {
             CategoryEntity categoryEntity = categoryEntityList.get(0);
-            for (ProductEntity productEntity : categoryEntity.getProductsById()) {
-                productsVector.add(EntityAdapter.productAdapter(productEntity));
-            }
+            query = "select p from ProductEntity p where p.categoryByCategoryId.id = "+categoryEntity.getId()+" and p.quantity > 0";
+            List<ProductEntity> productEntities = productDao.select(query);
+            if(productEntities != null)
+                for (ProductEntity productEntity : productEntities) {
+                    productsVector.add(EntityAdapter.productAdapter(productEntity));
+                }
         }
         return productsVector;
     }
@@ -186,8 +188,9 @@ public class ProductOperation implements ProductOperationInterface {
             ProductEntity productEntity = productEntities.get(0);
             productEntity.setName(product.getName());
             productEntity.setSku(product.getSku());
-            productEntity.setProductImg(product.getProduct_img());
+            productEntity.setProductImg(product.getProduct_img() == null ? productEntity.getProductImg() : product.getProduct_img());
             productEntity.setPrice(product.getPrice());
+            productEntity.setQuantity(product.getQuantiity());
             CategoryEntity categoryEntity = categoryDao.getEntityByID(Integer.parseInt(product.getProduct_category()));
             if(categoryEntity != null)
             {

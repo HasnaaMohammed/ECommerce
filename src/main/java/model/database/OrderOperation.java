@@ -24,7 +24,7 @@ public class OrderOperation implements OrderOperationInterface {
     private OrderDao orderDao = OrderDao.getInstance();
 
     public OrderOperation() {
-        databaseHandler = DatabaseHandler.getInstance();
+//        databaseHandler = DatabaseHandler.getInstance();
     }
 
     @Override
