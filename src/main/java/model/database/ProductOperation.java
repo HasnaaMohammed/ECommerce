@@ -2,11 +2,8 @@ package model.database;
 
 import model.beans.Category;
 import model.beans.Product;
-<<<<<<< HEAD
-=======
 import model2.adapter.EntityAdapter;
 import model2.doa.CategoryDao;
->>>>>>> 939782a2871ab05b62ef1ab9463979d8bf55a8f7
 import model2.doa.ProductDao;
 import model2.entity.CategoryEntity;
 import model2.entity.ProductEntity;
@@ -47,13 +44,6 @@ public class ProductOperation implements ProductOperationInterface {
             if (productEntityList.size() > 0) {
                 return false;
             } else {
-<<<<<<< HEAD
-                query = "insert into Product(Name,Quantity,Sku,price,product_img,category_id) values('" + product.getName()
-                        + "','" + product.getQuantiity() + "','" + product.getSku() + "','"+ product.getPrice()
-                        + "','" + product.getProduct_img() + "' , " +
-                        "(select Category.id from Category where Category.Category_name = '"+product.getProduct_category() + "'))";
-                databaseHandler.insert(query);
-=======
                 String catQuery = "select c from CategoryEntity c where c.categoryName = '" + product.getProduct_category() + "'";
                 List<CategoryEntity> categoryEntities = categoryDao.select(catQuery);
                 CategoryEntity categoryEntity = null;
@@ -68,7 +58,6 @@ public class ProductOperation implements ProductOperationInterface {
                 productEntity.setCategoryByCategoryId(categoryEntity);
                 productDao.insert(productEntity);
                 return true;
->>>>>>> 939782a2871ab05b62ef1ab9463979d8bf55a8f7
             }
         }
 
@@ -78,13 +67,8 @@ public class ProductOperation implements ProductOperationInterface {
     //Converted
     @Override
     public ProductEntity getProductByID(int id) {
-<<<<<<< HEAD
         ProductEntity productEntity = productDao.getEntityByID(id);
-        if(productEntity != null)
-=======
-        ProductEntity productEntity = productDao.getProductByID(id);
         if (productEntity != null)
->>>>>>> 939782a2871ab05b62ef1ab9463979d8bf55a8f7
             return productEntity;
         else
             return null;
@@ -163,25 +147,6 @@ public class ProductOperation implements ProductOperationInterface {
 
     }
 
-<<<<<<< HEAD
-    @Override
-    public Vector<Product> getCategoryProducts(String category) throws SQLException {
-        Vector<Product> products = new Vector<>();
-        String query = "select " +
-                "    `Product`.`Name`,\n" +
-                "    `Product`.`Quantity`,\n" +
-                "    `Product`.`Sku`,\n" +
-                "    `Product`.`Price`,\n" +
-                "    `Product`.`Product_img`,\n" +
-                "    `Product`.`Category_id`\n" +
-                " from Product , Category\n" +
-                " where Category.Category_name = '" + category +
-                "'  and Product.Category_id = Category.id" +
-                " and Quantity > 0; ";
-        resultSet = databaseHandler.select(query);
-        getproduct(category, products);
-        return products;
-=======
     //Converted
     @Override
     public Vector<Product> getCategoryProducts(String category) throws SQLException {
@@ -196,7 +161,6 @@ public class ProductOperation implements ProductOperationInterface {
             }
         }
         return productsVector;
->>>>>>> 939782a2871ab05b62ef1ab9463979d8bf55a8f7
     }
 
     @Override
@@ -205,22 +169,6 @@ public class ProductOperation implements ProductOperationInterface {
         Product product = null;
         int start = index * 5;
         int end = start + 5;
-//        System.out.println(start);
-//        System.out.println(end);
-//        String query = "select  " +
-//                "                    `Product`.`Name`, \n" +
-//                "                    `Product`.`Quantity`, \n" +
-//                "                    `Product`.`Sku`, \n" +
-//                "                    `Product`.`Price`, \n" +
-//                "                    `Product`.`Product_img`, \n" +
-//                "                    `Product`.`Category_id`  \n" +
-//                "                 from Product , Category \n" +
-//                "                 where Category.Category_name = '" + category +
-//                "'                and Product.Category_id = Category.id \n" +
-//                "                 and Quantity > 0 Order by Product.ID Limit " + start + " , " + end + ";";
-//        resultSet = databaseHandler.select(query);
-//        getproduct(category, products);
-//        return products;
         query = "select c  from  CategoryEntity c  where categoryName ='" + category + "'" + "'and  Order by ProductEntity.id limit " + start + " , " + end + ";";
         List<CategoryEntity> categoryEntityList = categoryDao.select(query);
         if (categoryEntityList != null && categoryEntityList.size() > 0) {
@@ -258,20 +206,11 @@ public class ProductOperation implements ProductOperationInterface {
             ProductEntity productEntity = productEntities.get(0);
             productEntity.setQuantity(productEntity.getQuantity() - quantity);
             productDao.update(productEntity);
-            return  true;
-
-<<<<<<< HEAD
-    public boolean decreaseQuantity(int productID , int quantity) {
-        String sql = "UPDATE Product SET Quantity = Quantity - "+quantity+" WHERE id= "+productID+";";
-        return databaseHandler.update(sql);
-    }
-    
-=======
+            return true;
         }
-        return  false;
+        return false;
     }
 
->>>>>>> 939782a2871ab05b62ef1ab9463979d8bf55a8f7
     @Override
     public boolean deleteProduct(int sku) {
 
